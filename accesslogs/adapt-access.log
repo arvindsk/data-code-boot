@@ -1,0 +1,1 @@
+#logback.classic pattern: %d{yyyy-MM-dd HH:mm:ss.SSS} %5p : %message%n
