@@ -1,12 +1,14 @@
 package com.adapt.entity;
 
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
 @Entity
+@Getter
 @Table(name = "webusers")
 public class WebusersEntity implements Serializable {
 

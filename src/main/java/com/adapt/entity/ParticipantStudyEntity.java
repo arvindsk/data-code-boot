@@ -1,6 +1,7 @@
 package com.adapt.entity;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
+@Getter
 @Table(name = "participant_study")
 public class ParticipantStudyEntity implements Serializable {
 
@@ -18,10 +20,10 @@ public class ParticipantStudyEntity implements Serializable {
 
     @Id
     @Column(name = "participant_study_id", nullable = false)
-    private String participantStudyId;
+    private Integer participantStudyId;
 
     @Column(name = "patient_ID", nullable = false)
-    private String patientId;
+    private Integer patientId;
 
     @Column(name = "study_information")
     private String studyInformation;
@@ -30,6 +32,6 @@ public class ParticipantStudyEntity implements Serializable {
     private String timeline;
 
     @Column(name = "study_id")
-    private String studyId;
+    private Integer studyId;
 
 }

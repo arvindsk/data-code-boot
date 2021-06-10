@@ -23,10 +23,12 @@ target/
 /nbproject/private/
 /nbbuild/
 /dist/
+/logs/
+/accesslogs/
 /nbdist/
 /.nb-gradle/
 build/
-!**/src/main/**/build/
+!**/src/test/**/target/
 !**/src/test/**/build/
 
 ### VS Code ###
