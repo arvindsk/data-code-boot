@@ -41,6 +41,7 @@ public class ParticipantService {
                 String studyname = studyEntityRepository.findByStudyId(participantStudyEntity.getStudyId());
                 participantStudy.setStudy(studyname);
                 participantStudies.add(participantStudy);
+                //TODO - to populate the last to column in the collect data screen
                 //if(study completed)
                 //participant.setTimeline(participantStudyEntity.getTimeline());
                 //participant.setStudyCompleted(studyname);
