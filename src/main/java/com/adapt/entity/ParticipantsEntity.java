@@ -1,8 +1,6 @@
 package com.adapt.entity;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,7 +8,6 @@ import java.util.Date;
 
 @Data
 @Entity
-@Getter
 @Table(name = "participants")
 public class ParticipantsEntity implements Serializable {
 

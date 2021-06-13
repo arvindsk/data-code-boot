@@ -1,10 +1,18 @@
 package com.adapt.dto;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
+@Builder
 public class ParticipantStudy {
     private String timeline;
-    private String Study;
+    private String studyName;
+    private String studyInformation;
+    private Integer participantStudyId;
+    private String patientId;
+    private String status;
+    private Integer studyId;
+
+
 }
