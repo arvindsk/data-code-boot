@@ -6,12 +6,13 @@ import java.util.Date;
 
 @Getter
 @Setter
+@Builder
 public class Participant {
-    private Integer id;
+    private Integer participantId;
     private String firstName;
     private String lastName;
     private String dob;
-    private Date autotime;
+    private Date registeredDate;
     private String timeline;
-    private String StudyCompleted;
+    private String questionnaireCompleted;
 }

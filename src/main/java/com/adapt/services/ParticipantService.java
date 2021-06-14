@@ -11,6 +11,7 @@ import com.adapt.repository.StudyEntityRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,13 +31,19 @@ public class ParticipantService {
     }
 
     public List<Participant> getParticipants(String host) {
-        List<Participant> participants = new ArrayList<Participant>();
+        List<Participant> participants = new ArrayList<>();
         List<ParticipantsEntity> participantsEntities = participantsEntityRepository.findAll();
         for (ParticipantsEntity participantsEntity : participantsEntities) {
-            Participant participant = new Participant();
-            participant.setId(participantsEntity.getId());
-            List<ParticipantStudyEntity> participantStudyEntities = participantStudyEntityRepository.findByPatientId(participantsEntity.getId());
-            List<ParticipantStudy> participantStudies = new ArrayList<ParticipantStudy>();
+            Participant participant = Participant.builder()
+                    .participantId(participantsEntity.getParticipantId())
+                    .firstName(participantsEntity.getFirstName())
+                    .lastName(participantsEntity.getLastName())
+                    .timeline("baseline")
+                    .registeredDate(new Date())
+                    .dob("09-04-1989")
+                    .build();
+       /*        List<ParticipantStudyEntity> participantStudyEntities = participantStudyEntityRepository.findByParticipantId(participantsEntity.getParticipantId());
+         List<ParticipantStudy> participantStudies = new ArrayList<ParticipantStudy>();
             for (ParticipantStudyEntity participantStudyEntity : participantStudyEntities) {
                 ParticipantStudy participantStudy = ParticipantStudy.builder().build();
                 participantStudy.setTimeline(participantStudyEntity.getTimeline());
@@ -50,18 +57,18 @@ public class ParticipantService {
                 //
             }
 
-
+ */
             participants.add(participant);
-        }
+     }
         return participants;
     }
 
     public void saveQuestionnaireFilled(ParticipantStudy participantStudy) {
-        ParticipantStudyEntity participantStudyEntity = participantStudyEntityRepository.findParticipantStudyEntityByPatientIdAndAndStudyId(
-                participantStudy.getPatientId(), participantStudy.getStudyId());
+        ParticipantStudyEntity participantStudyEntity = participantStudyEntityRepository.findParticipantStudyEntityByParticipantIdAndStudyId(
+                participantStudy.getParticipantId(), participantStudy.getStudyId());
         if (Objects.isNull(participantStudyEntity)) {
             participantStudyEntity = new ParticipantStudyEntity();
-            participantStudyEntity.setPatientId(participantStudy.getPatientId());
+            participantStudyEntity.setParticipantId(participantStudy.getParticipantId());
             participantStudyEntity.setStudyId(participantStudy.getStudyId());
             participantStudyEntity.setTimeline(participantStudy.getTimeline());
         }
@@ -72,8 +79,8 @@ public class ParticipantService {
     }
 
     public ParticipantStudy getQuestionnaireFilled(ParticipantStudy participantStudy) {
-        ParticipantStudyEntity participantStudyEntity = participantStudyEntityRepository.findParticipantStudyEntityByPatientIdAndAndStudyId(
-                participantStudy.getPatientId(), participantStudy.getStudyId());
+        ParticipantStudyEntity participantStudyEntity = participantStudyEntityRepository.findParticipantStudyEntityByParticipantIdAndStudyId(
+                participantStudy.getParticipantId(), participantStudy.getStudyId());
 
         if(Objects.nonNull(participantStudyEntity)){
            return ParticipantStudy.builder().studyInformation(participantStudyEntity.getStudyInformation()).build();

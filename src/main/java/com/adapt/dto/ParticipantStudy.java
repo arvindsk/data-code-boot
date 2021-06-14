@@ -10,7 +10,7 @@ public class ParticipantStudy {
     private String studyName;
     private String studyInformation;
     private Integer participantStudyId;
-    private String patientId;
+    private Integer participantId;
     private String status;
     private Integer studyId;
 

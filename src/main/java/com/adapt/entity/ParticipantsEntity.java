@@ -12,10 +12,10 @@ import java.util.Date;
 public class ParticipantsEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @Column(name = "id", nullable = false)
+    @Id
+    @Column(name = "participant_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer participantId;
 
     @Column(name = "autotime", nullable = false)
     private Date autotime;
@@ -26,15 +26,11 @@ public class ParticipantsEntity implements Serializable {
     @Column(name = "loghost")
     private String loghost;
 
-    @Column(name = "firstName", nullable = false)
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "lastName", nullable = false)
+    @Column(name = "last_name", nullable = false)
     private String lastName;
-
-    @Id
-    @Column(name = "patientID", nullable = false)
-    private String patientID;
 
     @Column(name = "naccID", nullable = false)
     private String naccID;

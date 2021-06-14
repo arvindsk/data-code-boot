@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @Entity
@@ -17,8 +18,8 @@ public class ParticipantStudyEntity implements Serializable {
     @Column(name = "participant_study_id", nullable = false)
     private Integer participantStudyId;
 
-    @Column(name = "patient_ID", nullable = false)
-    private String patientId;
+    @Column(name = "participant_id", nullable = false)
+    private Integer participantId;
 
     @Column(name = "study_information")
     private String studyInformation;
@@ -31,5 +32,7 @@ public class ParticipantStudyEntity implements Serializable {
 
     @Column(name = "status")
     private String status;
+    @Column(name = "completed_time", nullable = false)
+    private Date completedTime;
 
 }

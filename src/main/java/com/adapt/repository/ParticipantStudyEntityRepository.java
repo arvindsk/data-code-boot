@@ -8,7 +8,10 @@ import java.util.List;
 
 public interface ParticipantStudyEntityRepository extends JpaRepository<ParticipantStudyEntity, Integer>, JpaSpecificationExecutor<ParticipantStudyEntity> {
     List<ParticipantStudyEntity> findByStudyId(Integer studyId);
-    List<ParticipantStudyEntity> findByPatientId(Integer patientId);
+
+    List<ParticipantStudyEntity> findByParticipantId(Integer participantId);
+
     ParticipantStudyEntity findParticipantStudyEntityByParticipantStudyId(Integer participantStudyId);
-    ParticipantStudyEntity findParticipantStudyEntityByPatientIdAndAndStudyId(String patientId,Integer studyId);
+
+    ParticipantStudyEntity findParticipantStudyEntityByParticipantIdAndStudyId(Integer participantId, Integer studyId);
 }
