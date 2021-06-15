@@ -4,9 +4,8 @@ import lombok.*;
 
 import java.util.Date;
 
-@Getter
-@Setter
 @Builder
+@Data
 public class Participant {
     private Integer participantId;
     private String firstName;

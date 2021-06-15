@@ -1,10 +1,12 @@
 package com.adapt.entity;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
 
 @Data
 @Entity
@@ -32,7 +34,20 @@ public class ParticipantStudyEntity implements Serializable {
 
     @Column(name = "status")
     private String status;
-    @Column(name = "completed_time", nullable = false)
+    @Column(name = "completed_time")
     private Date completedTime;
 
+    public ParticipantStudyEntity(){
+
+    }
+
+    @Builder
+    public ParticipantStudyEntity(Integer participantId, String studyInformation, String timeline, Integer studyId, String status, Date completedTime) {
+        this.participantId = participantId;
+        this.studyInformation = studyInformation;
+        this.timeline = timeline;
+        this.studyId = studyId;
+        this.status = status;
+        this.completedTime = completedTime;
+    }
 }

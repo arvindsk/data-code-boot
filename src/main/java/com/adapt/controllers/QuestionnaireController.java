@@ -35,9 +35,9 @@ public class QuestionnaireController {
         String type = params.get("questionnaireType");
 
         switch (type) {
-            case "vascular":
+            case "Vascular Risk":
                 return loadJson("questionnarie/vascular_v.1.json");
-            case "diet":
+            case "Diet":
                 return loadJson("questionnarie/vascular_study.json");
 
             default:

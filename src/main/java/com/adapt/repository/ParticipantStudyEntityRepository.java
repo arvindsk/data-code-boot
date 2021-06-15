@@ -14,4 +14,5 @@ public interface ParticipantStudyEntityRepository extends JpaRepository<Particip
     ParticipantStudyEntity findParticipantStudyEntityByParticipantStudyId(Integer participantStudyId);
 
     ParticipantStudyEntity findParticipantStudyEntityByParticipantIdAndStudyId(Integer participantId, Integer studyId);
+    ParticipantStudyEntity findParticipantStudyEntityByParticipantIdAndStudyIdAndTimeline(Integer participantId, Integer studyId,String timeline);
 }

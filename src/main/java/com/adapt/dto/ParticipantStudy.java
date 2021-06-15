@@ -3,6 +3,8 @@ package com.adapt.dto;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Builder
 public class ParticipantStudy {
@@ -13,6 +15,7 @@ public class ParticipantStudy {
     private Integer participantId;
     private String status;
     private Integer studyId;
+    private Date completedDate;
 
 
 }

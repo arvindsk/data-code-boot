@@ -1,12 +1,10 @@
 package com.adapt.controllers;
 
 import com.adapt.dto.Participant;
+import com.adapt.dto.ParticipantStudy;
 import com.adapt.services.ParticipantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +25,13 @@ public class ParticipantController {
 
         List<Participant> participants = participantService.getParticipants(host);
         return participants;
+    }
+
+    @PostMapping(value = "get-participant-study-list",consumes = "application/json", produces = "application/json")
+    public  @ResponseBody
+    List<ParticipantStudy> getParticipantStudyList(@RequestBody Participant participant) {
+
+        List<ParticipantStudy> participantStudyList = participantService.getParticipantStudyList(participant);
+        return participantStudyList;
     }
 }
