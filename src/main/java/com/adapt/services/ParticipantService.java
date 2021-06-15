@@ -75,6 +75,9 @@ public class ParticipantService {
         }
         participantStudyEntity.setStudyInformation(participantStudy.getStudyInformation());
         participantStudyEntity.setStatus(participantStudy.getStatus());
+        if("completed".equalsIgnoreCase(participantStudy.getStatus())){
+            participantStudyEntity.setCompletedTime(new Date());
+        }
 
         participantStudyEntityRepository.saveAndFlush(participantStudyEntity);
     }
