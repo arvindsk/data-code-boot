@@ -48,10 +48,10 @@ public class QuestionnaireController {
 
     @PostMapping(value = "saveQuestionnaireFilled", consumes = "application/json", produces = "application/json")
     public @ResponseBody
-    String saveQuestionnaireFilled(@RequestBody ParticipantStudy participantStudy) {
+    boolean saveQuestionnaireFilled(@RequestBody ParticipantStudy participantStudy) {
 
         participantService.saveQuestionnaireFilled(participantStudy);
-        return "success";
+        return true;
     }
 
     @PostMapping(value = "getQuestionnaireFilled", consumes = "application/json", produces = "application/json")

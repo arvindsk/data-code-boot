@@ -1,0 +1,38 @@
+package com.adapt.dto.enums;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public enum Timeline {BASELINE(1001, "baseline"),
+    FIRST_YEAR(1002, "firstyear"),
+    THIRD_YEAR(1003, "thirdyear");
+
+    private final Integer timelineId;
+    private final String timelineName;
+
+    private static final Map<Integer, String> map = new HashMap<>();
+
+    static {
+        for (Timeline mapper : values()) {
+            map.put(mapper.timelineId, mapper.timelineName);
+        }
+    }
+
+    Timeline(final Integer timelineId, final String value) {
+        this.timelineId = timelineId;
+        this.timelineName = value;
+    }
+
+    public Integer gettimelineId() {
+        return timelineId;
+    }
+
+    public String gettimelineName() {
+        return timelineName;
+    }
+
+    public static String gettimelineNameForKey(final Integer key) {
+        return map.get(key);
+    }
+
+}

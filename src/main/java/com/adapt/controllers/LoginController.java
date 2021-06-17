@@ -3,12 +3,10 @@ package com.adapt.controllers;
 import com.adapt.dto.LoginRequest;
 import com.adapt.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/adapt/")
+@RequestMapping("/api/adapt/login/")
 public class LoginController {
 
     private final LoginService loginService;
@@ -18,13 +16,10 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @GetMapping("login")
-    public String login(LoginRequest request){
+    @PostMapping(value = "loginuser", consumes = "application/json", produces = "application/json")
+    public @ResponseBody
+    boolean login(@RequestBody LoginRequest request){
 
-        if(loginService.login(request)){
-            return "success";
-        }else{
-            return "failed";
-        }
+       return loginService.login(request);
     }
 }
