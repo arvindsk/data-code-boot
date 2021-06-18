@@ -1,6 +1,7 @@
 package com.adapt.controllers;
 
 import com.adapt.dto.LoginRequest;
+import com.adapt.dto.LoginResponse;
 import com.adapt.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,13 @@ public class LoginController {
 
     @PostMapping(value = "loginuser", consumes = "application/json", produces = "application/json")
     public @ResponseBody
-    boolean login(@RequestBody LoginRequest request){
+    LoginResponse login(@RequestBody LoginRequest request){
 
-       return loginService.login(request);
+        String response = loginService.login(request);
+       if(response == null || "failed".equalsIgnoreCase(response)){
+           return new LoginResponse("failed", "");
+       }else{
+           return new LoginResponse("success", response);
+       }
     }
 }

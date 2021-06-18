@@ -16,18 +16,16 @@ public class LoginService {
         this.webusersEntityRepository = webusersEntityRepository;
     }
 
-    public boolean login(LoginRequest request){
+    public String login(LoginRequest request){
         WebusersEntity user = webusersEntityRepository.findByUsername(request.getEmailId());
         if(user!=null && user.getSite().equalsIgnoreCase(request.getSite())) {
             if (user.getUsername() != null && user.getUserpass() != null) {
                 if (request.getEmailId().equalsIgnoreCase(user.getUsername()) &&
                         request.getPassword().equalsIgnoreCase(user.getUserpass())) {
-                    return true;
-                } else {
-                    return false;
+                    return user.getFname();
                 }
             }
         }
-        return false;
+        return "failed";
     }
 }
