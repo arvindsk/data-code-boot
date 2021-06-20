@@ -20,12 +20,6 @@ public class LoginController {
     @PostMapping(value = "loginuser", consumes = "application/json", produces = "application/json")
     public @ResponseBody
     LoginResponse login(@RequestBody LoginRequest request){
-
-        String response = loginService.login(request);
-       if(response == null || "failed".equalsIgnoreCase(response)){
-           return new LoginResponse("failed", "");
-       }else{
-           return new LoginResponse("success", response);
-       }
+        return loginService.login(request);
     }
 }

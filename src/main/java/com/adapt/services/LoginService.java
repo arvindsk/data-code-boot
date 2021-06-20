@@ -1,6 +1,7 @@
 package com.adapt.services;
 
 import com.adapt.dto.LoginRequest;
+import com.adapt.dto.LoginResponse;
 import com.adapt.entity.WebusersEntity;
 import com.adapt.repository.WebusersEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +17,14 @@ public class LoginService {
         this.webusersEntityRepository = webusersEntityRepository;
     }
 
-    public String login(LoginRequest request){
+    public LoginResponse login(LoginRequest request){
         WebusersEntity user = webusersEntityRepository.findByUsername(request.getEmailId());
-        if(user!=null && user.getSite().equalsIgnoreCase(request.getSite())) {
-            if (user.getUsername() != null && user.getUserpass() != null) {
-                if (request.getEmailId().equalsIgnoreCase(user.getUsername()) &&
-                        request.getPassword().equalsIgnoreCase(user.getUserpass())) {
-                    return user.getFname();
-                }
+        if (user!=null && user.getUsername() != null && user.getUserpass() != null) {
+            if (request.getEmailId().equalsIgnoreCase(user.getUsername()) &&
+                    request.getPassword().equalsIgnoreCase(user.getUserpass())) {
+                return new LoginResponse("success", user.getFname(), user.getSite());
             }
         }
-        return "failed";
+        return new LoginResponse("failed","","");
     }
 }
