@@ -8,11 +8,13 @@
         {
           "type": "image",
           "name": "1",
-          "imageLink": "https://surveyjs.io/Content/Images/examples/image-picker/lion.jpg"
+          "imageLink": "/assets/exercise_intro.JPG",
+          "imageHeight": 800,
+          "imageWidth": 600
         }
       ],
       "questionTitleLocation": "hidden",
-      "title": "intropage"
+      "title": "How Physically Active Are You?"
     },
     {
       "name": "rapa1",
