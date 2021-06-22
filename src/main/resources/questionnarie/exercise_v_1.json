@@ -1,0 +1,178 @@
+{
+  "title": "Physical Activity Screening",
+  "completedHtml": "<h2>Thank you for submitting the Questionnaire<h2>",
+  "pages": [
+    {
+      "name": "intropage",
+      "elements": [
+        {
+          "type": "image",
+          "name": "1",
+          "imageLink": "https://surveyjs.io/Content/Images/examples/image-picker/lion.jpg"
+        }
+      ],
+      "questionTitleLocation": "hidden",
+      "title": "intropage"
+    },
+    {
+      "name": "rapa1",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "2",
+          "title": "1. I rarely or never do any physical activities.",
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            }
+          ],
+          "colCount": 2
+        },
+        {
+          "type": "checkbox",
+          "name": "3",
+          "title": "2. I do some light or moderate physical activities, but not every week.",
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            }
+          ],
+          "colCount": 2
+        },
+        {
+          "type": "checkbox",
+          "name": "4",
+          "title": "3. I do some light physical activity every week.",
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            }
+          ],
+          "colCount": 2
+        },
+        {
+          "type": "checkbox",
+          "name": "5",
+          "title": "4. I do moderate physical activities every week, but less than 30 minutes a day or 5 days a week.",
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            }
+          ],
+          "colCount": 2
+        },
+        {
+          "type": "checkbox",
+          "name": "6",
+          "title": "5. I do vigorous physical activities every week, but less than 20 minutes a day or 3 days a week.",
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            }
+          ],
+          "colCount": 2
+        },
+        {
+          "type": "checkbox",
+          "name": "7",
+          "title": "6. I do 30 minutes or more a day of moderate physical activities, 5 or more days a week.",
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            }
+          ],
+          "colCount": 2
+        },
+        {
+          "type": "checkbox",
+          "name": "8",
+          "title": "7. I do 20 minutes or more a day of vigorous physical activities, 3 or more days a week.",
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            }
+          ],
+          "colCount": 2
+        }
+      ],
+      "title": "RAPA 1",
+      "description": "How physically active are you? (Check one answer on each question)"
+    },
+    {
+      "name": "rapa2",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "9",
+          "title": "8. I do activities to increase muscle strength, such as lifting weights or calisthenics, once a week or more.",
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            }
+          ],
+          "colCount": 2
+        },
+        {
+          "type": "checkbox",
+          "name": "10",
+          "title": "9. I do activities to improve flexibility, such as stretching or yoga, once a week or more.",
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            }
+          ],
+          "colCount": 2
+        }
+      ],
+      "title": "RAPA 2",
+      "description": "How physically active are you? (Check one answer on each question)"
+    }
+  ],
+  "showQuestionNumbers": "off",
+  "showPreviewBeforeComplete": "showAnsweredQuestions"
+}

@@ -1,5 +1,5 @@
 {
-  "title": "Vascular Risk and Diagnoses Questionnaire UC Davis Alzheimer’s Disease Center",
+  "title": "Vascular Risk",
   "completedHtml": "<h2>Thank you for submitting the Questionnaire<h2>",
   "pages": [
     {
@@ -64,12 +64,33 @@
           "colCount": 0
         },
         {
-          "type": "text",
+          "type": "checkbox",
           "name": "2.2",
           "visibleIf": "{2.1} = 'yes'",
-          "title": "Approximately in what year did you first receive this diagnosis?",
-          "titleLocation": "left",
-          "inputType": "number"
+          "title": "How long have you had this condition?",
+          "choices": [
+            {
+              "value": "0to5years",
+              "text": "0 to 5 Years"
+            },
+            {
+              "value": "6to10years",
+              "text": "6 to 10 Years"
+            },
+            {
+              "value": "11to20years",
+              "text": "11 to 20 Years"
+            },
+            {
+              "value": "21to30years",
+              "text": "21 to 30 Years"
+            },
+            {
+              "value": "30plusyears",
+              "text": "30+ Years"
+            }
+          ],
+          "colCount": 5
         },
         {
           "type": "radiogroup",
@@ -136,7 +157,8 @@
         },
         {
           "type": "dropdown",
-          "name": "2.6",
+          "renderAs": "select2",
+          "name": "autocomplete1",
           "visibleIf": "{2.4} = 'yes'",
           "startWithNewLine": false,
           "title": "Other medication",
@@ -176,12 +198,33 @@
           "colCount": 0
         },
         {
-          "type": "text",
+          "type": "checkbox",
           "name": "3.2",
           "visibleIf": "{3.1} = 'yes'",
-          "title": "Approximately in what year did you first receive this diagnosis?",
-          "titleLocation": "left",
-          "inputType": "number"
+          "title": "How long have you had this condition?",
+          "choices": [
+            {
+              "value": "0to5years",
+              "text": "0 to 5 Years"
+            },
+            {
+              "value": "6to10years",
+              "text": "6 to 10 Years"
+            },
+            {
+              "value": "11to20years",
+              "text": "11 to 20 Years"
+            },
+            {
+              "value": "21to30years",
+              "text": "21 to 30 Years"
+            },
+            {
+              "value": "30plusyears",
+              "text": "30+ Years"
+            }
+          ],
+          "colCount": 5
         },
         {
           "type": "radiogroup",
@@ -248,16 +291,15 @@
         },
         {
           "type": "dropdown",
+          "renderAs": "select2",
           "name": "3.6",
           "visibleIf": "{3.4} = 'yes'",
           "startWithNewLine": false,
           "title": "Other medication",
           "titleLocation": "left",
-          "choices": [
-            "item1",
-            "item2",
-            "item3"
-          ],
+          "choicesByUrl": {
+            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+          },
           "hasOther": true
         }
       ],
@@ -290,12 +332,33 @@
           "colCount": 0
         },
         {
-          "type": "text",
+          "type": "checkbox",
           "name": "4.2",
           "visibleIf": "{4.1} = 'yes'",
-          "title": "Approximately in what year did you first receive this diagnosis?",
-          "titleLocation": "left",
-          "inputType": "number"
+          "title": "How long have you had this condition?",
+          "choices": [
+            {
+              "value": "0to5years",
+              "text": "0 to 5 Years"
+            },
+            {
+              "value": "6to10years",
+              "text": "6 to 10 Years"
+            },
+            {
+              "value": "11to20years",
+              "text": "11 to 20 Years"
+            },
+            {
+              "value": "21to30years",
+              "text": "21 to 30 Years"
+            },
+            {
+              "value": "30plusyears",
+              "text": "30+ Years"
+            }
+          ],
+          "colCount": 5
         },
         {
           "type": "radiogroup",
@@ -362,16 +425,15 @@
         },
         {
           "type": "dropdown",
+          "renderAs": "select2",
           "name": "4.6",
           "visibleIf": "{4.4} = 'yes'",
           "startWithNewLine": false,
           "title": "Other medication",
           "titleLocation": "left",
-          "choices": [
-            "item1",
-            "item2",
-            "item3"
-          ],
+          "choicesByUrl": {
+            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+          },
           "hasOther": true
         }
       ],
@@ -404,12 +466,33 @@
           "colCount": 0
         },
         {
-          "type": "text",
+          "type": "checkbox",
           "name": "5.2",
           "visibleIf": "{5.1} = 'yes'",
-          "title": "Approximately in what year did you first receive this diagnosis?",
-          "titleLocation": "left",
-          "inputType": "number"
+          "title": "How long have you had this condition?",
+          "choices": [
+            {
+              "value": "0to5years",
+              "text": "0 to 5 Years"
+            },
+            {
+              "value": "6to10years",
+              "text": "6 to 10 Years"
+            },
+            {
+              "value": "11to20years",
+              "text": "11 to 20 Years"
+            },
+            {
+              "value": "21to30years",
+              "text": "21 to 30 Years"
+            },
+            {
+              "value": "30plusyears",
+              "text": "30+ Years"
+            }
+          ],
+          "colCount": 5
         },
         {
           "type": "radiogroup",
@@ -476,16 +559,15 @@
         },
         {
           "type": "dropdown",
+          "renderAs": "select2",
           "name": "5.6",
           "visibleIf": "{5.4} = 'yes'",
           "startWithNewLine": false,
           "title": "Other medication",
           "titleLocation": "left",
-          "choices": [
-            "item1",
-            "item2",
-            "item3"
-          ],
+          "choicesByUrl": {
+            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+          },
           "hasOther": true
         }
       ],
@@ -518,12 +600,33 @@
           "colCount": 0
         },
         {
-          "type": "text",
+          "type": "checkbox",
           "name": "6.2",
           "visibleIf": "{6.1} = 'yes'",
-          "title": "Approximately in what year did you first receive this diagnosis?",
-          "titleLocation": "left",
-          "inputType": "number"
+          "title": "How long have you had this condition?",
+          "choices": [
+            {
+              "value": "0to5years",
+              "text": "0 to 5 Years"
+            },
+            {
+              "value": "6to10years",
+              "text": "6 to 10 Years"
+            },
+            {
+              "value": "11to20years",
+              "text": "11 to 20 Years"
+            },
+            {
+              "value": "21to30years",
+              "text": "21 to 30 Years"
+            },
+            {
+              "value": "30plusyears",
+              "text": "30+ Years"
+            }
+          ],
+          "colCount": 5
         },
         {
           "type": "radiogroup",
@@ -590,16 +693,15 @@
         },
         {
           "type": "dropdown",
+          "renderAs": "select2",
           "name": "6.6",
           "visibleIf": "{6.4} = 'yes'",
           "startWithNewLine": false,
           "title": "Other medication",
           "titleLocation": "left",
-          "choices": [
-            "item1",
-            "item2",
-            "item3"
-          ],
+          "choicesByUrl": {
+            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+          },
           "hasOther": true
         }
       ],
@@ -632,12 +734,33 @@
           "colCount": 0
         },
         {
-          "type": "text",
+          "type": "checkbox",
           "name": "7.2",
           "visibleIf": "{7.1} = 'yes'",
-          "title": "Approximately in what year did you first receive this diagnosis?",
-          "titleLocation": "left",
-          "inputType": "number"
+          "title": "How long have you had this condition?",
+          "choices": [
+            {
+              "value": "0to5years",
+              "text": "0 to 5 Years"
+            },
+            {
+              "value": "6to10years",
+              "text": "6 to 10 Years"
+            },
+            {
+              "value": "11to20years",
+              "text": "11 to 20 Years"
+            },
+            {
+              "value": "21to30years",
+              "text": "21 to 30 Years"
+            },
+            {
+              "value": "30plusyears",
+              "text": "30+ Years"
+            }
+          ],
+          "colCount": 5
         },
         {
           "type": "radiogroup",
@@ -704,16 +827,15 @@
         },
         {
           "type": "dropdown",
+          "renderAs": "select2",
           "name": "7.6",
           "visibleIf": "{7.4} = 'yes'",
           "startWithNewLine": false,
           "title": "Other medication",
           "titleLocation": "left",
-          "choices": [
-            "item1",
-            "item2",
-            "item3"
-          ],
+          "choicesByUrl": {
+            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+          },
           "hasOther": true
         }
       ],

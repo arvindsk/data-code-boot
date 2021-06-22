@@ -16,6 +16,7 @@ public class ParticipantStudy {
     private String status;
     private Integer studyId;
     private Date completedDate;
+    private boolean enabled;
 
 
 }

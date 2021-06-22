@@ -1,0 +1,383 @@
+{
+  "title": "Everyday Cognition (E-Cog)",
+  "completedHtml": "<h2>Thank you for submitting the Questionnaire<h2>",
+  "description": "Directions: Please rate your ability to perform various everyday tasks NOW, as compared to your own baseline (for example, compared to your ability to do these same tasks now as compared to 10 years ago). In other words, try to remember how you were doing about 10 years ago and indicate any change in your level of ability. Rate the amount of change on the following scale: 1) there has been no change compared to 10 years ago, 2) I occasionally performs the task worse but not all the time, 3) I consistently perform the task a little worse, 4) I perform the task much worse or, 9) I don’t know/not applicable. Circle the number that fits your response.",
+  "pages": [
+    {
+      "name": "memorypage",
+      "elements": [
+        {
+          "type": "matrix",
+          "name": "1",
+          "title": "Memory",
+          "columns": [
+            {
+              "value": "1",
+              "text": "Better or no change(1)"
+            },
+            {
+              "value": "2",
+              "text": "Questionable /occasionally worse(2)"
+            },
+            {
+              "value": "3",
+              "text": "Consistently a little worse(3)"
+            },
+            {
+              "value": "4",
+              "text": "Consistently much Worse(4)"
+            },
+            {
+              "value": "9",
+              "text": "Don’t know/Not applicable(9)"
+            }
+          ],
+          "rows": [
+            {
+              "value": "1",
+              "text": "1. Remembering a few shopping items without a list."
+            },
+            {
+              "value": "2",
+              "text": "2. Remembering things that happened recently (such as recent outings, events in the news)."
+            },
+            {
+              "value": "3",
+              "text": "3. Recalling conversations a few days later."
+            },
+            {
+              "value": "4",
+              "text": "4. Remembering where you have placed personal items or objects."
+            },
+            {
+              "value": "5",
+              "text": "5. Unknowingly repeating stories and/or questions multiple times."
+            },
+            {
+              "value": "6",
+              "text": "6. Remembering the current date or day of the week."
+            },
+            {
+              "value": "7",
+              "text": "7. Remembering that you have already told someone something."
+            },
+            {
+              "value": "8",
+              "text": "8. Remembering appointments, meetings, or engagements."
+            },
+            {
+              "value": "9",
+              "text": "9. Remembering to do important tasks like pay bills or take medications. "
+            }
+          ]
+        }
+      ],
+      "title": "Compared to 10 years ago, has there been any change in… "
+    },
+    {
+      "name": "Languagepage",
+      "elements": [
+        {
+          "type": "matrix",
+          "name": "2",
+          "title": "Language",
+          "columns": [
+            {
+              "value": "1",
+              "text": "Better or no change(1)"
+            },
+            {
+              "value": "2",
+              "text": "Questionable /occasionally worse(2)"
+            },
+            {
+              "value": "3",
+              "text": "Consistently a little worse(3)"
+            },
+            {
+              "value": "4",
+              "text": "Consistently much Worse(4)"
+            },
+            {
+              "value": "9",
+              "text": "Don’t know/Not applicable(9)"
+            }
+          ],
+          "rows": [
+            {
+              "value": "1",
+              "text": "1. Coming up with the right names of commonly used everyday objects (e.g., telephone, toothbrush)."
+            },
+            {
+              "value": "2",
+              "text": "2. Verbally giving instructions to others."
+            },
+            {
+              "value": "3",
+              "text": "3. Finding the exact right words to use in a conversation."
+            },
+            {
+              "value": "4",
+              "text": "4. Communicating or expressing ideas in a conversation."
+            },
+            {
+              "value": "5",
+              "text": "5. Following a story in a book or on TV."
+            },
+            {
+              "value": "6",
+              "text": "6. Understanding the point of what other people are trying to say."
+            },
+            {
+              "value": "7",
+              "text": "7. Remembering the meaning of common words."
+            },
+            {
+              "value": "8",
+              "text": "8. Describing a program you have watched on TV."
+            },
+            {
+              "value": "9",
+              "text": "9. Understanding spoken directions or instructions."
+            }
+          ]
+        }
+      ],
+      "title": "Compared to 10 years ago, has there been any change in… "
+    },
+    {
+      "name": "visualpage",
+      "elements": [
+        {
+          "type": "matrix",
+          "name": "3",
+          "title": "Visual-spatial and Perceptual Abilities",
+          "columns": [
+            {
+              "value": "1",
+              "text": "Better or no change(1)"
+            },
+            {
+              "value": "2",
+              "text": "Questionable /occasionally worse(2)"
+            },
+            {
+              "value": "3",
+              "text": "Consistently a little worse(3)"
+            },
+            {
+              "value": "4",
+              "text": "Consistently much Worse(4)"
+            },
+            {
+              "value": "9",
+              "text": "Don’t know/Not applicable(9)"
+            }
+          ],
+          "rows": [
+            {
+              "value": "1",
+              "text": "1. Increased reliance on using electronic navigational aids (like GPS on a smart phone) to find your way around town."
+            },
+            {
+              "value": "2",
+              "text": "2. Finding your car in a parking lot."
+            },
+            {
+              "value": "3",
+              "text": "3. Finding the way to a familiar location (e.g., a long-term friend’s home)."
+            },
+            {
+              "value": "4",
+              "text": "4. Finding your way around your own neighborhood.  "
+            },
+            {
+              "value": "5",
+              "text": "5. Finding your way around a familiar store or other building."
+            },
+            {
+              "value": "6",
+              "text": "6. Finding your way around a familiar home. "
+            },
+            {
+              "value": "7",
+              "text": "7. Use of landmarks in the environment to find locations (e.g., turn left after the grocery store)."
+            },
+            {
+              "value": "8",
+              "text": "8. Difficulty perceiving distances when driving or driving too close to another vehicle or other object. "
+            }
+          ]
+        }
+      ],
+      "title": "Compared to 10 years ago, has there been any change in… "
+    },
+    {
+      "name": "planningpage",
+      "elements": [
+        {
+          "type": "matrix",
+          "name": "4",
+          "title": "Executive Functioning: Planning",
+          "columns": [
+            {
+              "value": "1",
+              "text": "Better or no change(1)"
+            },
+            {
+              "value": "2",
+              "text": "Questionable /occasionally worse(2)"
+            },
+            {
+              "value": "3",
+              "text": "Consistently a little worse(3)"
+            },
+            {
+              "value": "4",
+              "text": "Consistently much Worse(4)"
+            },
+            {
+              "value": "9",
+              "text": "Don’t know/Not applicable(9)"
+            }
+          ],
+          "rows": [
+            {
+              "value": "1",
+              "text": "1. Planning the sequence of stops on a shopping trip."
+            },
+            {
+              "value": "2",
+              "text": "2. The ability to anticipate weather changes and plan accordingly (e.g., bring a coat or umbrella)."
+            },
+            {
+              "value": "3",
+              "text": "3. Planning and sticking to a schedule for the day when there are several things to be done."
+            },
+            {
+              "value": "4",
+              "text": "4. Thinking things through before making a major decision (e.g., making a big purchase)."
+            },
+            {
+              "value": "5",
+              "text": "5.  Planning a trip, vacation, or outing."
+            }
+          ]
+        }
+      ],
+      "title": "Compared to 10 years ago, has there been any change in… "
+    },
+    {
+      "name": "organizationpage",
+      "elements": [
+        {
+          "type": "matrix",
+          "name": "5",
+          "title": "Executive Functioning: Organization",
+          "columns": [
+            {
+              "value": "1",
+              "text": "Better or no change(1)"
+            },
+            {
+              "value": "2",
+              "text": "Questionable /occasionally worse(2)"
+            },
+            {
+              "value": "3",
+              "text": "Consistently a little worse(3)"
+            },
+            {
+              "value": "4",
+              "text": "Consistently much Worse(4)"
+            },
+            {
+              "value": "9",
+              "text": "Don’t know/Not applicable(9)"
+            }
+          ],
+          "rows": [
+            {
+              "value": "1",
+              "text": "1. Keeping living and work space (such as a home office, garage or pantry) organized."
+            },
+            {
+              "value": "2",
+              "text": "2.  Managing bill payments."
+            },
+            {
+              "value": "3",
+              "text": "3. Keeping financial records or other documents organized so they are easy to find when needed."
+            },
+            {
+              "value": "4",
+              "text": "4. Prioritizing tasks by importance (doing the most important things first)."
+            },
+            {
+              "value": "5",
+              "text": "5. Keeping mail and papers organized."
+            },
+            {
+              "value": "6",
+              "text": "6. Using an organized strategy to manage a medication schedule involving multiple medications."
+            }
+          ]
+        }
+      ],
+      "title": "Compared to 10 years ago, has there been any change in… "
+    },
+    {
+      "name": "attentionpage",
+      "elements": [
+        {
+          "type": "matrix",
+          "name": "6",
+          "title": "Executive Functioning: Divided Attention",
+          "columns": [
+            {
+              "value": "1",
+              "text": "Better or no change(1)"
+            },
+            {
+              "value": "2",
+              "text": "Questionable /occasionally worse(2)"
+            },
+            {
+              "value": "3",
+              "text": "Consistently a little worse(3)"
+            },
+            {
+              "value": "4",
+              "text": "Consistently much Worse(4)"
+            },
+            {
+              "value": "9",
+              "text": "Don’t know/Not applicable(9)"
+            }
+          ],
+          "rows": [
+            {
+              "value": "1",
+              "text": "1. The ability to do two things at once."
+            },
+            {
+              "value": "2",
+              "text": "2. Returning to a task after being interrupted."
+            },
+            {
+              "value": "3",
+              "text": "3. The ability to concentrate on and complete a task without being distracted by other things."
+            },
+            {
+              "value": "4",
+              "text": "4. Working on a particular task while talking to someone at the same time."
+            }
+          ]
+        }
+      ],
+      "title": "Compared to 10 years ago, has there been any change in… "
+    }
+  ],
+  "showQuestionNumbers": "off",
+  "showPreviewBeforeComplete": "showAnsweredQuestions"
+}

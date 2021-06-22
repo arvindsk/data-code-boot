@@ -1,0 +1,325 @@
+{
+  "title": "Sleep Study",
+  "completedHtml": "<h2>Thank you for submitting the Questionnaire<h2>",
+  "pages": [
+    {
+      "name": "personalinfopage",
+      "elements": [
+        {
+          "type": "text",
+          "name": "1",
+          "width": "50px",
+          "minWidth": "50px",
+          "maxWidth": "50px",
+          "startWithNewLine": false,
+          "title": "height(m)",
+          "titleLocation": "left",
+          "inputType": "number"
+        },
+        {
+          "type": "text",
+          "name": "2",
+          "width": "50px",
+          "minWidth": "50px",
+          "maxWidth": "50px",
+          "title": "Weight(kg)",
+          "titleLocation": "left",
+          "inputType": "number"
+        },
+        {
+          "type": "text",
+          "name": "3",
+          "width": "50px",
+          "minWidth": "50px",
+          "maxWidth": "50px",
+          "title": "Age",
+          "titleLocation": "left",
+          "inputType": "number"
+        },
+        {
+          "type": "radiogroup",
+          "name": "4",
+          "title": "Sex:",
+          "titleLocation": "left",
+          "choices": [
+            {
+              "value": "male",
+              "text": "Male"
+            },
+            {
+              "value": "female",
+              "text": "Female"
+            }
+          ],
+          "colCount": 2
+        }
+      ],
+      "title": "Personal Info"
+    },
+    {
+      "name": "cetegory1",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "5",
+          "title": "1. Do you snore?",
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            },
+            {
+              "value": "dontknow",
+              "text": "Don’t know"
+            }
+          ],
+          "colCount": 3
+        },
+        {
+          "type": "checkbox",
+          "name": "6",
+          "visibleIf": "{5} = ['yes']",
+          "title": "2. Your snoring is:",
+          "choices": [
+            {
+              "value": "a",
+              "text": "Slightly louder than breathing"
+            },
+            {
+              "value": "b",
+              "text": "As loud as talking"
+            },
+            {
+              "value": "c",
+              "text": "Louder than talking"
+            },
+            {
+              "value": "d",
+              "text": "Very loud can be heard in adjacent rooms"
+            }
+          ],
+          "colCount": 2
+        },
+        {
+          "type": "checkbox",
+          "name": "7",
+          "visibleIf": "{5} = ['yes']",
+          "title": "3. How often do you snore?",
+          "choices": [
+            {
+              "value": "a",
+              "text": "Nearly every day"
+            },
+            {
+              "value": "b",
+              "text": "3-4 times a week"
+            },
+            {
+              "value": "c",
+              "text": "1-2 times a week"
+            },
+            {
+              "value": "d",
+              "text": "1-2 times a month"
+            },
+            {
+              "value": "e",
+              "text": "Never or nearly never"
+            }
+          ],
+          "colCount": 2
+        },
+        {
+          "type": "checkbox",
+          "name": "8",
+          "visibleIf": "{5} = ['yes']",
+          "title": "4. Has your snoring ever bothered other people?",
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            },
+            {
+              "value": "dontknow",
+              "text": "Don't know"
+            }
+          ],
+          "colCount": 3
+        },
+        {
+          "type": "checkbox",
+          "name": "9",
+          "visibleIf": "{5} = ['yes']",
+          "title": "5. Has anyone noticed that you quit breathing during your sleep?",
+          "choices": [
+            {
+              "value": "a",
+              "text": "Nearly every day"
+            },
+            {
+              "value": "b",
+              "text": "3-4 times a week"
+            },
+            {
+              "value": "c",
+              "text": "1-2 times a week"
+            },
+            {
+              "value": "d",
+              "text": "1-2 times a month"
+            },
+            {
+              "value": "e",
+              "text": "Never or nearly never"
+            }
+          ],
+          "colCount": 2
+        }
+      ],
+      "title": "CATEGORY 1",
+      "description": "Please choose the correct response to each question."
+    },
+    {
+      "name": "category2",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "10",
+          "title": "6. How often do you feel tired or fatigued after your sleep?",
+          "choices": [
+            {
+              "value": "a",
+              "text": "Nearly every day"
+            },
+            {
+              "value": "b",
+              "text": "3-4 times a week"
+            },
+            {
+              "value": "c",
+              "text": "1-2 times a week"
+            },
+            {
+              "value": "d",
+              "text": "1-2 times a month"
+            },
+            {
+              "value": "e",
+              "text": "Never or nearly never"
+            }
+          ],
+          "colCount": 2
+        },
+        {
+          "type": "checkbox",
+          "name": "11",
+          "title": "7. During your waking time, do you feel tired, fatigued, or not up to par?",
+          "choices": [
+            {
+              "value": "a",
+              "text": "Nearly every day"
+            },
+            {
+              "value": "b",
+              "text": "3-4 times a week"
+            },
+            {
+              "value": "c",
+              "text": "1-2 times a week"
+            },
+            {
+              "value": "d",
+              "text": "1-2 times a month"
+            },
+            {
+              "value": "e",
+              "text": "Never or nearly never"
+            }
+          ],
+          "colCount": 2
+        },
+        {
+          "type": "checkbox",
+          "name": "12",
+          "title": "8. Have you ever nodded off or fallen asleep while driving a vehicle?",
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            }
+          ],
+          "colCount": 2
+        },
+        {
+          "type": "checkbox",
+          "name": "13",
+          "visibleIf": "{12} = ['yes']",
+          "title": "9. How often does this occur?",
+          "choices": [
+            {
+              "value": "a",
+              "text": "Nearly every day"
+            },
+            {
+              "value": "b",
+              "text": "3-4 times a week"
+            },
+            {
+              "value": "c",
+              "text": "1-2 times a week"
+            },
+            {
+              "value": "d",
+              "text": "1-2 times a month"
+            },
+            {
+              "value": "e",
+              "text": "Never or nearly never"
+            }
+          ],
+          "colCount": 2
+        }
+      ],
+      "title": "CATEGORY 2"
+    },
+    {
+      "name": "category3",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "14",
+          "title": "10. Do you have high blood pressure?",
+          "choices": [
+            {
+              "value": "yes",
+              "text": "Yes"
+            },
+            {
+              "value": "no",
+              "text": "No"
+            },
+            {
+              "value": "dontknow",
+              "text": "Don’t know"
+            }
+          ],
+          "colCount": 3
+        }
+      ],
+      "title": "CATEGORY 3"
+    }
+  ],
+  "showQuestionNumbers": "off"
+}

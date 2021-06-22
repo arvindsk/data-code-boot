@@ -5,10 +5,11 @@ import java.util.Map;
 
 public enum Study {
     VASCULAR_RISK(1001, "Vascular Risk"),
-    CARDIO_VASCULAR_RISK(1002, "Cardio Vascular Risk"),
-    MEMORY(1003, "Memory"),
-    DIET(1004, "Diet"),
-    EXERCISE(1005, "Exercise");
+    CARDIO_VASCULAR_RISK(1002, "Sleep Study"),
+    MEMORY(1003, "Everyday Cognition (E-Cog)"),
+    DIET(1004, "Diet Screening"),
+    EXERCISE(1005, "Physical Activity Screening");
+
 
     private final Integer studyId;
     private final String studyName;
