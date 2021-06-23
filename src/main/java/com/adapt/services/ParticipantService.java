@@ -35,13 +35,16 @@ public class ParticipantService {
         List<Participant> participants = new ArrayList<>();
         List<ParticipantsEntity> participantsEntities = participantsEntityRepository.findAll();
         for (ParticipantsEntity participantsEntity : participantsEntities) {
+            List<ParticipantStudyEntity> participantStudyList = participantStudyEntityRepository.
+                    findByParticipantIdOrderByCompletedTimeDesc(participantsEntity.getParticipantId());
             Participant participant = Participant.builder()
                     .participantId(participantsEntity.getParticipantId())
                     .firstName(participantsEntity.getFirstName())
                     .lastName(participantsEntity.getLastName())
-                    .timeline("baseline")
-                    .registeredDate(new Date())
-                    .dob("09-04-1989")
+                    .timeline(participantStudyList.size()>0?participantStudyList.get(0).getTimeline():"")
+                    .registeredDate(participantsEntity.getAutotime())
+                    .dob(participantsEntity.getDob())
+                    .completedDate(participantStudyList.size()>0?participantStudyList.get(0).getCompletedTime():null)
                     .build();
        /*        List<ParticipantStudyEntity> participantStudyEntities = participantStudyEntityRepository.findByParticipantId(participantsEntity.getParticipantId());
          List<ParticipantStudy> participantStudies = new ArrayList<ParticipantStudy>();

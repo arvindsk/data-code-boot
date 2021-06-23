@@ -13,5 +13,5 @@ public class Participant {
     private String dob;
     private Date registeredDate;
     private String timeline;
-    private String questionnaireCompleted;
+    private Date completedDate;
 }
