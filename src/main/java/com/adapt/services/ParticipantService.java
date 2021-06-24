@@ -5,30 +5,23 @@ import com.adapt.dto.ParticipantStudy;
 import com.adapt.dto.enums.Study;
 import com.adapt.entity.ParticipantStudyEntity;
 import com.adapt.entity.ParticipantsEntity;
-import com.adapt.entity.StudyEntity;
 import com.adapt.repository.ParticipantStudyEntityRepository;
 import com.adapt.repository.ParticipantsEntityRepository;
 import com.adapt.repository.StudyEntityRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class ParticipantService {
 
     private final ParticipantsEntityRepository participantsEntityRepository;
     private final ParticipantStudyEntityRepository participantStudyEntityRepository;
-    private final StudyEntityRepository studyEntityRepository;
 
     public ParticipantService(ParticipantsEntityRepository participantsEntityRepository,
-                              ParticipantStudyEntityRepository participantStudyEntityRepository,
-                              StudyEntityRepository studyEntityRepository) {
+                              ParticipantStudyEntityRepository participantStudyEntityRepository) {
         this.participantsEntityRepository = participantsEntityRepository;
         this.participantStudyEntityRepository = participantStudyEntityRepository;
-        this.studyEntityRepository = studyEntityRepository;
     }
 
     public List<Participant> getParticipants(String host) {
@@ -37,6 +30,21 @@ public class ParticipantService {
         for (ParticipantsEntity participantsEntity : participantsEntities) {
             List<ParticipantStudyEntity> participantStudyList = participantStudyEntityRepository.
                     findByParticipantIdOrderByCompletedTimeDesc(participantsEntity.getParticipantId());
+            String activeTimeline = "baseline";
+            if(participantStudyList.size()>0) {
+                Date firstAttemptTime = participantStudyList.get(participantStudyList.size() - 1).getCompletedTime();
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(firstAttemptTime);
+                Calendar calendar1 = Calendar.getInstance();
+                calendar.add(Calendar.MONTH, 9);
+                if (calendar1.after(calendar)) {
+                    activeTimeline = "firstyear";
+                    calendar.add(Calendar.MONTH, 24);
+                    if (calendar1.after(calendar)) {
+                        activeTimeline = "thirdyear";
+                    }
+                }
+            }
             Participant participant = Participant.builder()
                     .participantId(participantsEntity.getParticipantId())
                     .firstName(participantsEntity.getFirstName())
@@ -45,23 +53,9 @@ public class ParticipantService {
                     .registeredDate(participantsEntity.getAutotime())
                     .dob(participantsEntity.getDob())
                     .completedDate(participantStudyList.size()>0?participantStudyList.get(0).getCompletedTime():null)
+                    .activeTimeline(activeTimeline)
                     .build();
-       /*        List<ParticipantStudyEntity> participantStudyEntities = participantStudyEntityRepository.findByParticipantId(participantsEntity.getParticipantId());
-         List<ParticipantStudy> participantStudies = new ArrayList<ParticipantStudy>();
-            for (ParticipantStudyEntity participantStudyEntity : participantStudyEntities) {
-                ParticipantStudy participantStudy = ParticipantStudy.builder().build();
-                participantStudy.setTimeline(participantStudyEntity.getTimeline());
-                StudyEntity studyEntity = studyEntityRepository.findByStudyId(participantStudyEntity.getStudyId());
-                participantStudy.setStudyName(studyEntity.getStudyName());
-                participantStudies.add(participantStudy);
-                //TODO - to populate the last to column in the collect data screen
-                //if(study completed)
-                //participant.setTimeline(participantStudyEntity.getTimeline());
-                //participant.setStudyCompleted(studyname);
-                //
-            }
 
- */
             participants.add(participant);
      }
         return participants;

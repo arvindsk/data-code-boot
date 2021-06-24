@@ -14,4 +14,5 @@ public class Participant {
     private Date registeredDate;
     private String timeline;
     private Date completedDate;
+    private String activeTimeline;
 }
