@@ -17,6 +17,6 @@ public class ParticipantStudy {
     private Integer studyId;
     private Date completedDate;
     private boolean enabled;
-
+    private String activeTimeline;
 
 }

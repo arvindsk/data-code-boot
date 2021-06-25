@@ -23,15 +23,15 @@ public enum Timeline {BASELINE(1001, "baseline"),
         this.timelineName = value;
     }
 
-    public Integer gettimelineId() {
+    public Integer getTimelineId() {
         return timelineId;
     }
 
-    public String gettimelineName() {
+    public String getTimelineName() {
         return timelineName;
     }
 
-    public static String gettimelineNameForKey(final Integer key) {
+    public static String getTimelineNameForKey(final Integer key) {
         return map.get(key);
     }
 

@@ -39,13 +39,13 @@ public class SummaryService {
         List<StudyEntity> studies = studyEntityRepository.findAll();
         for(StudyEntity study : studies){
             String studyName = study.getStudyName();
-            Long baselineStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimeline(study.getStudyId(), Timeline.BASELINE.gettimelineName()).size());
+            Long baselineStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimeline(study.getStudyId(), Timeline.BASELINE.getTimelineName()).size());
             SummaryMap baselineMap = new SummaryMap(studyName, baselineStudyCount);
             studyCountBaselineMap.add(baselineMap);
-            Long firstyearStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimeline(study.getStudyId(), Timeline.FIRST_YEAR.gettimelineName()).size());
+            Long firstyearStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimeline(study.getStudyId(), Timeline.FIRST_YEAR.getTimelineName()).size());
             SummaryMap firstyearMap = new SummaryMap(studyName, firstyearStudyCount);
             studyCountFirstYearMap.add(firstyearMap);
-            Long thirdyearStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimeline(study.getStudyId(), Timeline.THIRD_YEAR.gettimelineName()).size());
+            Long thirdyearStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimeline(study.getStudyId(), Timeline.THIRD_YEAR.getTimelineName()).size());
             SummaryMap thirdyearMap = new SummaryMap(studyName, thirdyearStudyCount);
             studyCountThirdYearMap.add(thirdyearMap);
         }

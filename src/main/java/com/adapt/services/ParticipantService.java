@@ -2,7 +2,9 @@ package com.adapt.services;
 
 import com.adapt.dto.Participant;
 import com.adapt.dto.ParticipantStudy;
+import com.adapt.dto.enums.Status;
 import com.adapt.dto.enums.Study;
+import com.adapt.dto.enums.Timeline;
 import com.adapt.entity.ParticipantStudyEntity;
 import com.adapt.entity.ParticipantsEntity;
 import com.adapt.repository.ParticipantStudyEntityRepository;
@@ -30,30 +32,15 @@ public class ParticipantService {
         for (ParticipantsEntity participantsEntity : participantsEntities) {
             List<ParticipantStudyEntity> participantStudyList = participantStudyEntityRepository.
                     findByParticipantIdOrderByCompletedTimeDesc(participantsEntity.getParticipantId());
-            String activeTimeline = "baseline";
-            if(participantStudyList.size()>0) {
-                Date firstAttemptTime = participantStudyList.get(participantStudyList.size() - 1).getCompletedTime();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(firstAttemptTime);
-                Calendar calendar1 = Calendar.getInstance();
-                calendar.add(Calendar.MONTH, 9);
-                if (calendar1.after(calendar)) {
-                    activeTimeline = "firstyear";
-                    calendar.add(Calendar.MONTH, 24);
-                    if (calendar1.after(calendar)) {
-                        activeTimeline = "thirdyear";
-                    }
-                }
-            }
+
             Participant participant = Participant.builder()
                     .participantId(participantsEntity.getParticipantId())
                     .firstName(participantsEntity.getFirstName())
                     .lastName(participantsEntity.getLastName())
-                    .timeline(participantStudyList.size()>0?participantStudyList.get(0).getTimeline():"")
+                    .timeline(participantStudyList.size()>0?participantStudyList.get(0).getTimeline():"baseline")
                     .registeredDate(participantsEntity.getAutotime())
                     .dob(participantsEntity.getDob())
                     .completedDate(participantStudyList.size()>0?participantStudyList.get(0).getCompletedTime():null)
-                    .activeTimeline(activeTimeline)
                     .build();
 
             participants.add(participant);
@@ -71,9 +58,11 @@ public class ParticipantService {
             participantStudyEntity.setTimeline(participantStudy.getTimeline());
         }
         participantStudyEntity.setStudyInformation(participantStudy.getStudyInformation());
-        participantStudyEntity.setStatus(participantStudy.getStatus());
         if("completed".equalsIgnoreCase(participantStudy.getStatus())){
+            participantStudyEntity.setStatus(Status.COMPLETED.getStatusName());
             participantStudyEntity.setCompletedTime(new Date());
+        }else if("running".equalsIgnoreCase(participantStudy.getStatus())){
+            participantStudyEntity.setStatus(Status.IN_PROGRESS.getStatusName());
         }
 
         participantStudyEntityRepository.saveAndFlush(participantStudyEntity);
@@ -93,10 +82,26 @@ public class ParticipantService {
         List<ParticipantStudy> participantStudyList=new ArrayList<>();
         Integer participantId = participant.getParticipantId();
         String timeline = participant.getTimeline();
+        String activeTimeline = Timeline.BASELINE.getTimelineName();
         List<ParticipantStudyEntity> participantStudyEntityList = participantStudyEntityRepository.findByParticipantId(participantId);
         if(Objects.isNull(participantStudyEntityList) || participantStudyEntityList.isEmpty() ){
             participantStudyEntityList=createParticipantStudyEntitiesForParticipant(participantId,timeline);
             participantStudyEntityList = participantStudyEntityRepository.saveAllAndFlush(participantStudyEntityList);
+        }else{
+            Date firstAttemptTime = participantStudyEntityList.get(0).getCompletedTime();
+            if(firstAttemptTime!=null) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(firstAttemptTime);
+                Calendar calendar1 = Calendar.getInstance();
+                calendar.add(Calendar.MONTH, 9);
+                if (calendar1.after(calendar)) {
+                    activeTimeline = Timeline.FIRST_YEAR.getTimelineName();
+                    calendar.add(Calendar.MONTH, 24);
+                    if (calendar1.after(calendar)) {
+                        activeTimeline = Timeline.THIRD_YEAR.getTimelineName();
+                    }
+                }
+            }
         }
         for (ParticipantStudyEntity entity:participantStudyEntityList){
             ParticipantStudy participantStudy = ParticipantStudy.builder().studyId(entity.getStudyId())
@@ -107,6 +112,7 @@ public class ParticipantService {
                     .timeline(entity.getTimeline())
                     .completedDate(entity.getCompletedTime())
                     .participantId(entity.getParticipantId())
+                    .activeTimeline(activeTimeline)
                     .build();
             participantStudyList.add(participantStudy);
         }
