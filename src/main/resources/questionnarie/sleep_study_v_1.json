@@ -8,6 +8,7 @@
         {
           "type": "text",
           "name": "1",
+          "isRequired": true,
           "width": "50px",
           "minWidth": "50px",
           "maxWidth": "50px",
@@ -19,6 +20,7 @@
         {
           "type": "text",
           "name": "2",
+          "isRequired": true,
           "width": "50px",
           "minWidth": "50px",
           "maxWidth": "50px",
@@ -29,6 +31,7 @@
         {
           "type": "text",
           "name": "3",
+          "isRequired": true,
           "width": "50px",
           "minWidth": "50px",
           "maxWidth": "50px",
@@ -39,6 +42,7 @@
         {
           "type": "radiogroup",
           "name": "4",
+          "isRequired": true,
           "title": "Sex:",
           "titleLocation": "left",
           "choices": [
@@ -62,6 +66,7 @@
         {
           "type": "checkbox",
           "name": "5",
+          "isRequired": true,
           "title": "1. Do you snore?",
           "choices": [
             {
@@ -82,6 +87,7 @@
         {
           "type": "checkbox",
           "name": "6",
+          "isRequired": true,
           "visibleIf": "{5} = ['yes']",
           "title": "2. Your snoring is:",
           "choices": [
@@ -107,6 +113,7 @@
         {
           "type": "checkbox",
           "name": "7",
+          "isRequired": true,
           "visibleIf": "{5} = ['yes']",
           "title": "3. How often do you snore?",
           "choices": [
@@ -136,6 +143,7 @@
         {
           "type": "checkbox",
           "name": "8",
+          "isRequired": true,
           "visibleIf": "{5} = ['yes']",
           "title": "4. Has your snoring ever bothered other people?",
           "choices": [
@@ -157,6 +165,7 @@
         {
           "type": "checkbox",
           "name": "9",
+          "isRequired": true,
           "visibleIf": "{5} = ['yes']",
           "title": "5. Has anyone noticed that you quit breathing during your sleep?",
           "choices": [
@@ -193,6 +202,7 @@
         {
           "type": "checkbox",
           "name": "10",
+          "isRequired": true,
           "title": "6. How often do you feel tired or fatigued after your sleep?",
           "choices": [
             {
@@ -221,6 +231,7 @@
         {
           "type": "checkbox",
           "name": "11",
+          "isRequired": true,
           "title": "7. During your waking time, do you feel tired, fatigued, or not up to par?",
           "choices": [
             {
@@ -249,6 +260,7 @@
         {
           "type": "checkbox",
           "name": "12",
+          "isRequired": true,
           "title": "8. Have you ever nodded off or fallen asleep while driving a vehicle?",
           "choices": [
             {
@@ -265,6 +277,7 @@
         {
           "type": "checkbox",
           "name": "13",
+          "isRequired": true,
           "visibleIf": "{12} = ['yes']",
           "title": "9. How often does this occur?",
           "choices": [
@@ -300,6 +313,7 @@
         {
           "type": "checkbox",
           "name": "14",
+          "isRequired": true,
           "title": "10. Do you have high blood pressure?",
           "choices": [
             {
@@ -321,5 +335,7 @@
       "title": "CATEGORY 3"
     }
   ],
-  "showQuestionNumbers": "off"
+  "showQuestionNumbers": "off",
+  "showPreviewBeforeComplete": "showAllQuestions",
+  "checkErrorsMode": "onComplete"
 }

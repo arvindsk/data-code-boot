@@ -9,6 +9,7 @@
         {
           "type": "matrix",
           "name": "1",
+          "isRequired": true,
           "title": "Memory",
           "columns": [
             {
@@ -80,6 +81,7 @@
         {
           "type": "matrix",
           "name": "2",
+          "isRequired": true,
           "title": "Language",
           "columns": [
             {
@@ -151,6 +153,7 @@
         {
           "type": "matrix",
           "name": "3",
+          "isRequired": true,
           "title": "Visual-spatial and Perceptual Abilities",
           "columns": [
             {
@@ -218,6 +221,7 @@
         {
           "type": "matrix",
           "name": "4",
+          "isRequired": true,
           "title": "Executive Functioning: Planning",
           "columns": [
             {
@@ -273,6 +277,7 @@
         {
           "type": "matrix",
           "name": "5",
+          "isRequired": true,
           "title": "Executive Functioning: Organization",
           "columns": [
             {
@@ -332,6 +337,7 @@
         {
           "type": "matrix",
           "name": "6",
+          "isRequired": true,
           "title": "Executive Functioning: Divided Attention",
           "columns": [
             {
@@ -379,5 +385,6 @@
     }
   ],
   "showQuestionNumbers": "off",
-  "showPreviewBeforeComplete": "showAnsweredQuestions"
+  "showPreviewBeforeComplete": "showAllQuestions",
+  "checkErrorsMode": "onComplete"
 }

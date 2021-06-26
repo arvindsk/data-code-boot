@@ -22,6 +22,7 @@
         {
           "type": "checkbox",
           "name": "2",
+          "isRequired": true,
           "title": "1. I rarely or never do any physical activities.",
           "choices": [
             {
@@ -38,6 +39,7 @@
         {
           "type": "checkbox",
           "name": "3",
+          "isRequired": true,
           "title": "2. I do some light or moderate physical activities, but not every week.",
           "choices": [
             {
@@ -54,6 +56,7 @@
         {
           "type": "checkbox",
           "name": "4",
+          "isRequired": true,
           "title": "3. I do some light physical activity every week.",
           "choices": [
             {
@@ -70,6 +73,7 @@
         {
           "type": "checkbox",
           "name": "5",
+          "isRequired": true,
           "title": "4. I do moderate physical activities every week, but less than 30 minutes a day or 5 days a week.",
           "choices": [
             {
@@ -86,6 +90,7 @@
         {
           "type": "checkbox",
           "name": "6",
+          "isRequired": true,
           "title": "5. I do vigorous physical activities every week, but less than 20 minutes a day or 3 days a week.",
           "choices": [
             {
@@ -102,6 +107,7 @@
         {
           "type": "checkbox",
           "name": "7",
+          "isRequired": true,
           "title": "6. I do 30 minutes or more a day of moderate physical activities, 5 or more days a week.",
           "choices": [
             {
@@ -118,6 +124,7 @@
         {
           "type": "checkbox",
           "name": "8",
+          "isRequired": true,
           "title": "7. I do 20 minutes or more a day of vigorous physical activities, 3 or more days a week.",
           "choices": [
             {
@@ -141,6 +148,7 @@
         {
           "type": "checkbox",
           "name": "9",
+          "isRequired": true,
           "title": "8. I do activities to increase muscle strength, such as lifting weights or calisthenics, once a week or more.",
           "choices": [
             {
@@ -157,6 +165,7 @@
         {
           "type": "checkbox",
           "name": "10",
+          "isRequired": true,
           "title": "9. I do activities to improve flexibility, such as stretching or yoga, once a week or more.",
           "choices": [
             {
@@ -176,5 +185,6 @@
     }
   ],
   "showQuestionNumbers": "off",
-  "showPreviewBeforeComplete": "showAnsweredQuestions"
+  "showPreviewBeforeComplete": "showAllQuestions",
+  "checkErrorsMode": "onComplete"
 }
