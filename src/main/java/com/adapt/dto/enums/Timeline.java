@@ -3,7 +3,8 @@ package com.adapt.dto.enums;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Timeline {BASELINE(1001, "baseline"),
+public enum Timeline {
+    BASELINE(1001, "baseline"),
     FIRST_YEAR(1002, "firstyear"),
     THIRD_YEAR(1003, "thirdyear");
 

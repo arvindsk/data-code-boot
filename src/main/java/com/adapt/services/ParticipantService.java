@@ -83,7 +83,8 @@ public class ParticipantService {
         Integer participantId = participant.getParticipantId();
         String timeline = participant.getTimeline();
         String activeTimeline = Timeline.BASELINE.getTimelineName();
-        List<ParticipantStudyEntity> participantStudyEntityList = participantStudyEntityRepository.findByParticipantId(participantId);
+
+        List<ParticipantStudyEntity> participantStudyEntityList = participantStudyEntityRepository.findByParticipantIdAndTimeline(participantId,timeline);
         if(Objects.isNull(participantStudyEntityList) || participantStudyEntityList.isEmpty() ){
             participantStudyEntityList=createParticipantStudyEntitiesForParticipant(participantId,timeline);
             participantStudyEntityList = participantStudyEntityRepository.saveAllAndFlush(participantStudyEntityList);
@@ -113,10 +114,19 @@ public class ParticipantService {
                     .completedDate(entity.getCompletedTime())
                     .participantId(entity.getParticipantId())
                     .activeTimeline(activeTimeline)
+                    .firstName(getFirstName(participantId))
                     .build();
             participantStudyList.add(participantStudy);
         }
         return participantStudyList;
+    }
+
+    private String getFirstName(Integer participantId) {
+        if(Objects.nonNull(participantId)){
+            ParticipantsEntity participantsEntity=participantsEntityRepository.getById(participantId);
+            return participantsEntity.getFirstName();
+        }
+        return null;
     }
 
     /*

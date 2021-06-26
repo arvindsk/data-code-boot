@@ -8,6 +8,7 @@ import java.util.Date;
 @Data
 @Builder
 public class ParticipantStudy {
+    private String firstName;
     private String timeline;
     private String studyName;
     private String studyInformation;
