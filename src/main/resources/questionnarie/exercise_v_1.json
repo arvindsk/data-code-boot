@@ -3,20 +3,6 @@
   "completedHtml": "<h2>Thank you for submitting the Questionnaire<h2>",
   "pages": [
     {
-      "name": "intropage",
-      "elements": [
-        {
-          "type": "image",
-          "name": "1",
-          "imageLink": "/assets/exercise_intro.JPG",
-          "imageHeight": 800,
-          "imageWidth": 600
-        }
-      ],
-      "questionTitleLocation": "hidden",
-      "title": "How Physically Active Are You?"
-    },
-    {
       "name": "rapa1",
       "elements": [
         {
