@@ -13,7 +13,7 @@
           "isRequired": true
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "2",
           "title": "2. Are you male or female?",
           "isRequired": true,
@@ -30,7 +30,7 @@
           "colCount": 2
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "3",
           "title": "3. During the past month, did you eat any hot or cold cereals?",
           "isRequired": true,
@@ -51,10 +51,11 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "3.1",
-          "visibleIf": "{3} = ['yes']",
+          "visibleIf": "{3} = 'yes'",
           "title": "3.a. During the past month, how often did you eat hot or cold cereals? You can report per day,      \n               per week, or per month.\n",
+          "enableIf": "{3} = 'yes'",
           "isRequired": true,
           "choices": [
             {
@@ -127,7 +128,7 @@
           "otherText": "Type of Other Cold Cereal(describe)"
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "5",
           "title": "5. Was there another second cereal that you usually ate?",
           "isRequired": true,
@@ -146,7 +147,7 @@
         {
           "type": "radiogroup",
           "name": "5.1",
-          "visibleIf": "{5} = ['yes']",
+          "visibleIf": "{5} = 'yes'",
           "title": "5.a. During the past month, what kind of second cereal did you usually eat?  ",
           "isRequired": true,
           "choices": [
@@ -166,7 +167,7 @@
         {
           "type": "dropdown",
           "name": "5.2",
-          "visibleIf": "{5.1} = 'hotcereal'",
+          "visibleIf": "{5} = 'yes' and {5.1} = 'hotcereal'",
           "title": "Please select the type of Hot Cereal",
           "titleLocation": "left",
           "isRequired": true,
@@ -179,7 +180,7 @@
         {
           "type": "dropdown",
           "name": "5.3",
-          "visibleIf": "{5.1} = 'coldcereal'",
+          "visibleIf": "{5} = 'yes' and {5.1} = 'coldcereal'",
           "title": "Please select the type of Cold Cereal",
           "titleLocation": "left",
           "isRequired": true,
@@ -190,7 +191,7 @@
           "otherText": "Type of Other Cold Cereal(describe)"
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "6",
           "title": "6. During the past month, did you have any milk (either to drink or on cereal)? Include regular milks, chocolate or other flavored milks, lactose-free milk, buttermilk. Do not include soy milk or small amounts of milk in coffee or tea.",
           "isRequired": true,
@@ -211,9 +212,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "6.1",
-          "visibleIf": "{6} = ['yes']",
+          "visibleIf": "{6} = 'yes'",
           "title": "6.a. During the past month, how often did you have any milk (either to drink or on cereal)? You    \n               can report per day, per week, or per month.\n",
           "isRequired": true,
           "choices": [
@@ -242,7 +243,7 @@
       "name": "pag3",
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "7",
           "title": "7. During the past month, what kind of milk did you usually drink?",
           "isRequired": true,
@@ -272,7 +273,7 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "8",
           "title": "8. During the past month, did you drink any regular soda or pop that contains sugar?  Do not include diet soda",
           "isRequired": true,
@@ -293,9 +294,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "8.1",
-          "visibleIf": "{8} = ['yes']",
+          "visibleIf": "{8} = 'yes'",
           "title": "8.a. During the past month, how often did you drink regular soda or pop? You can report per  \n               day, per week, or per month\n",
           "isRequired": true,
           "choices": [
@@ -319,7 +320,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "9",
           "title": "9. During the past month, did you drink any 100% pure fruit juices such as orange, mango, apple, grape and pineapple juices? Do not include fruit-flavored drinks with added sugar or fruit juice you made at home and added sugar to",
           "isRequired": true,
@@ -340,9 +341,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "9.1",
-          "visibleIf": "{9} = ['yes']",
+          "visibleIf": "{9} = 'yes'",
           "title": "9.a. During the past month, how often did you drink regular soda or pop? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
@@ -371,7 +372,7 @@
       "name": "page4",
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "10",
           "title": "10. During the past month, did you drink any coffee or tea that had sugar or honey added to it? Include coffee and tea you sweetened yourself and presweetened tea and coffee drinks such as Arizona Iced Tea and Frappuccino. Do not include artificially sweetened coffee or diet tea",
           "isRequired": true,
@@ -392,9 +393,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "10.1",
-          "visibleIf": "{10} = ['yes']",
+          "visibleIf": "{10} = 'yes'",
           "title": "10.a.  During the past month, how often did you drink coffee or tea containing sugar or honey?",
           "isRequired": true,
           "choices": [
@@ -418,7 +419,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "11",
           "title": "11. During the past month, did you drink any sweetened fruit drinks, sports or energy drinks, such as Kool-aid, lemonade, Hi-C, cranberry drink, Gatorade, Red Bull, or Vitamin Water? Include fruit juices you made at home and added sugar to. Do not include diet drinks or artificially sweetened drinks.",
           "isRequired": true,
@@ -439,9 +440,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "11.1",
-          "visibleIf": "{11} = ['yes']",
+          "visibleIf": "{11} = 'yes'",
           "title": "11.a. During the past month, how often did you drink sweetened fruit, sports or energy drinks?",
           "isRequired": true,
           "choices": [
@@ -465,7 +466,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "12",
           "title": "12. During the past month, did you eat any fruit? Include fresh, frozen, or canned fruit. Do not include juices.",
           "isRequired": true,
@@ -486,9 +487,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "12.1",
-          "visibleIf": "{12} = ['yes']",
+          "visibleIf": "{12} = 'yes'",
           "title": "12.a. During the past month, how often did you eat fruit? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
@@ -517,7 +518,7 @@
       "name": "page5",
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "13",
           "title": "13. During the past month, did you eat a green leafy or lettuce salad, with or without other vegetables?",
           "isRequired": true,
@@ -538,9 +539,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "13.1",
-          "visibleIf": "{13} = ['yes']",
+          "visibleIf": "{13} = 'yes'",
           "title": "13.a. During the past month, how often did you eat salad? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
@@ -564,7 +565,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "14",
           "title": "14. During the past month, did you eat any kind of fried potatoes including french fries, home fries, or hash brown potatoes?",
           "isRequired": true,
@@ -585,9 +586,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "14.1",
-          "visibleIf": "{14} = ['yes']",
+          "visibleIf": "{14} = 'yes'",
           "title": "14.a. During the past month, how often did you eat any kind of fried potatoes? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
@@ -611,7 +612,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "15",
           "title": "15. During the past month, did you eat any other kind of potatoes, such as baked, boiled, mashed potatoes, sweet potatoes, or potato salad?",
           "isRequired": true,
@@ -632,9 +633,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "15.1",
-          "visibleIf": "{15} = ['yes']",
+          "visibleIf": "{15} = 'yes'",
           "title": "15.a. During the past month, how often did you eat any other kind of potatoes? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
@@ -663,7 +664,7 @@
       "name": "page6",
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "16",
           "title": "16. During the past month, did you eat any refried beans, baked beans, beans in soup, pork and beans or other cooked dried beans? Do not include green beans.",
           "isRequired": true,
@@ -684,9 +685,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "16.1",
-          "visibleIf": "{16} = ['yes']",
+          "visibleIf": "{16} = 'yes'",
           "title": "16.a. During the past month, how often did you eat refried beans, baked beans, beans in soup, pork and beans or other cooked dried beans? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
@@ -710,7 +711,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "17",
           "title": "17. During the past month, did you eat any brown rice or other cooked whole grains, such as bulgur, cracked wheat, or millet? Do not include white rice.",
           "isRequired": true,
@@ -731,9 +732,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "17.1",
-          "visibleIf": "{17} = ['yes']",
+          "visibleIf": "{17} = 'yes'",
           "title": "17.a. During the past month, how often did you eat brown rice or other cooked whole grains? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
@@ -757,7 +758,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "18",
           "title": "18. During the past month, not including green salads, potatoes, and cooked dried beans, did you eat any other vegetables?",
           "isRequired": true,
@@ -778,9 +779,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "18.1",
-          "visibleIf": "{18} = ['yes']",
+          "visibleIf": "{18} = 'yes'",
           "title": "18.a. During the past month, how often did you eat other vegetables? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
@@ -809,7 +810,7 @@
       "name": "page7",
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "19",
           "title": "19. During the past month, did you eat any Mexican-type salsa made with tomato?",
           "isRequired": true,
@@ -830,9 +831,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "19.1",
-          "visibleIf": "{19} = ['yes']",
+          "visibleIf": "{19} = 'yes'",
           "title": "19.a. During the past month, how often did you have Mexican-type salsa made with tomato? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
@@ -856,7 +857,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "20",
           "title": "20. During the past month, did you eat any pizza? Include frozen pizza, fast food pizza, and homemade pizza.",
           "isRequired": true,
@@ -877,9 +878,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "20.1",
-          "visibleIf": "{20} = ['yes']",
+          "visibleIf": "{20} = 'yes'",
           "title": "20.a. During the past month, how often did you eat pizza? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
@@ -903,7 +904,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "21",
           "title": "21. During the past month, did you have any tomato sauces such as with spaghetti or noodles or mixed into foods such as lasagna? (Do not count tomato sauce on pizza.)",
           "isRequired": true,
@@ -924,9 +925,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "21.1",
-          "visibleIf": "{21} = ['yes']",
+          "visibleIf": "{21} = 'yes'",
           "title": "21.a. During the past month, how often did you have tomato sauces? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
@@ -955,7 +956,7 @@
       "name": "page8",
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "22",
           "title": "22. During the past month, did you eat any kind of cheese? Include cheese as a snack, cheese on burgers, sandwiches, and cheese in foods such as lasagna, quesadillas, or casseroles. Do not include cheese on pizza",
           "isRequired": true,
@@ -976,9 +977,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "22.1",
-          "visibleIf": "{22} = ['yes']",
+          "visibleIf": "{22} = 'yes'",
           "title": "22.a. During the past month, how often did you eat any kind of cheese? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
@@ -1002,7 +1003,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "23",
           "title": "23. During the past month, did you eat any red meat, such as beef, pork, ham, or sausage? Do not include chicken, turkey or seafood. Include red meat you had in sandwiches, lasagna, stew, and other mixtures. Red meats may also include veal, lamb, and any lunch meats made with these meats.",
           "isRequired": true,
@@ -1023,9 +1024,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "23.1",
-          "visibleIf": "{23} = ['yes']",
+          "visibleIf": "{23} = 'yes'",
           "title": "23.a. During the past month, how often did you eat red meat? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
@@ -1049,7 +1050,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "24",
           "title": "24. During the past month, did you eat any processed meat, such as bacon, lunch meats, or hot dogs? Include processed meats you had in sandwiches, soups, pizza, casseroles, and other mixtures. Processed meats are those preserved by smoking, curing, or salting, or by the addition of preservatives. Examples are: ham, bacon, pastrami, salami, sausages, bratwursts, frankfurters, hot dogs, and spam",
           "isRequired": true,
@@ -1070,9 +1071,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "24.1",
-          "visibleIf": "{24} = ['yes']",
+          "visibleIf": "{24} = 'yes'",
           "title": "24.a. During the past month, how often did you eat processed meat? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
@@ -1101,7 +1102,7 @@
       "name": "page9",
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "25",
           "title": "25. During the past month, did you eat any whole grain bread including toast, rolls and in sandwiches? Whole grain breads include whole wheat, rye, oatmeal and pumpernickel. Do not include white bread.",
           "isRequired": true,
@@ -1122,9 +1123,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "25.1",
-          "visibleIf": "{25} = ['yes']",
+          "visibleIf": "{25} = 'yes'",
           "title": "25.a. During the past month, how often did you eat whole grain bread? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
@@ -1148,7 +1149,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "26",
           "title": "26. During the past month, did you eat any chocolate or any other types of candy? Do not include sugar-free candy.",
           "isRequired": true,
@@ -1169,9 +1170,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "26.1",
-          "visibleIf": "{26} = ['yes']",
+          "visibleIf": "{26} = 'yes'",
           "title": "26.a. During the past month, how often did you eat chocolate or any other types of candy? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
@@ -1195,7 +1196,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "27",
           "title": "27. During the past month, did you eat any doughnuts, sweet rolls, Danish, muffins, (pan dulce) or pop-tarts? Do not include sugar-free items.",
           "isRequired": true,
@@ -1216,9 +1217,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "27.1",
-          "visibleIf": "{27} = ['yes']",
+          "visibleIf": "{27} = 'yes'",
           "title": "27.a. During the past month, how often did you eat doughnuts, sweet rolls, Danish, muffins, (pan dulce) or pop-tarts? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
@@ -1247,7 +1248,7 @@
       "name": "page10",
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "28",
           "title": "28. During the past month, did you eat any cookies, cake, pie, or brownies? Do not include sugar-free kinds.",
           "isRequired": true,
@@ -1268,9 +1269,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "28.1",
-          "visibleIf": "{28} = ['yes']",
+          "visibleIf": "{28} = 'yes'",
           "title": "28.a. During the past month, how often did you eat cookies, cake, pie, or brownies? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
@@ -1294,7 +1295,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "29",
           "title": "29. During the past month, did you eat any ice cream or other frozen desserts? Do not include sugar-free kinds.",
           "isRequired": true,
@@ -1315,9 +1316,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "29.1",
-          "visibleIf": "{29} = ['yes']",
+          "visibleIf": "{29} = 'yes'",
           "title": "29.a. During the past month, how often did you eat ice cream or other frozen desserts? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
@@ -1341,7 +1342,7 @@
           "colCount": 4
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "30",
           "title": "30. During the past month, did you eat any popcorn?",
           "isRequired": true,
@@ -1362,9 +1363,9 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "30.1",
-          "visibleIf": "{30} = ['yes']",
+          "visibleIf": "{30} = 'yes'",
           "title": "30.a. During the past month, how often did you eat popcorn? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
