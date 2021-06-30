@@ -171,7 +171,7 @@
           "renderAs": "select2",
           "name": "2.6",
           "isRequired": true,
-          "visibleIf": "{2.5} = ['other']",
+          "visibleIf": "{2.5} contains 'other'",
           "startWithNewLine": true,
           "title": "Please select the other medication",
           "titleLocation": "left",
@@ -315,7 +315,7 @@
           "renderAs": "select2",
           "name": "3.6",
           "isRequired": true,
-          "visibleIf": "{3.5} = ['other']",
+          "visibleIf": "{3.5} contains 'other'",
           "title": "Please select the other medication",
           "titleLocation": "left",
           "choicesByUrl": {
@@ -458,7 +458,7 @@
           "renderAs": "select2",
           "name": "4.6",
           "isRequired": true,
-          "visibleIf": "{5.5} = ['other']",
+          "visibleIf": "{4.5} contains 'other'",
           "title": "Please select the other medication",
           "titleLocation": "left",
           "choicesByUrl": {
@@ -601,7 +601,7 @@
           "renderAs": "select2",
           "name": "5.6",
           "isRequired": true,
-          "visibleIf": "{5.5} = ['other']",
+          "visibleIf": "{5.5} contains 'other'",
           "title": "Please select the other medication",
           "titleLocation": "left",
           "choicesByUrl": {
@@ -744,7 +744,7 @@
           "renderAs": "select2",
           "name": "6.6",
           "isRequired": true,
-          "visibleIf": "{6.5} = ['other']",
+          "visibleIf": "{6.5} contains 'other'",
           "title": "Please select the other medication",
           "titleLocation": "left",
           "choicesByUrl": {
@@ -887,7 +887,7 @@
           "renderAs": "select2",
           "name": "7.6",
           "isRequired": true,
-          "visibleIf": "{7.5} = ['other']",
+          "visibleIf": "{7.5} contains 'other'",
           "title": "Please select the other medication",
           "titleLocation": "left",
           "choicesByUrl": {
