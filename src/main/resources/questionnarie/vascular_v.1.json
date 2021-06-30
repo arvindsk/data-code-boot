@@ -67,7 +67,7 @@
           "colCount": 0
         },
         {
-          "type": "checkbox",
+     "type": "radiogroup",
           "name": "2.2",
           "isRequired": true,
           "visibleIf": "{2.1} = 'yes'",
@@ -126,6 +126,7 @@
           "visibleIf": "{2.3} = 'yes'",
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
+          "enableIf": "{2.3} = 'yes'",
           "choices": [
             {
               "value": "yes",
@@ -146,10 +147,11 @@
           "type": "checkbox",
           "name": "2.5",
           "isRequired": true,
-          "visibleIf": "{2.4} = 'yes'",
+          "visibleIf": "{2.3} = 'yes' and {2.4} = 'yes'",
           "title": "Please indicate how you are treating the condition?",
           "titleLocation": "top",
           "description": "\nMedication/supplements (please list the medications you believe to be taking for this condition):",
+          "enableIf": "{2.3} = 'yes' and {2.4} = 'yes'",
           "choices": [
             {
               "value": "diet",
@@ -171,9 +173,10 @@
           "renderAs": "select2",
           "name": "2.6",
           "isRequired": true,
-          "visibleIf": "{2.5} contains 'other'",
+          "visibleIf": "{2.3} = 'yes' and {2.4} = 'yes' and {2.5} contains 'other'",
           "startWithNewLine": true,
           "title": "Please select the other medication",
+          "enableIf": "{2.3} = 'yes' and {2.4} = 'yes' and {2.5} contains 'other'",
           "titleLocation": "left",
           "choicesByUrl": {
             "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
@@ -211,7 +214,7 @@
           "colCount": 0
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "3.2",
           "isRequired": true,
           "visibleIf": "{3.1} = 'yes'",
@@ -269,6 +272,7 @@
           "isRequired": true,
           "visibleIf": "{3.3} = 'yes'",
           "title": "Are you currently treating this condition?",
+          "enableIf": "{3.3} = 'yes'",
           "titleLocation": "left",
           "choices": [
             {
@@ -290,7 +294,8 @@
           "type": "checkbox",
           "name": "3.5",
           "isRequired": true,
-          "visibleIf": "{3.4} = 'yes'",
+          "visibleIf": "{3.3} = 'yes' and {3.4} = 'yes'",
+          "enableIf": "{3.3} = 'yes' and {3.4} = 'yes'",
           "title": "Please indicate how you are treating the condition?",
           "titleLocation": "top",
           "description": "Medication/supplements (please list the medications you believe to be taking for this condition):",
@@ -315,7 +320,8 @@
           "renderAs": "select2",
           "name": "3.6",
           "isRequired": true,
-          "visibleIf": "{3.5} contains 'other'",
+          "visibleIf": "{3.3} = 'yes' and {3.4} = 'yes' and {3.5} contains 'other'",
+          "enableIf": "{3.3} = 'yes' and {3.4} = 'yes' and {3.5} contains 'other'",
           "title": "Please select the other medication",
           "titleLocation": "left",
           "choicesByUrl": {
@@ -354,7 +360,7 @@
           "colCount": 0
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "4.2",
           "isRequired": true,
           "visibleIf": "{4.1} = 'yes'",
@@ -411,6 +417,7 @@
           "name": "4.4",
           "isRequired": true,
           "visibleIf": "{4.3} = 'yes'",
+          "enableIf": "{4.3} = 'yes'",
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
           "choices": [
@@ -433,7 +440,8 @@
           "type": "checkbox",
           "name": "4.5",
           "isRequired": true,
-          "visibleIf": "{4.4} = 'yes'",
+          "visibleIf": "{4.3} = 'yes' and {4.4} = 'yes'",
+          "enableIf": "{4.3} = 'yes' and {4.4} = 'yes'",
           "title": "Please indicate how you are treating the condition?",
           "titleLocation": "top",
           "description": "Medication/supplements (please list the medications you believe to be taking for this condition):",
@@ -458,7 +466,8 @@
           "renderAs": "select2",
           "name": "4.6",
           "isRequired": true,
-          "visibleIf": "{4.5} contains 'other'",
+          "visibleIf": "{4.3} = 'yes' and {4.4} = 'yes' and {4.5} contains 'other'",
+          "enableIf": "{4.3} = 'yes' and {4.4} = 'yes' and {4.5} contains 'other'",
           "title": "Please select the other medication",
           "titleLocation": "left",
           "choicesByUrl": {
@@ -497,7 +506,7 @@
           "colCount": 0
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "5.2",
           "isRequired": true,
           "visibleIf": "{5.1} = 'yes'",
@@ -554,6 +563,7 @@
           "name": "5.4",
           "isRequired": true,
           "visibleIf": "{5.3} = 'yes'",
+          "enableIf": "{5.3} = 'yes'",
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
           "choices": [
@@ -576,7 +586,8 @@
           "type": "checkbox",
           "name": "5.5",
           "isRequired": true,
-          "visibleIf": "{5.4} = 'yes'",
+          "visibleIf": "{5.3} = 'yes' and {5.4} = 'yes'",
+          "enableIf": "{5.3} = 'yes' and {5.4} = 'yes'",
           "title": "Please indicate how you are treating the condition?",
           "titleLocation": "top",
           "description": "Medication/supplements (please list the medications you believe to be taking for this condition):",
@@ -601,7 +612,8 @@
           "renderAs": "select2",
           "name": "5.6",
           "isRequired": true,
-          "visibleIf": "{5.5} contains 'other'",
+          "visibleIf": "{5.3} = 'yes' and {5.4} = 'yes' and {5.5} contains 'other'",
+          "enableIf": "{5.3} = 'yes' and {5.4} = 'yes' and {5.5} contains 'other'",
           "title": "Please select the other medication",
           "titleLocation": "left",
           "choicesByUrl": {
@@ -640,7 +652,7 @@
           "colCount": 0
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "6.2",
           "isRequired": true,
           "visibleIf": "{6.1} = 'yes'",
@@ -697,6 +709,7 @@
           "name": "6.4",
           "isRequired": true,
           "visibleIf": "{6.3} = 'yes'",
+          "enableIf": "{6.3} = 'yes'",
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
           "choices": [
@@ -719,7 +732,8 @@
           "type": "checkbox",
           "name": "6.5",
           "isRequired": true,
-          "visibleIf": "{6.4} = 'yes'",
+          "visibleIf": "{6.3} = 'yes' and {6.4} = 'yes'",
+          "enableIf": "{6.3} = 'yes' and {6.4} = 'yes'",
           "title": "Please indicate how you are treating the condition?",
           "titleLocation": "top",
           "description": "Medication/supplements (please list the medications you believe to be taking for this condition):",
@@ -744,7 +758,8 @@
           "renderAs": "select2",
           "name": "6.6",
           "isRequired": true,
-          "visibleIf": "{6.5} contains 'other'",
+          "visibleIf": "{6.3} = 'yes' and {6.4} = 'yes' and {6.5} contains 'other'",
+          "enableIf": "{6.3} = 'yes' and {6.4} = 'yes' and {6.5} contains 'other'",
           "title": "Please select the other medication",
           "titleLocation": "left",
           "choicesByUrl": {
@@ -783,7 +798,7 @@
           "colCount": 0
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "7.2",
           "isRequired": true,
           "visibleIf": "{7.1} = 'yes'",
@@ -840,6 +855,7 @@
           "name": "7.4",
           "isRequired": true,
           "visibleIf": "{7.3} = 'yes'",
+          "enableIf": "{7.3} = 'yes'",
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
           "choices": [
@@ -862,7 +878,8 @@
           "type": "checkbox",
           "name": "7.5",
           "isRequired": true,
-          "visibleIf": "{7.4} = 'yes'",
+          "visibleIf": "{7.3} = 'yes' and {7.4} = 'yes'",
+          "enableIf": "{7.3} = 'yes' and {7.4} = 'yes'",
           "title": "Please indicate how you are treating the condition?",
           "titleLocation": "top",
           "description": "Medication/supplements (please list the medications you believe to be taking for this condition):",
@@ -887,7 +904,8 @@
           "renderAs": "select2",
           "name": "7.6",
           "isRequired": true,
-          "visibleIf": "{7.5} contains 'other'",
+          "visibleIf": "{7.3} = 'yes' and {7.4} = 'yes' and {7.5} contains 'other'",
+          "enableIf": "{7.3} = 'yes' and {7.4} = 'yes' and {7.5} contains 'other'",
           "title": "Please select the other medication",
           "titleLocation": "left",
           "choicesByUrl": {
