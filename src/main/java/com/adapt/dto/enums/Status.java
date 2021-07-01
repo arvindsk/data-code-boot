@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Status {NOT_STARTED(1001, "Not Started"),
-    IN_PROGRESS(1002, "In Progress"),
+    IN_PROGRESS(1002, "In-Progress"),
     COMPLETED(1003, "Completed"),
     NOT_ATTEMPTED(1003, "Not Attempted");
 

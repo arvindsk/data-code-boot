@@ -49,7 +49,7 @@ public class ParticipantService {
                     .lastName(participantsEntity.getLastName())
                     .timeline(participantStudyList.size() > 0 ? participantStudyList.get(0).getTimeline() : "baseline")
                     .registeredDate(participantsEntity.getAutotime())
-                    .dob(participantsEntity.getDob())
+                    .dob(participantsEntity.getDob()!=null && !"".equalsIgnoreCase(participantsEntity.getDob())?participantsEntity.getDob().substring(0,5):"")
                     .completedDate(participantStudyList.size() > 0 ? participantStudyList.get(0).getCompletedTime() : null)
                     .build();
 
