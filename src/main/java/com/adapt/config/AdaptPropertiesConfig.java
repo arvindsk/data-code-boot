@@ -13,5 +13,6 @@ import java.util.List;
 @Component
 public class AdaptPropertiesConfig {
     private List<String> corsOrigins;
+    private boolean loadFromDatabase;
 
 }

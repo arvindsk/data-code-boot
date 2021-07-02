@@ -1,5 +1,6 @@
 package com.adapt.controllers;
 
+import com.adapt.config.AdaptPropertiesConfig;
 import com.adapt.dto.ParticipantStudy;
 import com.adapt.questionnaire.Questionnaire;
 import com.adapt.services.ParticipantService;
@@ -22,9 +23,13 @@ public class QuestionnaireController {
     private final ParticipantService participantService;
 
     private final QuestionnaireService questionnaireService;
-    public QuestionnaireController(ParticipantService participantService,QuestionnaireService questionnaireService) {
+    private final AdaptPropertiesConfig adaptPropertiesConfig;
+
+    public QuestionnaireController(ParticipantService participantService,
+                                   QuestionnaireService questionnaireService, AdaptPropertiesConfig adaptPropertiesConfig) {
         this.participantService = participantService;
-        this.questionnaireService=questionnaireService;
+        this.questionnaireService = questionnaireService;
+        this.adaptPropertiesConfig = adaptPropertiesConfig;
     }
 
 
@@ -46,23 +51,28 @@ public class QuestionnaireController {
     String getVascularQuestionnaire(@RequestParam Map<String, String> params) {
         String type = params.get("questionnaireType");
 
-        switch (type) {
-            case "Vascular Risk":
-                //Questionnaire questionnaire = questionnaireService.getQuestionnaire(type);
+        if (adaptPropertiesConfig.isLoadFromDatabase()) {
+            Questionnaire questionnaire = questionnaireService.getQuestionnaire(type);
 
-                //return new Gson().toJson(questionnaire);
-                return loadJson("questionnarie/vascular_v.1.json");
-            case "Sleep Study":
-                return loadJson("questionnarie/sleep_study_v_1.json");
-            case "Everyday Cognition (E-Cog)":
-                return loadJson("questionnarie/e-cog_v_1.json");
-            case "Physical Activity Screening":
-                return loadJson("questionnarie/exercise_v_1.json");
-            case "Diet Screening":
-                return loadJson("questionnarie/diet_v_1.json");
+            return new Gson().toJson(questionnaire);
 
-            default:
-                throw new IllegalStateException("Unexpected value: " + type);
+        } else {
+
+            switch (type) {
+                case "Vascular Risk":
+                    return loadJson("questionnarie/vascular_v.1.json");
+                case "Sleep Study":
+                    return loadJson("questionnarie/sleep_study_v_1.json");
+                case "Everyday Cognition (E-Cog)":
+                    return loadJson("questionnarie/e-cog_v_1.json");
+                case "Physical Activity Screening":
+                    return loadJson("questionnarie/exercise_v_1.json");
+                case "Diet Screening":
+                    return loadJson("questionnarie/diet_v_1.json");
+
+                default:
+                    throw new IllegalStateException("Unexpected value: " + type);
+            }
         }
     }
 
@@ -81,7 +91,8 @@ public class QuestionnaireController {
     }
 
     @GetMapping(value = "save-questionnaire", consumes = "application/json", produces = "application/json")
-    public @ResponseBody String saveQuestionnaire(@RequestParam Map<String, String> params) {
+    public @ResponseBody
+    String saveQuestionnaire(@RequestParam Map<String, String> params) {
 
         String json;
 
@@ -89,26 +100,26 @@ public class QuestionnaireController {
 
         switch (type) {
             case "Vascular Risk":
-                json= loadJson("questionnarie/vascular_v.1.json");
+                json = loadJson("questionnarie/vascular_v.1.json");
                 break;
             case "Sleep Study":
-                json= loadJson("questionnarie/sleep_study_v_1.json");
+                json = loadJson("questionnarie/sleep_study_v_1.json");
                 break;
             case "Everyday Cognition (E-Cog)":
-                json= loadJson("questionnarie/e-cog_v_1.json");
+                json = loadJson("questionnarie/e-cog_v_1.json");
                 break;
             case "Physical Activity Screening":
-                json= loadJson("questionnarie/exercise_v_1.json");
+                json = loadJson("questionnarie/exercise_v_1.json");
                 break;
             case "Diet Screening":
-                json= loadJson("questionnarie/diet_v_1.json");
+                json = loadJson("questionnarie/diet_v_1.json");
                 break;
 
             default:
                 throw new IllegalStateException("Unexpected value: " + type);
         }
 
-        Questionnaire questionnaire=new Gson().fromJson(json,Questionnaire.class);
+        Questionnaire questionnaire = new Gson().fromJson(json, Questionnaire.class);
         questionnaire.setQuestionType(type);
         try {
             questionnaireService.saveQuestionnaire(questionnaire);

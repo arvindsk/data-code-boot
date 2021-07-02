@@ -11,7 +11,7 @@ class QuestionnaireControllerTest {
 
     @BeforeEach
     void setUp() {
-        questionnaireController=new QuestionnaireController(null,null);
+        questionnaireController=new QuestionnaireController(null,null,null);
     }
 
     @Test
