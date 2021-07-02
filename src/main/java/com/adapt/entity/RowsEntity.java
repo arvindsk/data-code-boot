@@ -10,15 +10,15 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "choices")
-public class ChoicesEntity implements Serializable {
+@Table(name = "rows")
+public class RowsEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "chioce_id", nullable = false)
+    @Column(name = "row_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer chioceId;
+    private Integer rowId;
 
     @Column(name = "name")
     private String name;
@@ -31,4 +31,5 @@ public class ChoicesEntity implements Serializable {
     @ToString.Exclude
     @JoinColumn(name = "elements_id", referencedColumnName = "elements_id")
     private ElementsEntity elementsEntity;
+
 }

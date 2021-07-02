@@ -1,12 +1,20 @@
 package com.adapt.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "questionnaires")
 public class QuestionnairesEntity implements Serializable {
 
@@ -17,22 +25,30 @@ public class QuestionnairesEntity implements Serializable {
     @Column(name = "questionnaires_id", nullable = false)
     private Integer questionnairesId;
 
-    @Column(name = "showProgressBar")
+    @Column(name = "show_progress_bar")
     private String showProgressBar;
 
-    @Column(name = "showPageTitles")
-    private Integer showPageTitles;
+    @Column(name = "show_page_titles", columnDefinition = "BOOLEAN")
+    private boolean showPageTitles;
 
-    @Column(name = "showQuestionNumbers")
+    @Column(name = "show_question_numbers")
     private String showQuestionNumbers;
 
-    @Column(name = "completedHtml")
-    private byte[] completedHtml;
+    @Column(name = "completed_html")
+    private String completedHtml;
 
     @Column(name = "title")
     private String title;
 
     @Column(name = "question_type", nullable = false)
     private String questionType;
+    @Column(name = "show_preview_before_complete")
+    private String showPreviewBeforeComplete;
+
+    @Column(name = "check_errors_mode")
+    private String checkErrorsMode;
+
+    @OneToMany(mappedBy = "questionnairesEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<PagesEntity> pages = new HashSet<>();
 
 }

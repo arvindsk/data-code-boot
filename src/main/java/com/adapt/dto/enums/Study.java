@@ -22,9 +22,9 @@ public enum Study {
         }
     }
 
-    Study(final Integer studyId, final String value) {
+    Study(final Integer studyId, final String studyName) {
         this.studyId = studyId;
-        this.studyName = value;
+        this.studyName = studyName;
     }
 
     public Integer getStudyId() {

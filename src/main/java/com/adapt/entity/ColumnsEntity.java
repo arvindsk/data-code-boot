@@ -7,18 +7,18 @@ import java.io.Serializable;
 
 @Data
 @Entity
+@Table(name = "columns")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "choices")
-public class ChoicesEntity implements Serializable {
+public class ColumnsEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "chioce_id", nullable = false)
+    @Column(name = "column_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer chioceId;
+    private Integer columnId;
 
     @Column(name = "name")
     private String name;
@@ -31,4 +31,5 @@ public class ChoicesEntity implements Serializable {
     @ToString.Exclude
     @JoinColumn(name = "elements_id", referencedColumnName = "elements_id")
     private ElementsEntity elementsEntity;
+
 }

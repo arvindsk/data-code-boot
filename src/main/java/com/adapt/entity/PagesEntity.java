@@ -1,12 +1,17 @@
 package com.adapt.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "pages")
 public class PagesEntity implements Serializable {
 
@@ -24,7 +29,13 @@ public class PagesEntity implements Serializable {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "questionnaires_id", nullable = false)
-    private Integer questionnairesId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JoinColumn(name = "questionnaires_id", referencedColumnName = "questionnaires_id")
+    private QuestionnairesEntity questionnairesEntity;
+
+    @OneToMany(mappedBy = "pagesEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ElementsEntity> elementsEntities = new HashSet<>();
 
 }

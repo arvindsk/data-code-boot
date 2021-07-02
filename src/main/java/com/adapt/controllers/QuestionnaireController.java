@@ -1,7 +1,10 @@
 package com.adapt.controllers;
 
 import com.adapt.dto.ParticipantStudy;
+import com.adapt.questionnaire.Questionnaire;
 import com.adapt.services.ParticipantService;
+import com.adapt.services.QuestionnaireService;
+import com.google.gson.Gson;
 import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +21,10 @@ import static java.nio.charset.Charset.forName;
 public class QuestionnaireController {
     private final ParticipantService participantService;
 
-    public QuestionnaireController(ParticipantService participantService) {
+    private final QuestionnaireService questionnaireService;
+    public QuestionnaireController(ParticipantService participantService,QuestionnaireService questionnaireService) {
         this.participantService = participantService;
+        this.questionnaireService=questionnaireService;
     }
 
 
@@ -43,6 +48,9 @@ public class QuestionnaireController {
 
         switch (type) {
             case "Vascular Risk":
+                //Questionnaire questionnaire = questionnaireService.getQuestionnaire(type);
+
+                //return new Gson().toJson(questionnaire);
                 return loadJson("questionnarie/vascular_v.1.json");
             case "Sleep Study":
                 return loadJson("questionnarie/sleep_study_v_1.json");
@@ -70,6 +78,46 @@ public class QuestionnaireController {
     public @ResponseBody
     ParticipantStudy getQuestionnaireFilled(@RequestBody ParticipantStudy participantStudy) {
         return participantService.getQuestionnaireFilled(participantStudy);
+    }
+
+    @GetMapping(value = "save-questionnaire", consumes = "application/json", produces = "application/json")
+    public @ResponseBody String saveQuestionnaire(@RequestParam Map<String, String> params) {
+
+        String json;
+
+        String type = params.get("questionnaireType");
+
+        switch (type) {
+            case "Vascular Risk":
+                json= loadJson("questionnarie/vascular_v.1.json");
+                break;
+            case "Sleep Study":
+                json= loadJson("questionnarie/sleep_study_v_1.json");
+                break;
+            case "Everyday Cognition (E-Cog)":
+                json= loadJson("questionnarie/e-cog_v_1.json");
+                break;
+            case "Physical Activity Screening":
+                json= loadJson("questionnarie/exercise_v_1.json");
+                break;
+            case "Diet Screening":
+                json= loadJson("questionnarie/diet_v_1.json");
+                break;
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + type);
+        }
+
+        Questionnaire questionnaire=new Gson().fromJson(json,Questionnaire.class);
+        questionnaire.setQuestionType(type);
+        try {
+            questionnaireService.saveQuestionnaire(questionnaire);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(questionnaire);
+
+        return "success";
     }
 
     private String loadJson(String path) {

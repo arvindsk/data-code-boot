@@ -6,7 +6,7 @@
       "name": "IntroductionPage",
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "1.1",
           "isRequired": true,
           "title": "Completed By",
@@ -27,7 +27,7 @@
           "type": "text",
           "name": "1.2",
           "isRequired": true,
-          "visibleIf": "{1.1} = ['relative']",
+          "visibleIf": "{1.1} = 'relative'",
           "title": "Relationship to Patient:",
           "titleLocation": "left"
         },
