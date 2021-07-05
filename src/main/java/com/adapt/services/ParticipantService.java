@@ -47,7 +47,7 @@ public class ParticipantService {
                     .participantId(participantsEntity.getParticipantId())
                     .firstName(participantsEntity.getFirstName())
                     .lastName(participantsEntity.getLastName())
-                    .timeline(participantStudyList.size() > 0 ? participantStudyList.get(0).getTimeline() : "baseline")
+                    .timeline(participantStudyList.size() > 0 ? participantStudyList.get(0).getTimeline() : "Baseline")
                     .registeredDate(participantsEntity.getAutotime())
                     .dob(participantsEntity.getDob()!=null && !"".equalsIgnoreCase(participantsEntity.getDob())?participantsEntity.getDob().substring(0,5):"")
                     .completedDate(participantStudyList.size() > 0 ? participantStudyList.get(0).getCompletedTime() : null)

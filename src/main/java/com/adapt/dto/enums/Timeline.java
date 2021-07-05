@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Timeline {
-    BASELINE(1001, "baseline"),
-    FIRST_YEAR(1002, "firstyear"),
-    THIRD_YEAR(1003, "thirdyear");
+    BASELINE(1001, "Baseline"),
+    FIRST_YEAR(1002, "Firstyear"),
+    THIRD_YEAR(1003, "Thirdyear");
 
     private final Integer timelineId;
     private final String timelineName;
