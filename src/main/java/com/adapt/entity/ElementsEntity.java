@@ -1,5 +1,6 @@
 package com.adapt.entity;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.*;
 
 import javax.persistence.*;
@@ -75,6 +76,18 @@ public class ElementsEntity implements Serializable {
 
     @Column(name = "questionnaires_id")
     private Integer questionnairesId;
+
+    @Column(name = "default_value")
+    private String defaultValue;
+
+    @Column(name = "min")
+    private Integer min;
+
+    @Column(name = "max")
+    private Integer max;
+
+    @Column(name = "required_if")
+    private String requiredIf;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude

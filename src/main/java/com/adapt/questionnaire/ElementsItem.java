@@ -73,4 +73,13 @@ public class ElementsItem {
     @SerializedName("defaultValue")
     private String defaultValue;
 
+    @SerializedName("min")
+    private int min;
+
+    @SerializedName("max")
+    private int max;
+
+    @SerializedName("requiredIf")
+    private String requiredIf;
+
 }
