@@ -10,7 +10,9 @@
           "name": "1",
           "title": "1. How old are you?",
           "titleLocation": "left",
-          "isRequired": true
+          "isRequired": true,
+          "inputType": "number",
+          "min": "1"
         },
         {
           "type": "radiogroup",
@@ -54,7 +56,7 @@
           "type": "radiogroup",
           "name": "3.1",
           "visibleIf": "{3} = 'yes'",
-          "title": "3.a. During the past month, how often did you eat hot or cold cereals? You can report per day,      \n               per week, or per month.\n",
+          "title": " During the past month, how often did you eat hot or cold cereals? You can report per day, per week, or per month.\n",
           "enableIf": "{3} = 'yes'",
           "isRequired": true,
           "choices": [
@@ -68,7 +70,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -102,7 +104,7 @@
           "colCount": 3
         },
         {
-          "type": "dropdown",
+          "type": "tagbox",
           "name": "4.1",
           "visibleIf": "{4} = 'hotcereal'",
           "title": "Please select the type of Hot Cereal",
@@ -115,7 +117,7 @@
           "otherText": "Type of Other Hot Cereal(describe)"
         },
         {
-          "type": "dropdown",
+          "type": "tagbox",
           "name": "4.2",
           "visibleIf": "{4} = 'coldcereal'",
           "title": "Please select the type of Cold Cereal",
@@ -139,7 +141,7 @@
             },
             {
               "value": "no",
-              "text": "no"
+              "text": "No"
             }
           ],
           "colCount": 2
@@ -148,7 +150,7 @@
           "type": "radiogroup",
           "name": "5.1",
           "visibleIf": "{5} = 'yes'",
-          "title": "5.a. During the past month, what kind of second cereal did you usually eat?  ",
+          "title": "During the past month, what kind of second cereal did you usually eat?  ",
           "isRequired": true,
           "choices": [
             {
@@ -165,7 +167,7 @@
           "colCount": 3
         },
         {
-          "type": "dropdown",
+          "type": "tagbox",
           "name": "5.2",
           "visibleIf": "{5} = 'yes' and {5.1} = 'hotcereal'",
           "title": "Please select the type of Hot Cereal",
@@ -178,7 +180,7 @@
           "otherText": "Type of Other Hot Cereal(describe)"
         },
         {
-          "type": "dropdown",
+          "type": "tagbox",
           "name": "5.3",
           "visibleIf": "{5} = 'yes' and {5.1} = 'coldcereal'",
           "title": "Please select the type of Cold Cereal",
@@ -215,7 +217,7 @@
           "type": "radiogroup",
           "name": "6.1",
           "visibleIf": "{6} = 'yes'",
-          "title": "6.a. During the past month, how often did you have any milk (either to drink or on cereal)? You    \n               can report per day, per week, or per month.\n",
+          "title": "During the past month, how often did you have any milk (either to drink or on cereal)? You    \n               can report per day, per week, or per month.\n",
           "isRequired": true,
           "choices": [
             {
@@ -228,7 +230,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -249,24 +251,24 @@
           "isRequired": true,
           "choices": [
             {
-              "value": "wholemilk",
-              "text": "Whole milk"
+              "value": "item1",
+              "text": "Whole or regular milk"
             },
             {
               "value": "item2",
-              "text": "Regular milk/2% fat"
+              "text": "2% fat or reduced-fat milk"
             },
             {
               "value": "item3",
-              "text": "Reduced-fat milk/ 1%, 1/2%"
+              "text": "1%, 1/2%, or low-fat milk"
             },
             {
               "value": "item4",
-              "text": "Low-fat milk/ Fat-free, skim "
+              "text": "Fat-free, skim or non-fat milk"
             },
             {
               "value": "item5",
-              "text": "Nonfat milk/ Soy milk"
+              "text": "Soy milk"
             }
           ],
           "hasOther": true,
@@ -297,7 +299,7 @@
           "type": "radiogroup",
           "name": "8.1",
           "visibleIf": "{8} = 'yes'",
-          "title": "8.a. During the past month, how often did you drink regular soda or pop? You can report per  \n               day, per week, or per month\n",
+          "title": "During the past month, how often did you drink regular soda or pop? You can report per  \n               day, per week, or per month\n",
           "isRequired": true,
           "choices": [
             {
@@ -310,7 +312,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -344,7 +346,7 @@
           "type": "radiogroup",
           "name": "9.1",
           "visibleIf": "{9} = 'yes'",
-          "title": "9.a. During the past month, how often did you drink regular soda or pop? You can report per day, per week, or per month",
+          "title": "During the past month, how often did you drink 100% pure fruit juice? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
             {
@@ -357,7 +359,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -396,7 +398,7 @@
           "type": "radiogroup",
           "name": "10.1",
           "visibleIf": "{10} = 'yes'",
-          "title": "10.a.  During the past month, how often did you drink coffee or tea containing sugar or honey?",
+          "title": "During the past month, how often did you drink coffee or tea containing sugar or honey? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
             {
@@ -409,7 +411,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -443,7 +445,7 @@
           "type": "radiogroup",
           "name": "11.1",
           "visibleIf": "{11} = 'yes'",
-          "title": "11.a. During the past month, how often did you drink sweetened fruit, sports or energy drinks?",
+          "title": "During the past month, how often did you drink sweetened fruit, sports or energy drinks? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
             {
@@ -456,7 +458,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -490,7 +492,7 @@
           "type": "radiogroup",
           "name": "12.1",
           "visibleIf": "{12} = 'yes'",
-          "title": "12.a. During the past month, how often did you eat fruit? You can report per day, per week, or per month",
+          "title": "During the past month, how often did you eat fruit? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
             {
@@ -503,7 +505,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -542,7 +544,7 @@
           "type": "radiogroup",
           "name": "13.1",
           "visibleIf": "{13} = 'yes'",
-          "title": "13.a. During the past month, how often did you eat salad? You can report per day, per week, or per month",
+          "title": "During the past month, how often did you eat salad? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
             {
@@ -555,7 +557,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -589,7 +591,7 @@
           "type": "radiogroup",
           "name": "14.1",
           "visibleIf": "{14} = 'yes'",
-          "title": "14.a. During the past month, how often did you eat any kind of fried potatoes? You can report per day, per week, or per month",
+          "title": "During the past month, how often did you eat any kind of fried potatoes? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
             {
@@ -602,7 +604,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -636,7 +638,7 @@
           "type": "radiogroup",
           "name": "15.1",
           "visibleIf": "{15} = 'yes'",
-          "title": "15.a. During the past month, how often did you eat any other kind of potatoes? You can report per day, per week, or per month",
+          "title": "During the past month, how often did you eat any other kind of potatoes? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
             {
@@ -649,7 +651,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -688,7 +690,7 @@
           "type": "radiogroup",
           "name": "16.1",
           "visibleIf": "{16} = 'yes'",
-          "title": "16.a. During the past month, how often did you eat refried beans, baked beans, beans in soup, pork and beans or other cooked dried beans? You can report per day, per week, or per month.",
+          "title": "During the past month, how often did you eat refried beans, baked beans, beans in soup, pork and beans or other cooked dried beans? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
             {
@@ -701,7 +703,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -735,7 +737,7 @@
           "type": "radiogroup",
           "name": "17.1",
           "visibleIf": "{17} = 'yes'",
-          "title": "17.a. During the past month, how often did you eat brown rice or other cooked whole grains? You can report per day, per week, or per month",
+          "title": "During the past month, how often did you eat brown rice or other cooked whole grains? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
             {
@@ -748,7 +750,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -782,7 +784,7 @@
           "type": "radiogroup",
           "name": "18.1",
           "visibleIf": "{18} = 'yes'",
-          "title": "18.a. During the past month, how often did you eat other vegetables? You can report per day, per week, or per month",
+          "title": "During the past month, how often did you eat other vegetables? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
             {
@@ -795,7 +797,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -834,7 +836,7 @@
           "type": "radiogroup",
           "name": "19.1",
           "visibleIf": "{19} = 'yes'",
-          "title": "19.a. During the past month, how often did you have Mexican-type salsa made with tomato? You can report per day, per week, or per month.",
+          "title": "During the past month, how often did you have Mexican-type salsa made with tomato? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
             {
@@ -847,7 +849,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -881,7 +883,7 @@
           "type": "radiogroup",
           "name": "20.1",
           "visibleIf": "{20} = 'yes'",
-          "title": "20.a. During the past month, how often did you eat pizza? You can report per day, per week, or per month",
+          "title": "During the past month, how often did you eat pizza? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
             {
@@ -894,7 +896,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -928,7 +930,7 @@
           "type": "radiogroup",
           "name": "21.1",
           "visibleIf": "{21} = 'yes'",
-          "title": "21.a. During the past month, how often did you have tomato sauces? You can report per day, per week, or per month.",
+          "title": "During the past month, how often did you have tomato sauces? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
             {
@@ -941,7 +943,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -980,7 +982,7 @@
           "type": "radiogroup",
           "name": "22.1",
           "visibleIf": "{22} = 'yes'",
-          "title": "22.a. During the past month, how often did you eat any kind of cheese? You can report per day, per week, or per month",
+          "title": "During the past month, how often did you eat any kind of cheese? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
             {
@@ -993,7 +995,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -1027,7 +1029,7 @@
           "type": "radiogroup",
           "name": "23.1",
           "visibleIf": "{23} = 'yes'",
-          "title": "23.a. During the past month, how often did you eat red meat? You can report per day, per week, or per month.",
+          "title": "During the past month, how often did you eat red meat? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
             {
@@ -1040,7 +1042,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -1074,7 +1076,7 @@
           "type": "radiogroup",
           "name": "24.1",
           "visibleIf": "{24} = 'yes'",
-          "title": "24.a. During the past month, how often did you eat processed meat? You can report per day, per week, or per month.",
+          "title": "During the past month, how often did you eat processed meat? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
             {
@@ -1087,7 +1089,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -1126,7 +1128,7 @@
           "type": "radiogroup",
           "name": "25.1",
           "visibleIf": "{25} = 'yes'",
-          "title": "25.a. During the past month, how often did you eat whole grain bread? You can report per day, per week, or per month.",
+          "title": "During the past month, how often did you eat whole grain bread? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
             {
@@ -1139,7 +1141,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -1173,7 +1175,7 @@
           "type": "radiogroup",
           "name": "26.1",
           "visibleIf": "{26} = 'yes'",
-          "title": "26.a. During the past month, how often did you eat chocolate or any other types of candy? You can report per day, per week, or per month.",
+          "title": "During the past month, how often did you eat chocolate or any other types of candy? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
             {
@@ -1186,7 +1188,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -1220,7 +1222,7 @@
           "type": "radiogroup",
           "name": "27.1",
           "visibleIf": "{27} = 'yes'",
-          "title": "27.a. During the past month, how often did you eat doughnuts, sweet rolls, Danish, muffins, (pan dulce) or pop-tarts? You can report per day, per week, or per month.",
+          "title": "During the past month, how often did you eat doughnuts, sweet rolls, Danish, muffins, (pan dulce) or pop-tarts? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
             {
@@ -1233,7 +1235,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -1272,7 +1274,7 @@
           "type": "radiogroup",
           "name": "28.1",
           "visibleIf": "{28} = 'yes'",
-          "title": "28.a. During the past month, how often did you eat cookies, cake, pie, or brownies? You can report per day, per week, or per month.",
+          "title": "During the past month, how often did you eat cookies, cake, pie, or brownies? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
             {
@@ -1285,7 +1287,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -1319,7 +1321,7 @@
           "type": "radiogroup",
           "name": "29.1",
           "visibleIf": "{29} = 'yes'",
-          "title": "29.a. During the past month, how often did you eat ice cream or other frozen desserts? You can report per day, per week, or per month",
+          "title": "During the past month, how often did you eat ice cream or other frozen desserts? You can report per day, per week, or per month",
           "isRequired": true,
           "choices": [
             {
@@ -1332,7 +1334,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
@@ -1366,7 +1368,7 @@
           "type": "radiogroup",
           "name": "30.1",
           "visibleIf": "{30} = 'yes'",
-          "title": "30.a. During the past month, how often did you eat popcorn? You can report per day, per week, or per month.",
+          "title": "During the past month, how often did you eat popcorn? You can report per day, per week, or per month.",
           "isRequired": true,
           "choices": [
             {
@@ -1379,7 +1381,7 @@
             },
             {
               "value": "permonth",
-              "text": "Per Month"
+              "text": "Per month"
             },
             {
               "value": "dontknow",
