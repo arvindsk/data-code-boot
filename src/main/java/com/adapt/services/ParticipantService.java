@@ -99,7 +99,9 @@ public class ParticipantService {
             participantStudyEntityList = createParticipantStudyEntitiesForParticipant(participantId, timeline);
             participantStudyEntityList = participantStudyEntityRepository.saveAllAndFlush(participantStudyEntityList);
         } else {
-            Date firstAttemptTime = participantStudyEntityList.get(0).getCompletedTime();
+            List<ParticipantStudyEntity> participantStudyTimelineList = participantStudyEntityRepository
+                    .findByParticipantIdAndCompletedTimeIsNotNullOrderByCompletedTime(participantId);
+            Date firstAttemptTime = participantStudyTimelineList.get(0).getCompletedTime();
             if (firstAttemptTime != null) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(firstAttemptTime);
