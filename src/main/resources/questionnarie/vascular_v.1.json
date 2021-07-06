@@ -8,9 +8,9 @@
         {
           "type": "radiogroup",
           "name": "1.1",
-          "isRequired": true,
           "title": "Completed By",
           "titleLocation": "top",
+          "isRequired": true,
           "choices": [
             {
               "value": "patient",
@@ -26,10 +26,10 @@
         {
           "type": "text",
           "name": "1.2",
-          "isRequired": true,
           "visibleIf": "{1.1} = 'relative'",
           "title": "Relationship to Patient:",
-          "titleLocation": "left"
+          "titleLocation": "left",
+          "isRequired": true
         },
         {
           "type": "html",
@@ -46,9 +46,9 @@
           "type": "radiogroup",
           "name": "2.1",
           "isRequired": true,
-          "title": "1.Have You ever been diagnosed with a medical condition related to high or elevated blood pressure?",
+          "title": "1. Have you ever been diagnosed with a medical condition related to high or elevated blood pressure?",
           "titleLocation": "top",
-          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe elevated blood pressure:</b><br>Hypertension\n<br/>Malignant Hypertension\n<br/>Elevated Blood Pressure\n<br/>Diastolic Hypertension\n<br/>Renal Hypertension\n<br/>Borderline Hypertension\n<br/>Systolic Hypertension\n<br/>Reno-vascular Hypertension\n<br/>Prehypertension",
+          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe elevated blood pressure:</b><br>Hypertension\n<br/>Malignant Hypertension\n<br/>Elevated Blood Pressure\n<br/>Diastolic Hypertension\n<br/>Renal Hypertension\n<br/>Borderline Hypertension\n<br/>Systolic Hypertension\n<br/>Reno-vascular Hypertension\n<br/>Pre-hypertension",
           "choices": [
             {
               "value": "yes",
@@ -67,11 +67,12 @@
           "colCount": 0
         },
         {
-     "type": "radiogroup",
+          "type": "radiogroup",
           "name": "2.2",
-          "isRequired": true,
           "visibleIf": "{2.1} = 'yes'",
           "title": "How long have you had this condition?",
+          "enableIf": "{2.1} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "0to5years",
@@ -99,10 +100,11 @@
         {
           "type": "radiogroup",
           "name": "2.3",
-          "isRequired": true,
           "visibleIf": "{2.1} = 'yes'",
           "title": "Were you ever treated for this condition",
           "titleLocation": "left",
+          "enableIf": "{2.1} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -122,11 +124,11 @@
         {
           "type": "radiogroup",
           "name": "2.4",
-          "isRequired": true,
-          "visibleIf": "{2.3} = 'yes'",
+          "visibleIf": "{2.1} = 'yes' and {2.3} = 'yes'",
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
-          "enableIf": "{2.3} = 'yes'",
+          "enableIf": "{2.1} = 'yes' and {2.3} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -144,44 +146,39 @@
           "colCount": 0
         },
         {
-          "type": "checkbox",
+          "type": "tagbox",
           "name": "2.5",
+          "visibleIf": "{2.1} = 'yes' and {2.3} = 'yes' and {2.4} = 'yes'",
+          "title": "Elevated Blood Pressure Medication/supplements",
+          "titleLocation": "left",
+          "description": "Please select the medications you believe to be taking for this condition",
+          "enableIf": "{2.1} = 'yes' and {2.3} = 'yes' and {2.4} = 'yes'",
+          "defaultValue": "No prescribed medications",
           "isRequired": true,
-          "visibleIf": "{2.3} = 'yes' and {2.4} = 'yes'",
-          "title": "Please indicate how you are treating the condition?",
-          "titleLocation": "top",
-          "description": "\nMedication/supplements (please list the medications you believe to be taking for this condition):",
-          "enableIf": "{2.3} = 'yes' and {2.4} = 'yes'",
+          "renderAs": "select2",
+          "choicesByUrl": {
+            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "2.6",
+          "visibleIf": "{2.1} = 'yes' and {2.3} = 'yes' and {2.4} = 'yes'",
+          "titleLocation": "hidden",
+          "enableIf": "{2.1} = 'yes' and {2.3} = 'yes' and {2.4} = 'yes'",
+          "requiredIf": "{2.5} contains 'No prescribed medications'",
           "choices": [
             {
               "value": "diet",
               "text": "Diet"
             },
             {
-              "value": "excersise",
-              "text": "Excersise"
-            },
-            {
-              "value": "other",
-              "text": "Other medication"
+              "value": "exercise",
+              "text": "Exercise"
             }
           ],
+          "hasOther": true,
           "colCount": 3
-        },
-        {
-          "type": "dropdown",
-          "renderAs": "select2",
-          "name": "2.6",
-          "isRequired": true,
-          "visibleIf": "{2.3} = 'yes' and {2.4} = 'yes' and {2.5} contains 'other'",
-          "startWithNewLine": true,
-          "title": "Please select the other medication",
-          "enableIf": "{2.3} = 'yes' and {2.4} = 'yes' and {2.5} contains 'other'",
-          "titleLocation": "left",
-          "choicesByUrl": {
-            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
-          },
-          "hasOther": true
         }
       ],
       "title": "High blood pressure check"
@@ -216,9 +213,10 @@
         {
           "type": "radiogroup",
           "name": "3.2",
-          "isRequired": true,
           "visibleIf": "{3.1} = 'yes'",
           "title": "How long have you had this condition?",
+          "enableIf": "{3.1} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "0to5years",
@@ -246,10 +244,11 @@
         {
           "type": "radiogroup",
           "name": "3.3",
-          "isRequired": true,
           "visibleIf": "{3.1} = 'yes'",
           "title": "Were you ever treated for this condition",
           "titleLocation": "left",
+          "enableIf": "{3.1} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -269,11 +268,11 @@
         {
           "type": "radiogroup",
           "name": "3.4",
-          "isRequired": true,
-          "visibleIf": "{3.3} = 'yes'",
+          "visibleIf": "{3.1} = 'yes' and {3.3} = 'yes'",
           "title": "Are you currently treating this condition?",
-          "enableIf": "{3.3} = 'yes'",
           "titleLocation": "left",
+          "enableIf": "{3.1} = 'yes' and {3.3} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -291,43 +290,39 @@
           "colCount": 0
         },
         {
-          "type": "checkbox",
+          "type": "tagbox",
           "name": "3.5",
+          "visibleIf": "{3.1} = 'yes' and {3.3} = 'yes' and {3.4} = 'yes'",
+          "title": "Elevated cholesterol Medication/supplements",
+          "titleLocation": "left",
+          "description": "please select the medications you believe to be taking for this condition",
+          "enableIf": "{3.1} = 'yes' and {3.3} = 'yes' and {3.4} = 'yes'",
+          "defaultValue": "No prescribed medications",
           "isRequired": true,
-          "visibleIf": "{3.3} = 'yes' and {3.4} = 'yes'",
-          "enableIf": "{3.3} = 'yes' and {3.4} = 'yes'",
-          "title": "Please indicate how you are treating the condition?",
-          "titleLocation": "top",
-          "description": "Medication/supplements (please list the medications you believe to be taking for this condition):",
+          "renderAs": "select2",
+          "choicesByUrl": {
+            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "3.6",
+          "visibleIf": "{3.1} = 'yes' and {3.3} = 'yes' and {3.4} = 'yes'",
+          "titleLocation": "hidden",
+          "enableIf": "{3.1} = 'yes' and {3.3} = 'yes' and {3.4} = 'yes'",
+          "requiredIf": "{3.5} contains 'No prescribed medications'",
           "choices": [
             {
               "value": "diet",
               "text": "Diet"
             },
             {
-              "value": "excersise",
-              "text": "Excersise"
-            },
-            {
-              "value": "other",
-              "text": "Other medication"
+              "value": "exercise",
+              "text": "Exercise"
             }
           ],
+          "hasOther": true,
           "colCount": 3
-        },
-        {
-          "type": "dropdown",
-          "renderAs": "select2",
-          "name": "3.6",
-          "isRequired": true,
-          "visibleIf": "{3.3} = 'yes' and {3.4} = 'yes' and {3.5} contains 'other'",
-          "enableIf": "{3.3} = 'yes' and {3.4} = 'yes' and {3.5} contains 'other'",
-          "title": "Please select the other medication",
-          "titleLocation": "left",
-          "choicesByUrl": {
-            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
-          },
-          "hasOther": true
         }
       ],
       "title": "High cholesterol check"
@@ -338,10 +333,10 @@
         {
           "type": "radiogroup",
           "name": "4.1",
-          "isRequired": true,
-          "title": "3.Have you ever been diagnosed with a medical condition related to Diabetes Mellitus?",
-          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe diabetes:</b><br>Diabetes Type I\n<br/>High Blood Glucose/Sugar\n<br/>Abnormal Glycated Hemoglobin\n<br/>Diabetes Type II or Adult-Onset\n<br/>Hyperglycemia Level (HbA1c)\n<br/>Insulin-dependent Diabetes\n<br/>Insufficient Fasting\n<br/>Abnormal Glucose Tolerance\n<br/>Non-insulin dependent Diabetes\n<br/>Prediabetes\n<br/>Glucose (IFG)\n<br/>Brittle Diabetes\n<br/>Abnormal Fasting Plasma\n<br/>Metabolic Syndrome\n<br/>Insulin Resistance\n<br/>Glucose Level (FPG)",
+          "title": "3. Have you ever been diagnosed with a medical condition related to Diabetes Mellitus?",
+          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe diabetes:</b><br>Diabetes Type I <br/>High Blood Glucose/Sugar <br/>Abnormal Glycated Hemoglobin<br/>Diabetes Type II or Adult-Onset <br/>Hyperglycemia<br/>Level (HbA1c) <br/>Insulin-dependent Diabetes<br/>Insufficient Fasting <br/>Abnormal Glucose Tolerance<br/>Non-insulin dependent Diabetes <br/>Prediabetes<br/>Glucose (IFG) <br/>Brittle Diabetes<br/>Abnormal Fasting Plasma <br/>Metabolic Syndrome<br/>Insulin Resistance <br/>Glucose Level (FPG)",
           "titleLocation": "top",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -362,9 +357,10 @@
         {
           "type": "radiogroup",
           "name": "4.2",
-          "isRequired": true,
           "visibleIf": "{4.1} = 'yes'",
           "title": "How long have you had this condition?",
+          "enableIf": "{4.1} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "0to5years",
@@ -392,10 +388,11 @@
         {
           "type": "radiogroup",
           "name": "4.3",
-          "isRequired": true,
           "visibleIf": "{4.1} = 'yes'",
           "title": "Were you ever treated for this condition",
           "titleLocation": "left",
+          "enableIf": "{4.1} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -415,11 +412,11 @@
         {
           "type": "radiogroup",
           "name": "4.4",
-          "isRequired": true,
-          "visibleIf": "{4.3} = 'yes'",
-          "enableIf": "{4.3} = 'yes'",
+          "visibleIf": "{4.1} = 'yes' and {4.3} = 'yes'",
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
+          "enableIf": "{4.1} = 'yes' and {4.3} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -437,43 +434,39 @@
           "colCount": 0
         },
         {
-          "type": "checkbox",
+          "type": "tagbox",
           "name": "4.5",
+          "visibleIf": "{4.1} = 'yes' and {4.3} = 'yes' and {4.4} = 'yes'",
+          "title": "Diabetes Mellitus Medication/supplements",
+          "titleLocation": "left",
+          "description": "please select the medications you believe to be taking for this condition",
+          "enableIf": "{4.1} = 'yes' and {4.3} = 'yes' and {4.4} = 'yes'",
+          "defaultValue": "No prescribed medications",
           "isRequired": true,
-          "visibleIf": "{4.3} = 'yes' and {4.4} = 'yes'",
-          "enableIf": "{4.3} = 'yes' and {4.4} = 'yes'",
-          "title": "Please indicate how you are treating the condition?",
-          "titleLocation": "top",
-          "description": "Medication/supplements (please list the medications you believe to be taking for this condition):",
+          "renderAs": "select2",
+          "choicesByUrl": {
+            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "4.6",
+          "visibleIf": "{4.1} = 'yes' and {4.3} = 'yes' and {4.4} = 'yes'",
+          "titleLocation": "hidden",
+          "enableIf": "{4.1} = 'yes' and {4.3} = 'yes' and {4.4} = 'yes'",
+          "requiredIf": "{4.5} contains 'No prescribed medications'",
           "choices": [
             {
               "value": "diet",
               "text": "Diet"
             },
             {
-              "value": "excersise",
-              "text": "Excersise"
-            },
-            {
-              "value": "other",
-              "text": "Other medication"
+              "value": "exercise",
+              "text": "Exercise"
             }
           ],
+          "hasOther": true,
           "colCount": 3
-        },
-        {
-          "type": "dropdown",
-          "renderAs": "select2",
-          "name": "4.6",
-          "isRequired": true,
-          "visibleIf": "{4.3} = 'yes' and {4.4} = 'yes' and {4.5} contains 'other'",
-          "enableIf": "{4.3} = 'yes' and {4.4} = 'yes' and {4.5} contains 'other'",
-          "title": "Please select the other medication",
-          "titleLocation": "left",
-          "choicesByUrl": {
-            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
-          },
-          "hasOther": true
         }
       ],
       "title": "Diabetes mellitus check"
@@ -484,10 +477,10 @@
         {
           "type": "radiogroup",
           "name": "5.1",
-          "isRequired": true,
           "title": "4. Have you ever been diagnosed with a medical condition related to kidney health or function?",
           "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe kidney problems:</b><br>Kidney Disease\n<br/>Chronic Kidney Disease\n<br/>Nephropathy\n<br/>Renal Disease or Failure\n<br/>Impaired Kidney Function",
           "titleLocation": "top",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -508,9 +501,10 @@
         {
           "type": "radiogroup",
           "name": "5.2",
-          "isRequired": true,
           "visibleIf": "{5.1} = 'yes'",
           "title": "How long have you had this condition?",
+          "enableIf": "{5.1} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "0to5years",
@@ -538,10 +532,11 @@
         {
           "type": "radiogroup",
           "name": "5.3",
-          "isRequired": true,
           "visibleIf": "{5.1} = 'yes'",
           "title": "Were you ever treated for this condition",
           "titleLocation": "left",
+          "enableIf": "{5.1} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -561,11 +556,11 @@
         {
           "type": "radiogroup",
           "name": "5.4",
-          "isRequired": true,
-          "visibleIf": "{5.3} = 'yes'",
-          "enableIf": "{5.3} = 'yes'",
+          "visibleIf": "{5.1} = 'yes' and {5.3} = 'yes'",
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
+          "enableIf": "{5.1} = 'yes' and {5.3} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -583,43 +578,39 @@
           "colCount": 0
         },
         {
-          "type": "checkbox",
+          "type": "tagbox",
           "name": "5.5",
+          "visibleIf": "{5.1} = 'yes' and {5.3} = 'yes' and {5.4} = 'yes'",
+          "title": "Kidney Medication/supplements",
+          "titleLocation": "left",
+          "description": "Please select the medications you believe to be taking for this condition",
+          "enableIf": "{5.1} = 'yes' and {5.3} = 'yes' and {5.4} = 'yes'",
+          "defaultValue": "No prescribed medications",
           "isRequired": true,
-          "visibleIf": "{5.3} = 'yes' and {5.4} = 'yes'",
-          "enableIf": "{5.3} = 'yes' and {5.4} = 'yes'",
-          "title": "Please indicate how you are treating the condition?",
-          "titleLocation": "top",
-          "description": "Medication/supplements (please list the medications you believe to be taking for this condition):",
+          "renderAs": "select2",
+          "choicesByUrl": {
+            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "5.6",
+          "visibleIf": "{5.1} = 'yes' and {5.3} = 'yes' and {5.4} = 'yes'",
+          "titleLocation": "hidden",
+          "enableIf": "{5.1} = 'yes' and {5.3} = 'yes' and {5.4} = 'yes'",
+          "requiredIf": "{5.5} contains 'No prescribed medications'",
           "choices": [
             {
               "value": "diet",
               "text": "Diet"
             },
             {
-              "value": "excersise",
-              "text": "Excersise"
-            },
-            {
-              "value": "other",
-              "text": "Other medication"
+              "value": "exercise",
+              "text": "Exercise"
             }
           ],
+          "hasOther": true,
           "colCount": 3
-        },
-        {
-          "type": "dropdown",
-          "renderAs": "select2",
-          "name": "5.6",
-          "isRequired": true,
-          "visibleIf": "{5.3} = 'yes' and {5.4} = 'yes' and {5.5} contains 'other'",
-          "enableIf": "{5.3} = 'yes' and {5.4} = 'yes' and {5.5} contains 'other'",
-          "title": "Please select the other medication",
-          "titleLocation": "left",
-          "choicesByUrl": {
-            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
-          },
-          "hasOther": true
         }
       ],
       "title": "Kidney health check"
@@ -630,10 +621,10 @@
         {
           "type": "radiogroup",
           "name": "6.1",
-          "isRequired": true,
-          "title": "5.Have you ever been diagnosed with a medical condition related to heart health or function?",
-          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe heart problems:</b><br>Heart Disease \n<br/>Arrhythmia\n<br/>Bypass Surgery\n<br/>Hypertensive Heart Disease \n<br/>Heart Attack/Cardiac Arrest \n<br/>Cardiac Bypass Procedure\n<br/>Coronary Heart Disease \n<br/>Atrial Fibrillation\n<br/>Heart Valve Problems\n<br/>Congestive Heart Failure\n<br/>(unsteady heartbeat, flutter)\n<br/>Pacemaker\n<br/>Angina (chest pain)\n<br/>Coronary Angioplasty/Stent",
+          "title": "5. Have you ever been diagnosed with a medical condition related to heart health or function?",
+          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe heart problems:</b><br>Heart Disease \n<br/>Arrhythmia\n<br/>Bypass Surgery\n<br/>Hypertensive Heart Disease \n<br/>Heart Attack/Cardiac Arrest \n<br/>Cardiac Bypass Procedure\n<br/>Coronary Heart Disease \n<br/>Atrial Fibrillation\n<br/>Heart Valve Problems\n<br/>Congestive Heart Failure\n<br/>Unsteady Heartbeat (Flutter)<br/>Pacemaker\n<br/>Angina (Chest Pain)<br/>Coronary Angioplasty/Stent",
           "titleLocation": "top",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -654,9 +645,10 @@
         {
           "type": "radiogroup",
           "name": "6.2",
-          "isRequired": true,
           "visibleIf": "{6.1} = 'yes'",
           "title": "How long have you had this condition?",
+          "enableIf": "{6.1} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "0to5years",
@@ -684,10 +676,11 @@
         {
           "type": "radiogroup",
           "name": "6.3",
-          "isRequired": true,
           "visibleIf": "{6.1} = 'yes'",
           "title": "Were you ever treated for this condition",
           "titleLocation": "left",
+          "enableIf": "{6.1} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -707,11 +700,11 @@
         {
           "type": "radiogroup",
           "name": "6.4",
-          "isRequired": true,
-          "visibleIf": "{6.3} = 'yes'",
-          "enableIf": "{6.3} = 'yes'",
+          "visibleIf": "{6.1} = 'yes' and {6.3} = 'yes'",
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
+          "enableIf": "{6.1} = 'yes' and {6.3} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -729,43 +722,39 @@
           "colCount": 0
         },
         {
-          "type": "checkbox",
+          "type": "tagbox",
           "name": "6.5",
+          "visibleIf": "{6.1} = 'yes' and {6.3} = 'yes' and {6.4} = 'yes'",
+          "title": "Heart Medication/supplements",
+          "titleLocation": "left",
+          "description": "Please select the medications you believe to be taking for this condition",
+          "enableIf": "{6.1} = 'yes' and {6.3} = 'yes' and {6.4} = 'yes'",
+          "defaultValue": "No prescribed medications",
           "isRequired": true,
-          "visibleIf": "{6.3} = 'yes' and {6.4} = 'yes'",
-          "enableIf": "{6.3} = 'yes' and {6.4} = 'yes'",
-          "title": "Please indicate how you are treating the condition?",
-          "titleLocation": "top",
-          "description": "Medication/supplements (please list the medications you believe to be taking for this condition):",
+          "renderAs": "select2",
+          "choicesByUrl": {
+            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "6.6",
+          "visibleIf": "{6.1} = 'yes' and {6.3} = 'yes' and {6.4} = 'yes'",
+          "titleLocation": "hidden",
+          "enableIf": "{6.1} = 'yes' and {6.3} = 'yes' and {6.4} = 'yes'",
+          "requiredIf": "{6.5} contains 'No prescribed medications'",
           "choices": [
             {
               "value": "diet",
               "text": "Diet"
             },
             {
-              "value": "excersise",
-              "text": "Excersise"
-            },
-            {
-              "value": "other",
-              "text": "Other medication"
+              "value": "exercise",
+              "text": "Exercise"
             }
           ],
+          "hasOther": true,
           "colCount": 3
-        },
-        {
-          "type": "dropdown",
-          "renderAs": "select2",
-          "name": "6.6",
-          "isRequired": true,
-          "visibleIf": "{6.3} = 'yes' and {6.4} = 'yes' and {6.5} contains 'other'",
-          "enableIf": "{6.3} = 'yes' and {6.4} = 'yes' and {6.5} contains 'other'",
-          "title": "Please select the other medication",
-          "titleLocation": "left",
-          "choicesByUrl": {
-            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
-          },
-          "hasOther": true
         }
       ],
       "title": "Heart health check"
@@ -776,10 +765,10 @@
         {
           "type": "radiogroup",
           "name": "7.1",
-          "isRequired": true,
-          "title": "6.Have you ever been diagnosed with a medical condition related to artery/vascular health or function?",
-          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe vascular disease:</b><br>Arterial Disease\n<br/>Carotid Artery Disease\n<br/>Carotid Endarterectomy\n<br/>Atherosclerosis\n<br/>Carotid Bruit\n<br/>TIA or “mini-stroke”\n<br/>Intermittent Claudication\n<br/>Carotid Stenosis\n<br/>Stroke\n<br/>Peripheral Vascular Disease\n<br/>Carotid Surgery",
+          "title": "6. Have you ever been diagnosed with a medical condition related to artery/vascular health or function?",
+          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe vascular disease:</b><br/>Arterial Disease <br/>Carotid Artery Disease <br/>Carotid Endarterectomy<br/>Atherosclerosis <br/>Carotid Bruit <br/>TIA or “Mini-Stroke”<br/>Intermittent Claudication <br/>Carotid Stenosis <br/>Stroke<br/>Peripheral Vascular Disease <br/>Carotid Surgery",
           "titleLocation": "top",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -800,9 +789,10 @@
         {
           "type": "radiogroup",
           "name": "7.2",
-          "isRequired": true,
           "visibleIf": "{7.1} = 'yes'",
           "title": "How long have you had this condition?",
+          "enableIf": "{7.1} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "0to5years",
@@ -830,10 +820,11 @@
         {
           "type": "radiogroup",
           "name": "7.3",
-          "isRequired": true,
           "visibleIf": "{7.1} = 'yes'",
           "title": "Were you ever treated for this condition",
           "titleLocation": "left",
+          "enableIf": "{7.1} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -853,11 +844,11 @@
         {
           "type": "radiogroup",
           "name": "7.4",
-          "isRequired": true,
-          "visibleIf": "{7.3} = 'yes'",
-          "enableIf": "{7.3} = 'yes'",
+          "visibleIf": "{7.1} = 'yes' and {7.3} = 'yes'",
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
+          "enableIf": "{7.1} = 'yes' and {7.3} = 'yes'",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -875,43 +866,39 @@
           "colCount": 0
         },
         {
-          "type": "checkbox",
+          "type": "tagbox",
           "name": "7.5",
+          "visibleIf": "{7.1} = 'yes' and {7.3} = 'yes' and {7.4} = 'yes'",
+          "title": "Vascular Medication/supplements",
+          "titleLocation": "left",
+          "description": "please select the medications you believe to be taking for this condition",
+          "enableIf": "{7.1} = 'yes' and {7.3} = 'yes' and {7.4} = 'yes'",
+          "defaultValue": "No prescribed medications",
           "isRequired": true,
-          "visibleIf": "{7.3} = 'yes' and {7.4} = 'yes'",
-          "enableIf": "{7.3} = 'yes' and {7.4} = 'yes'",
-          "title": "Please indicate how you are treating the condition?",
-          "titleLocation": "top",
-          "description": "Medication/supplements (please list the medications you believe to be taking for this condition):",
+          "renderAs": "select2",
+          "choicesByUrl": {
+            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "7.6",
+          "visibleIf": "{7.1} = 'yes' and {7.3} = 'yes' and {7.4} = 'yes'",
+          "titleLocation": "hidden",
+          "enableIf": "{7.1} = 'yes' and {7.3} = 'yes' and {7.4} = 'yes'",
+          "requiredIf": "{7.5} contains 'No prescribed medications'",
           "choices": [
             {
               "value": "diet",
               "text": "Diet"
             },
             {
-              "value": "excersise",
-              "text": "Excersise"
-            },
-            {
-              "value": "other",
-              "text": "Other medication"
+              "value": "exercise",
+              "text": "Exercise"
             }
           ],
+          "hasOther": true,
           "colCount": 3
-        },
-        {
-          "type": "dropdown",
-          "renderAs": "select2",
-          "name": "7.6",
-          "isRequired": true,
-          "visibleIf": "{7.3} = 'yes' and {7.4} = 'yes' and {7.5} contains 'other'",
-          "enableIf": "{7.3} = 'yes' and {7.4} = 'yes' and {7.5} contains 'other'",
-          "title": "Please select the other medication",
-          "titleLocation": "left",
-          "choicesByUrl": {
-            "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
-          },
-          "hasOther": true
         }
       ],
       "title": "Vascular health check"
@@ -920,6 +907,6 @@
   "showPageTitles": false,
   "showQuestionNumbers": "off",
   "showProgressBar": "top",
-  "showPreviewBeforeComplete": "showAllQuestions",
-  "checkErrorsMode": "onComplete"
+  "checkErrorsMode": "onComplete",
+  "showPreviewBeforeComplete": "showAllQuestions"
 }

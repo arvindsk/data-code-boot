@@ -1,44 +1,40 @@
 {
- "title": "Vascular Risk and Diagnoses Questionnaire UC Davis Alzheimer’s Disease Center",
+ "title": "Vascular Risk",
  "completedHtml": "<h2>Thank you for submitting the Questionnaire<h2>",
  "pages": [
   {
    "name": "IntroductionPage",
    "elements": [
     {
-     "type": "panel",
-     "name": "panel1",
-     "elements": [
+     "type": "radiogroup",
+     "name": "1.1",
+     "title": "Completed By",
+     "titleLocation": "top",
+     "isRequired": true,
+     "choices": [
       {
-       "type": "checkbox",
-       "name": "completedBy",
-       "title": "Completed By",
-       "titleLocation": "top",
-       "choices": [
-        {
-         "value": "item1",
-         "text": "Patient"
-        },
-        {
-         "value": "item2",
-         "text": "Informant/Family Member"
-        }
-       ],
-       "colCount": 2
+       "value": "patient",
+       "text": "Patient"
       },
       {
-       "type": "text",
-       "name": "question3",
-       "visibleIf": "{completedBy} = ['item2']",
-       "title": "Relationship to Patient:",
-       "titleLocation": "left"
-      },
-      {
-       "type": "html",
-       "name": "question2",
-       "html": "Please respond to the following questions to the best of your ability. They are to be answered based on the\nPatient’s medical history. If you do not know the exact year in which a given condition first began or was\ndiagnosed, please use your best judgement to approximate the year. A list of commonly prescribed\nmedications is included on pages 5-6 for your convenience to aide you in identifying which condition(s) your\nmedications may be treating.\n"
+       "value": "relative",
+       "text": "Informant/Family Member"
       }
-     ]
+     ],
+     "colCount": 2
+    },
+    {
+     "type": "text",
+     "name": "1.2",
+     "visibleIf": "{1.1} = 'relative'",
+     "title": "Relationship to Patient:",
+     "titleLocation": "left",
+     "isRequired": true
+    },
+    {
+     "type": "html",
+     "name": "1.3",
+     "html": "Please respond to the following questions to the best of your ability. They are to be answered based on the\nPatient’s medical history. If you do not know the exact year in which a given condition first began or was\ndiagnosed, please use your best judgement to approximate the year. A list of commonly prescribed\nmedications is included on pages 5-6 for your convenience to aide you in identifying which condition(s) your\nmedications may be treating.\n <br/><b>Please answer each question as thoroughly as possible. The more information you provide, the better your doctor will be able to help you. </b>"
     }
    ],
    "title": "Introduction"
@@ -47,127 +43,141 @@
    "name": "HighBloodPressurePage",
    "elements": [
     {
-     "type": "panel",
-     "name": "highbloodpressurePanel",
-     "elements": [
+     "type": "radiogroup",
+     "name": "2.1",
+          "isRequired": true,
+     "title": "1. Have you ever been diagnosed with a medical condition related to high or elevated blood pressure?",
+     "titleLocation": "top",
+          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe elevated blood pressure:</b><br>Hypertension\n<br/>Malignant Hypertension\n<br/>Elevated Blood Pressure\n<br/>Diastolic Hypertension\n<br/>Renal Hypertension\n<br/>Borderline Hypertension\n<br/>Systolic Hypertension\n<br/>Reno-vascular Hypertension\n<br/>Prehypertension",
+     "choices": [
       {
-       "type": "html",
-       "name": "highBlloodPressureDesc",
-       "html": "<p> below are some of the term(s) that may have been used by your doctor to describe elevated blood\npressure:</p>\n<table>\n<tr><td>Hypertension </td><td>Malignant Hypertension</td> <td> Elevated Blood Pressure</td> </tr>\n<tr><td>Diastolic Hypertension </td><td>Renal Hypertension</td> <td> Borderline Hypertension</td> </tr>\n<tr><td>Systolic Hypertension </td><td>Reno-vascular Hypertension</td> <td> Prehypertension</td> </tr> \n </table>\n"
+       "value": "yes",
+       "text": "Yes"
       },
       {
-       "type": "radiogroup",
-       "name": "highBloodPressureQuestion1",
-       "title": "High Blood Pressure Question title",
-       "titleLocation": "hidden",
-       "choices": [
-        "Yes",
-        "No",
-        {
-         "value": "item1",
-         "text": "Unknown"
-        }
-       ],
-       "otherText": "Unknown",
-       "colCount": 0
+       "value": "no",
+       "text": "No"
       },
       {
-       "type": "text",
-       "name": "highBloodPressureQuestion2",
-       "visibleIf": "{highBloodPressureQuestion1} = 'Yes'",
-       "title": "Approximately in what year did you first receive this diagnosis?",
-       "titleLocation": "left",
-       "inputType": "number"
-      },
-      {
-       "type": "radiogroup",
-       "name": "highBloodPressureQuestion3",
-       "visibleIf": "{highBloodPressureQuestion1} = 'Yes'",
-       "title": "Were you ever treated for this condition",
-       "titleLocation": "left",
-       "choices": [
-        {
-         "value": "yes",
-         "text": "Yes"
-        },
-        {
-         "value": "no",
-         "text": "No"
-        },
-        {
-         "value": "unknown",
-         "text": "Unknown"
-        }
-       ],
-       "colCount": 0
-      },
-      {
-       "type": "radiogroup",
-       "name": "highBloodPressureQuestion4",
-       "visibleIf": "{highBloodPressureQuestion3} = 'yes'",
-       "title": "Are you currently treating this condition?",
-       "titleLocation": "left",
-       "choices": [
-        {
-         "value": "yes",
-         "text": "Yes"
-        },
-        {
-         "value": "no",
-         "text": "No"
-        },
-        {
-         "value": "unknown",
-         "text": "Unknown"
-        }
-       ],
-       "colCount": 0
-      },
-      {
-       "type": "paneldynamic",
-       "name": "highBloodPressurePanel2",
-       "visibleIf": "{highBloodPressureQuestion4} = 'yes'",
-       "title": "Please indicate how you are treating the condition:",
-       "templateElements": [
-        {
-         "type": "checkbox",
-         "name": "highBloodPressureQuestion5",
-         "title": "Medication/supplements (please list the medications you believe to be taking for this condition):",
-         "titleLocation": "top",
-         "choices": [
-          {
-           "value": "diet",
-           "text": "Diet"
-          },
-          {
-           "value": "excersise",
-           "text": "Excersise"
-          }
-         ],
-         "colCount": 2
-        },
-        {
-         "type": "dropdown",
-         "name": "highBloodPressureQuestion6",
-         "startWithNewLine": false,
-         "title": "Other medication",
-         "titleLocation": "left",
-         "choices": [
-          "item1",
-          "item2",
-          "item3"
-         ],
-         "hasOther": true
-        }
-       ],
-       "allowAddPanel": false,
-       "allowRemovePanel": false,
-       "panelCount": 1,
-       "minPanelCount": 1,
-       "maxPanelCount": 1
+       "value": "unknown",
+       "text": "Unknown"
       }
      ],
-     "title": "1.Have You ever been diagnosed with a medical condition related to high or elevated blood pressure?"
+     "otherText": "Unknown",
+     "colCount": 0
+    },
+    {
+     "type": "radiogroup",
+     "name": "2.2",
+     "visibleIf": "{2.1} = 'yes'",
+     "title": "How long have you had this condition?",
+     "enableIf": "{2.1} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "0to5years",
+       "text": "0 to 5 Years"
+      },
+      {
+       "value": "6to10years",
+       "text": "6 to 10 Years"
+      },
+      {
+       "value": "11to20years",
+       "text": "11 to 20 Years"
+      },
+      {
+       "value": "21to30years",
+       "text": "21 to 30 Years"
+      },
+      {
+       "value": "30plusyears",
+       "text": "30+ Years"
+      }
+     ],
+     "colCount": 5
+    },
+    {
+     "type": "radiogroup",
+     "name": "2.3",
+     "visibleIf": "{2.1} = 'yes'",
+     "title": "Were you ever treated for this condition",
+     "titleLocation": "left",
+     "enableIf": "{2.1} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      },
+      {
+       "value": "unknown",
+       "text": "Unknown"
+      }
+     ],
+     "colCount": 0
+    },
+    {
+     "type": "radiogroup",
+     "name": "2.4",
+     "visibleIf": "{2.1} = 'yes' and {2.3} = 'yes'",
+     "title": "Are you currently treating this condition?",
+     "titleLocation": "left",
+     "enableIf": "{2.1} = 'yes' and {2.3} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      },
+      {
+       "value": "unknown",
+       "text": "Unknown"
+      }
+     ],
+     "colCount": 0
+    },
+    {
+     "type": "dropdown",
+     "name": "2.5",
+     "visibleIf": "{2.1} = 'yes' and {2.3} = 'yes' and {2.4} = 'yes'",
+     "title": "Elevated Blood Pressure Medication/supplements",
+     "titleLocation": "left",
+     "description": "Please select the medications you believe to be taking for this condition",
+     "enableIf": "{2.1} = 'yes' and {2.3} = 'yes' and {2.4} = 'yes'",
+     "defaultValue": "No prescribed medications",
+     "isRequired": true,
+     "renderAs": "select2",
+     "choicesByUrl": {
+      "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+     }
+    },
+    {
+     "type": "checkbox",
+     "name": "2.6",
+     "visibleIf": "{2.1} = 'yes' and {2.3} = 'yes' and {2.4} = 'yes'",
+     "titleLocation": "hidden",
+     "enableIf": "{2.1} = 'yes' and {2.3} = 'yes' and {2.4} = 'yes'",
+     "choices": [
+      {
+       "value": "diet",
+       "text": "Diet"
+      },
+      {
+       "value": "exercise",
+       "text": "Exercise"
+      }
+     ],
+     "hasOther": true,
+     "colCount": 3
     }
    ],
    "title": "High blood pressure check"
@@ -176,127 +186,141 @@
    "name": "HighcholesterolPage",
    "elements": [
     {
-     "type": "panel",
-     "name": "highcholesterolPanel",
-     "elements": [
+     "type": "radiogroup",
+     "name": "3.1",
+          "isRequired": true,
+     "title": "2. Have you ever been diagnosed with a medical condition related to high or elevated cholesterol levels?",
+     "titleLocation": "top",
+          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to elevated cholesterol:</b><br>High Cholesterol\n<br/>High HDL and/or LDL levels\n<br/>High Triglycerides\n<br/>Hypercholesterolemia\n<br/>Lipid Disorder\n<br/>Hyperlipidemia\n<br/>Hypertriglyceridemia",
+     "choices": [
       {
-       "type": "html",
-       "name": "highcholesterolquestion1",
-       "html": "<p>  below are some of the term(s) that may have been used by your doctor to elevated\ncholesterol:</p>\n<table>\n<tr><td>Hypertension </td><td>Malignant Hypertension</td> <td> Elevated Blood Pressure</td> </tr>\n<tr><td>Diastolic Hypertension </td><td>Renal Hypertension</td> <td> Borderline Hypertension</td> </tr>\n<tr><td>Systolic Hypertension </td><td>Reno-vascular Hypertension</td> <td> Prehypertension</td> </tr> \n </table>\n"
+       "value": "yes",
+       "text": "Yes"
       },
       {
-       "type": "radiogroup",
-       "name": "highcholesterolquestion2",
-       "title": "High Blood Pressure Question title",
-       "titleLocation": "hidden",
-       "choices": [
-        "Yes",
-        "No",
-        {
-         "value": "item1",
-         "text": "Unknown"
-        }
-       ],
-       "otherText": "Unknown",
-       "colCount": 0
+       "value": "no",
+       "text": "No"
       },
       {
-       "type": "text",
-       "name": "highcholesterolquestion3",
-       "visibleIf": "{highcholesterolquestion2} = 'Yes'",
-       "title": "Approximately in what year did you first receive this diagnosis?",
-       "titleLocation": "left",
-       "inputType": "number"
-      },
-      {
-       "type": "radiogroup",
-       "name": "highcholesterolquestion4",
-       "visibleIf": "{highcholesterolquestion2} = 'Yes'",
-       "title": "Were you ever treated for this condition",
-       "titleLocation": "left",
-       "choices": [
-        {
-         "value": "yes",
-         "text": "Yes"
-        },
-        {
-         "value": "no",
-         "text": "No"
-        },
-        {
-         "value": "unknown",
-         "text": "Unknown"
-        }
-       ],
-       "colCount": 0
-      },
-      {
-       "type": "radiogroup",
-       "name": "highcholesterolquestion5",
-       "visibleIf": "{highcholesterolquestion4} = 'yes'",
-       "title": "Are you currently treating this condition?",
-       "titleLocation": "left",
-       "choices": [
-        {
-         "value": "yes",
-         "text": "Yes"
-        },
-        {
-         "value": "no",
-         "text": "No"
-        },
-        {
-         "value": "unknown",
-         "text": "Unknown"
-        }
-       ],
-       "colCount": 0
-      },
-      {
-       "type": "paneldynamic",
-       "name": "highcholesterolquestion6",
-       "visibleIf": "{highcholesterolquestion5} = 'yes'",
-       "title": "Please indicate how you are treating the condition:",
-       "templateElements": [
-        {
-         "type": "checkbox",
-         "name": "highcholesterolquestion7",
-         "title": "Medication/supplements (please list the medications you believe to be taking for this condition):",
-         "titleLocation": "top",
-         "choices": [
-          {
-           "value": "diet",
-           "text": "Diet"
-          },
-          {
-           "value": "excersise",
-           "text": "Excersise"
-          }
-         ],
-         "colCount": 2
-        },
-        {
-         "type": "dropdown",
-         "name": "highcholesterolquestion8",
-         "startWithNewLine": false,
-         "title": "Other medication",
-         "titleLocation": "left",
-         "choices": [
-          "item1",
-          "item2",
-          "item3"
-         ],
-         "hasOther": true
-        }
-       ],
-       "allowAddPanel": false,
-       "allowRemovePanel": false,
-       "panelCount": 1,
-       "minPanelCount": 1,
-       "maxPanelCount": 1
+       "value": "unknown",
+       "text": "Unknown"
       }
      ],
-     "title": "2. Have you ever been diagnosed with a medical condition related to high or elevated cholesterol levels?"
+     "otherText": "Unknown",
+     "colCount": 0
+    },
+    {
+     "type": "radiogroup",
+     "name": "3.2",
+     "visibleIf": "{3.1} = 'yes'",
+     "title": "How long have you had this condition?",
+     "enableIf": "{3.1} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "0to5years",
+       "text": "0 to 5 Years"
+      },
+      {
+       "value": "6to10years",
+       "text": "6 to 10 Years"
+      },
+      {
+       "value": "11to20years",
+       "text": "11 to 20 Years"
+      },
+      {
+       "value": "21to30years",
+       "text": "21 to 30 Years"
+      },
+      {
+       "value": "30plusyears",
+       "text": "30+ Years"
+      }
+     ],
+     "colCount": 5
+    },
+    {
+     "type": "radiogroup",
+     "name": "3.3",
+     "visibleIf": "{3.1} = 'yes'",
+     "title": "Were you ever treated for this condition",
+     "titleLocation": "left",
+     "enableIf": "{3.1} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      },
+      {
+       "value": "unknown",
+       "text": "Unknown"
+      }
+     ],
+     "colCount": 0
+    },
+    {
+     "type": "radiogroup",
+     "name": "3.4",
+     "visibleIf": "{3.1} = 'yes' and {3.3} = 'yes'",
+     "title": "Are you currently treating this condition?",
+     "titleLocation": "left",
+     "enableIf": "{3.1} = 'yes' and {3.3} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      },
+      {
+       "value": "unknown",
+       "text": "Unknown"
+      }
+     ],
+     "colCount": 0
+    },
+    {
+     "type": "dropdown",
+     "name": "3.5",
+     "visibleIf": "{3.1} = 'yes' and {3.3} = 'yes' and {3.4} = 'yes'",
+     "title": "Elevated cholesterol Medication/supplements",
+     "titleLocation": "left",
+     "description": "please select the medications you believe to be taking for this condition",
+     "enableIf": "{3.1} = 'yes' and {3.3} = 'yes' and {3.4} = 'yes'",
+     "defaultValue": "No prescribed medications",
+     "isRequired": true,
+     "renderAs": "select2",
+     "choicesByUrl": {
+      "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+     }
+    },
+    {
+     "type": "checkbox",
+     "name": "3.6",
+     "visibleIf": "{3.1} = 'yes' and {3.3} = 'yes' and {3.4} = 'yes'",
+     "titleLocation": "hidden",
+     "enableIf": "{3.1} = 'yes' and {3.3} = 'yes' and {3.4} = 'yes'",
+     "choices": [
+      {
+       "value": "diet",
+       "text": "Diet"
+      },
+      {
+       "value": "exercise",
+       "text": "Exercise"
+      }
+     ],
+     "hasOther": true,
+     "colCount": 3
     }
    ],
    "title": "High cholesterol check"
@@ -305,131 +329,141 @@
    "name": "DiabetesMellitus",
    "elements": [
     {
-     "type": "panel",
-     "name": "diabetesMellitusPanel1",
-     "elements": [
+     "type": "radiogroup",
+     "name": "4.1",
+     "title": "3. Have you ever been diagnosed with a medical condition related to Diabetes Mellitus?",
+          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe diabetes:</b><br>Diabetes Type I\n<br/>High Blood Glucose/Sugar\n<br/>Abnormal Glycated Hemoglobin\n<br/>Diabetes Type II or Adult-Onset\n<br/>Hyperglycemia Level (HbA1c)\n<br/>Insulin-dependent Diabetes\n<br/>Insufficient Fasting\n<br/>Abnormal Glucose Tolerance\n<br/>Non-insulin dependent Diabetes\n<br/>Prediabetes\n<br/>Glucose (IFG)\n<br/>Brittle Diabetes\n<br/>Abnormal Fasting Plasma\n<br/>Metabolic Syndrome\n<br/>Insulin Resistance\n<br/>Glucose Level (FPG)",
+     "titleLocation": "top",
+     "isRequired": true,
+     "choices": [
       {
-       "type": "html",
-       "name": "diabetesMellitusQuestion1",
-       "html": "<p> below are some of the term(s) that may have been used by your doctor to describe diabetes:</p>\n<table>\n<tr><td>Hypertension </td><td>Malignant Hypertension</td> <td> Elevated Blood Pressure</td> </tr>\n<tr><td>Diastolic Hypertension </td><td>Renal Hypertension</td> <td> Borderline Hypertension</td> </tr>\n<tr><td>Systolic Hypertension </td><td>Reno-vascular Hypertension</td> <td> Prehypertension</td> </tr> \n </table>\n"
+       "value": "yes",
+       "text": "Yes"
       },
       {
-       "type": "radiogroup",
-       "name": "diabetesMellitusquestion2",
-       "title": "High Blood Pressure Question title",
-       "titleLocation": "hidden",
-       "choices": [
-        "Yes",
-        "No",
-        {
-         "value": "item1",
-         "text": "Unknown"
-        }
-       ],
-       "otherText": "Unknown",
-       "colCount": 0
+       "value": "no",
+       "text": "No"
       },
       {
-       "type": "text",
-       "name": "diabetesMellitusquestion3",
-       "visibleIf": "{diabetesMellitusquestion2} = 'Yes'",
-       "title": "Approximately in what year did you first receive this diagnosis?",
-       "titleLocation": "left",
-       "inputType": "number"
-      },
-      {
-       "type": "radiogroup",
-       "name": "diabetesMellitusquestion4",
-       "visibleIf": "{diabetesMellitusquestion2} = 'Yes'",
-       "title": "Were you ever treated for this condition",
-       "titleLocation": "left",
-       "choices": [
-        {
-         "value": "yes",
-         "text": "Yes"
-        },
-        {
-         "value": "no",
-         "text": "No"
-        },
-        {
-         "value": "unknown",
-         "text": "Unknown"
-        }
-       ],
-       "colCount": 0
-      },
-      {
-       "type": "radiogroup",
-       "name": "diabetesMellitusquestion5",
-       "visibleIf": "{diabetesMellitusquestion4} = 'yes'",
-       "title": "Are you currently treating this condition?",
-       "titleLocation": "left",
-       "choices": [
-        {
-         "value": "yes",
-         "text": "Yes"
-        },
-        {
-         "value": "no",
-         "text": "No"
-        },
-        {
-         "value": "unknown",
-         "text": "Unknown"
-        }
-       ],
-       "colCount": 0
-      },
-      {
-       "type": "paneldynamic",
-       "name": "diabetesMellitusquestion6",
-       "visibleIf": "{diabetesMellitusquestion5} = 'yes'",
-       "title": "Please indicate how you are treating the condition:",
-       "templateElements": [
-        {
-         "type": "checkbox",
-         "name": "diabetesMellitusQuestion7",
-         "title": "Medication/supplements (please list the medications you believe to be taking for this condition):",
-         "titleLocation": "top",
-         "choices": [
-          {
-           "value": "diet",
-           "text": "Diet"
-          },
-          {
-           "value": "excersise",
-           "text": "Excersise"
-          }
-         ],
-         "colCount": 2
-        },
-        {
-         "type": "html",
-         "name": "question1"
-        },
-        {
-         "type": "dropdown",
-         "name": "diabetesMellitusQuestion8",
-         "startWithNewLine": false,
-         "title": "Other medication",
-         "titleLocation": "left",
-         "choices": [
-          "item1",
-          "item2",
-          "item3"
-         ],
-         "hasOther": true
-        }
-       ],
-       "allowAddPanel": false,
-       "allowRemovePanel": false,
-       "panelCount": 1,
-       "minPanelCount": 1,
-       "maxPanelCount": 1
+       "value": "unknown",
+       "text": "Unknown"
       }
      ],
-     "title": "3.Have you ever been diagnosed with a medical condition related to Diabetes Mellitus?"
+     "otherText": "Unknown",
+     "colCount": 0
+    },
+    {
+     "type": "radiogroup",
+     "name": "4.2",
+     "visibleIf": "{4.1} = 'yes'",
+     "title": "How long have you had this condition?",
+     "enableIf": "{4.1} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "0to5years",
+       "text": "0 to 5 Years"
+      },
+      {
+       "value": "6to10years",
+       "text": "6 to 10 Years"
+      },
+      {
+       "value": "11to20years",
+       "text": "11 to 20 Years"
+      },
+      {
+       "value": "21to30years",
+       "text": "21 to 30 Years"
+      },
+      {
+       "value": "30plusyears",
+       "text": "30+ Years"
+      }
+     ],
+     "colCount": 5
+    },
+    {
+     "type": "radiogroup",
+     "name": "4.3",
+     "visibleIf": "{4.1} = 'yes'",
+     "title": "Were you ever treated for this condition",
+     "titleLocation": "left",
+     "enableIf": "{4.1} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      },
+      {
+       "value": "unknown",
+       "text": "Unknown"
+      }
+     ],
+     "colCount": 0
+    },
+    {
+     "type": "radiogroup",
+     "name": "4.4",
+     "visibleIf": "{4.1} = 'yes' and {4.3} = 'yes'",
+     "title": "Are you currently treating this condition?",
+     "titleLocation": "left",
+     "enableIf": "{4.1} = 'yes' and {4.3} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      },
+      {
+       "value": "unknown",
+       "text": "Unknown"
+      }
+     ],
+     "colCount": 0
+    },
+    {
+     "type": "dropdown",
+     "name": "4.5",
+     "visibleIf": "{4.1} = 'yes' and {4.3} = 'yes' and {4.4} = 'yes'",
+     "title": "Diabetes Mellitus Medication/supplements",
+     "titleLocation": "left",
+     "description": "please select the medications you believe to be taking for this condition",
+     "enableIf": "{4.1} = 'yes' and {4.3} = 'yes' and {4.4} = 'yes'",
+     "defaultValue": "No prescribed medications",
+     "isRequired": true,
+     "renderAs": "select2",
+     "choicesByUrl": {
+      "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+     }
+    },
+    {
+     "type": "checkbox",
+     "name": "4.6",
+     "visibleIf": "{4.1} = 'yes' and {4.3} = 'yes' and {4.4} = 'yes'",
+     "titleLocation": "hidden",
+     "enableIf": "{4.1} = 'yes' and {4.3} = 'yes' and {4.4} = 'yes'",
+     "choices": [
+      {
+       "value": "diet",
+       "text": "Diet"
+      },
+      {
+       "value": "exercise",
+       "text": "Exercise"
+      }
+     ],
+     "hasOther": true,
+     "colCount": 3
     }
    ],
    "title": "Diabetes mellitus check"
@@ -438,131 +472,141 @@
    "name": "KidneyHealthPage",
    "elements": [
     {
-     "type": "panel",
-     "name": "kidneyHealthpanel",
-     "elements": [
+     "type": "radiogroup",
+     "name": "5.1",
+     "title": "4. Have you ever been diagnosed with a medical condition related to kidney health or function?",
+          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe kidney problems:</b><br>Kidney Disease\n<br/>Chronic Kidney Disease\n<br/>Nephropathy\n<br/>Renal Disease or Failure\n<br/>Impaired Kidney Function",
+     "titleLocation": "top",
+     "isRequired": true,
+     "choices": [
       {
-       "type": "html",
-       "name": "kidneyHealthquestion2",
-       "html": "<p> below are some of the term(s) that may have been used by your doctor to describe kidney\nproblems:</p>\n<table>\n<tr><td>Hypertension </td><td>Malignant Hypertension</td> <td> Elevated Blood Pressure</td> </tr>\n<tr><td>Diastolic Hypertension </td><td>Renal Hypertension</td> <td> Borderline Hypertension</td> </tr>\n<tr><td>Systolic Hypertension </td><td>Reno-vascular Hypertension</td> <td> Prehypertension</td> </tr> \n </table>\n"
+       "value": "yes",
+       "text": "Yes"
       },
       {
-       "type": "radiogroup",
-       "name": "kidneyHealthquestion3",
-       "title": "High Blood Pressure Question title",
-       "titleLocation": "hidden",
-       "choices": [
-        "Yes",
-        "No",
-        {
-         "value": "item1",
-         "text": "Unknown"
-        }
-       ],
-       "otherText": "Unknown",
-       "colCount": 0
+       "value": "no",
+       "text": "No"
       },
       {
-       "type": "text",
-       "name": "kidneyHealthquestion4",
-       "visibleIf": "{kidneyHealthquestion3} = 'Yes'",
-       "title": "Approximately in what year did you first receive this diagnosis?",
-       "titleLocation": "left",
-       "inputType": "number"
-      },
-      {
-       "type": "radiogroup",
-       "name": "kidneyHealthquestion5",
-       "visibleIf": "{kidneyHealthquestion3} = 'Yes'",
-       "title": "Were you ever treated for this condition",
-       "titleLocation": "left",
-       "choices": [
-        {
-         "value": "yes",
-         "text": "Yes"
-        },
-        {
-         "value": "no",
-         "text": "No"
-        },
-        {
-         "value": "unknown",
-         "text": "Unknown"
-        }
-       ],
-       "colCount": 0
-      },
-      {
-       "type": "radiogroup",
-       "name": "kidneyHealthquestion6",
-       "visibleIf": "{kidneyHealthquestion5} = 'yes'",
-       "title": "Are you currently treating this condition?",
-       "titleLocation": "left",
-       "choices": [
-        {
-         "value": "yes",
-         "text": "Yes"
-        },
-        {
-         "value": "no",
-         "text": "No"
-        },
-        {
-         "value": "unknown",
-         "text": "Unknown"
-        }
-       ],
-       "colCount": 0
-      },
-      {
-       "type": "paneldynamic",
-       "name": "kidneyHealthquestion7",
-       "visibleIf": "{kidneyHealthquestion6} = 'yes'",
-       "title": "Please indicate how you are treating the condition:",
-       "templateElements": [
-        {
-         "type": "checkbox",
-         "name": "kidneyHealthquestion8",
-         "title": "Medication/supplements (please list the medications you believe to be taking for this condition):",
-         "titleLocation": "top",
-         "choices": [
-          {
-           "value": "diet",
-           "text": "Diet"
-          },
-          {
-           "value": "excersise",
-           "text": "Excersise"
-          }
-         ],
-         "colCount": 2
-        },
-        {
-         "type": "dropdown",
-         "name": "kidneyHealthquestion9",
-         "startWithNewLine": false,
-         "title": "Other medication",
-         "titleLocation": "left",
-         "choices": [
-          "item1",
-          "item2",
-          "item3"
-         ],
-         "hasOther": true
-        },
-        {
-         "type": "html",
-         "name": "question1"
-        }
-       ],
-       "allowAddPanel": false,
-       "allowRemovePanel": false,
-       "panelCount": 1,
-       "minPanelCount": 1,
-       "maxPanelCount": 1
+       "value": "unknown",
+       "text": "Unknown"
       }
      ],
-     "title": "4. Have you ever been diagnosed with a medical condition related to kidney health or function?"
+     "otherText": "Unknown",
+     "colCount": 0
+    },
+    {
+     "type": "radiogroup",
+     "name": "5.2",
+     "visibleIf": "{5.1} = 'yes'",
+     "title": "How long have you had this condition?",
+     "enableIf": "{5.1} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "0to5years",
+       "text": "0 to 5 Years"
+      },
+      {
+       "value": "6to10years",
+       "text": "6 to 10 Years"
+      },
+      {
+       "value": "11to20years",
+       "text": "11 to 20 Years"
+      },
+      {
+       "value": "21to30years",
+       "text": "21 to 30 Years"
+      },
+      {
+       "value": "30plusyears",
+       "text": "30+ Years"
+      }
+     ],
+     "colCount": 5
+    },
+    {
+     "type": "radiogroup",
+     "name": "5.3",
+     "visibleIf": "{5.1} = 'yes'",
+     "title": "Were you ever treated for this condition",
+     "titleLocation": "left",
+     "enableIf": "{5.1} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      },
+      {
+       "value": "unknown",
+       "text": "Unknown"
+      }
+     ],
+     "colCount": 0
+    },
+    {
+     "type": "radiogroup",
+     "name": "5.4",
+     "visibleIf": "{5.1} = 'yes' and {5.3} = 'yes'",
+     "title": "Are you currently treating this condition?",
+     "titleLocation": "left",
+     "enableIf": "{5.1} = 'yes' and {5.3} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      },
+      {
+       "value": "unknown",
+       "text": "Unknown"
+      }
+     ],
+     "colCount": 0
+    },
+    {
+     "type": "dropdown",
+     "name": "5.5",
+     "visibleIf": "{5.1} = 'yes' and {5.3} = 'yes' and {5.4} = 'yes'",
+     "title": "Kidney Medication/supplements",
+     "titleLocation": "left",
+     "description": "Please select the medications you believe to be taking for this condition",
+     "enableIf": "{5.1} = 'yes' and {5.3} = 'yes' and {5.4} = 'yes'",
+     "defaultValue": "No prescribed medications",
+     "isRequired": true,
+     "renderAs": "select2",
+     "choicesByUrl": {
+      "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+     }
+    },
+    {
+     "type": "checkbox",
+     "name": "5.6",
+     "visibleIf": "{5.1} = 'yes' and {5.3} = 'yes' and {5.4} = 'yes'",
+     "titleLocation": "hidden",
+     "enableIf": "{5.1} = 'yes' and {5.3} = 'yes' and {5.4} = 'yes'",
+     "choices": [
+      {
+       "value": "diet",
+       "text": "Diet"
+      },
+      {
+       "value": "exercise",
+       "text": "Exercise"
+      }
+     ],
+     "hasOther": true,
+     "colCount": 3
     }
    ],
    "title": "Kidney health check"
@@ -571,131 +615,141 @@
    "name": "hearthealthpage",
    "elements": [
     {
-     "type": "panel",
-     "name": "heartHealthpanel",
-     "elements": [
+     "type": "radiogroup",
+     "name": "6.1",
+     "title": "5. Have you ever been diagnosed with a medical condition related to heart health or function?",
+          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe heart problems:</b><br>Heart Disease \n<br/>Arrhythmia\n<br/>Bypass Surgery\n<br/>Hypertensive Heart Disease \n<br/>Heart Attack/Cardiac Arrest \n<br/>Cardiac Bypass Procedure\n<br/>Coronary Heart Disease \n<br/>Atrial Fibrillation\n<br/>Heart Valve Problems\n<br/>Congestive Heart Failure\n<br/>(unsteady heartbeat, flutter)\n<br/>Pacemaker\n<br/>Angina (chest pain)\n<br/>Coronary Angioplasty/Stent",
+     "titleLocation": "top",
+     "isRequired": true,
+     "choices": [
       {
-       "type": "html",
-       "name": "heartHealthquestion2",
-       "html": "<p> below are some of the term(s) that may have been used by your doctor to describe heart problems:</p>\n<table>\n<tr><td>Hypertension </td><td>Malignant Hypertension</td> <td> Elevated Blood Pressure</td> </tr>\n<tr><td>Diastolic Hypertension </td><td>Renal Hypertension</td> <td> Borderline Hypertension</td> </tr>\n<tr><td>Systolic Hypertension </td><td>Reno-vascular Hypertension</td> <td> Prehypertension</td> </tr> \n </table>\n"
+       "value": "yes",
+       "text": "Yes"
       },
       {
-       "type": "radiogroup",
-       "name": "heartHealthquestion3",
-       "title": "High Blood Pressure Question title",
-       "titleLocation": "hidden",
-       "choices": [
-        "Yes",
-        "No",
-        {
-         "value": "item1",
-         "text": "Unknown"
-        }
-       ],
-       "otherText": "Unknown",
-       "colCount": 0
+       "value": "no",
+       "text": "No"
       },
       {
-       "type": "text",
-       "name": "heartHealthquestion4",
-       "visibleIf": "{heartHealthquestion3} = 'Yes'",
-       "title": "Approximately in what year did you first receive this diagnosis?",
-       "titleLocation": "left",
-       "inputType": "number"
-      },
-      {
-       "type": "radiogroup",
-       "name": "heartHealthquestion5",
-       "visibleIf": "{heartHealthquestion3} = 'Yes'",
-       "title": "Were you ever treated for this condition",
-       "titleLocation": "left",
-       "choices": [
-        {
-         "value": "yes",
-         "text": "Yes"
-        },
-        {
-         "value": "no",
-         "text": "No"
-        },
-        {
-         "value": "unknown",
-         "text": "Unknown"
-        }
-       ],
-       "colCount": 0
-      },
-      {
-       "type": "radiogroup",
-       "name": "heartHealthquestion6",
-       "visibleIf": "{heartHealthquestion5} = 'yes'",
-       "title": "Are you currently treating this condition?",
-       "titleLocation": "left",
-       "choices": [
-        {
-         "value": "yes",
-         "text": "Yes"
-        },
-        {
-         "value": "no",
-         "text": "No"
-        },
-        {
-         "value": "unknown",
-         "text": "Unknown"
-        }
-       ],
-       "colCount": 0
-      },
-      {
-       "type": "paneldynamic",
-       "name": "heartHealthquestion7",
-       "visibleIf": "{heartHealthquestion6} = 'yes'",
-       "title": "Please indicate how you are treating the condition:",
-       "templateElements": [
-        {
-         "type": "checkbox",
-         "name": "heartHealthquestion8",
-         "title": "Medication/supplements (please list the medications you believe to be taking for this condition):",
-         "titleLocation": "top",
-         "choices": [
-          {
-           "value": "diet",
-           "text": "Diet"
-          },
-          {
-           "value": "excersise",
-           "text": "Excersise"
-          }
-         ],
-         "colCount": 2
-        },
-        {
-         "type": "dropdown",
-         "name": "heartHealthquestion9",
-         "startWithNewLine": false,
-         "title": "Other medication",
-         "titleLocation": "left",
-         "choices": [
-          "item1",
-          "item2",
-          "item3"
-         ],
-         "hasOther": true
-        },
-        {
-         "type": "html",
-         "name": "question1"
-        }
-       ],
-       "allowAddPanel": false,
-       "allowRemovePanel": false,
-       "panelCount": 1,
-       "minPanelCount": 1,
-       "maxPanelCount": 1
+       "value": "unknown",
+       "text": "Unknown"
       }
      ],
-     "title": "5.Have you ever been diagnosed with a medical condition related to heart health or function?"
+     "otherText": "Unknown",
+     "colCount": 0
+    },
+    {
+     "type": "radiogroup",
+     "name": "6.2",
+     "visibleIf": "{6.1} = 'yes'",
+     "title": "How long have you had this condition?",
+     "enableIf": "{6.1} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "0to5years",
+       "text": "0 to 5 Years"
+      },
+      {
+       "value": "6to10years",
+       "text": "6 to 10 Years"
+      },
+      {
+       "value": "11to20years",
+       "text": "11 to 20 Years"
+      },
+      {
+       "value": "21to30years",
+       "text": "21 to 30 Years"
+      },
+      {
+       "value": "30plusyears",
+       "text": "30+ Years"
+      }
+     ],
+     "colCount": 5
+    },
+    {
+     "type": "radiogroup",
+     "name": "6.3",
+     "visibleIf": "{6.1} = 'yes'",
+     "title": "Were you ever treated for this condition",
+     "titleLocation": "left",
+     "enableIf": "{6.1} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      },
+      {
+       "value": "unknown",
+       "text": "Unknown"
+      }
+     ],
+     "colCount": 0
+    },
+    {
+     "type": "radiogroup",
+     "name": "6.4",
+     "visibleIf": "{6.1} = 'yes' and {6.3} = 'yes'",
+     "title": "Are you currently treating this condition?",
+     "titleLocation": "left",
+     "enableIf": "{6.1} = 'yes' and {6.3} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      },
+      {
+       "value": "unknown",
+       "text": "Unknown"
+      }
+     ],
+     "colCount": 0
+    },
+    {
+     "type": "dropdown",
+     "name": "6.5",
+     "visibleIf": "{6.1} = 'yes' and {6.3} = 'yes' and {6.4} = 'yes'",
+     "title": "Heart Medication/supplements",
+     "titleLocation": "left",
+     "description": "Please select the medications you believe to be taking for this condition",
+     "enableIf": "{6.1} = 'yes' and {6.3} = 'yes' and {6.4} = 'yes'",
+     "defaultValue": "No prescribed medications",
+     "isRequired": true,
+     "renderAs": "select2",
+     "choicesByUrl": {
+      "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+     }
+    },
+    {
+     "type": "checkbox",
+     "name": "6.6",
+     "visibleIf": "{6.1} = 'yes' and {6.3} = 'yes' and {6.4} = 'yes'",
+     "titleLocation": "hidden",
+     "enableIf": "{6.1} = 'yes' and {6.3} = 'yes' and {6.4} = 'yes'",
+     "choices": [
+      {
+       "value": "diet",
+       "text": "Diet"
+      },
+      {
+       "value": "exercise",
+       "text": "Exercise"
+      }
+     ],
+     "hasOther": true,
+     "colCount": 3
     }
    ],
    "title": "Heart health check"
@@ -704,131 +758,141 @@
    "name": "vascularhealthpage",
    "elements": [
     {
-     "type": "panel",
-     "name": "vascularHealthpanel",
-     "elements": [
+     "type": "radiogroup",
+     "name": "7.1",
+     "title": "6. Have you ever been diagnosed with a medical condition related to artery/vascular health or function?",
+          "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe vascular disease:</b><br>Arterial Disease\n<br/>Carotid Artery Disease\n<br/>Carotid Endarterectomy\n<br/>Atherosclerosis\n<br/>Carotid Bruit\n<br/>TIA or “mini-stroke”\n<br/>Intermittent Claudication\n<br/>Carotid Stenosis\n<br/>Stroke\n<br/>Peripheral Vascular Disease\n<br/>Carotid Surgery",
+     "titleLocation": "top",
+     "isRequired": true,
+     "choices": [
       {
-       "type": "html",
-       "name": "vascularHealthquestion2",
-       "html": "<p> below are some of the term(s) that may have been used by your doctor to describe heart problems:</p>\n<table>\n<tr><td>Hypertension </td><td>Malignant Hypertension</td> <td> Elevated Blood Pressure</td> </tr>\n<tr><td>Diastolic Hypertension </td><td>Renal Hypertension</td> <td> Borderline Hypertension</td> </tr>\n<tr><td>Systolic Hypertension </td><td>Reno-vascular Hypertension</td> <td> Prehypertension</td> </tr> \n </table>\n"
+       "value": "yes",
+       "text": "Yes"
       },
       {
-       "type": "radiogroup",
-       "name": "vascularHealthquestion3",
-       "title": "High Blood Pressure Question title",
-       "titleLocation": "hidden",
-       "choices": [
-        "Yes",
-        "No",
-        {
-         "value": "item1",
-         "text": "Unknown"
-        }
-       ],
-       "otherText": "Unknown",
-       "colCount": 0
+       "value": "no",
+       "text": "No"
       },
       {
-       "type": "text",
-       "name": "vascularHealthquestion4",
-       "visibleIf": "{vascularHealthquestion3} = 'Yes'",
-       "title": "Approximately in what year did you first receive this diagnosis?",
-       "titleLocation": "left",
-       "inputType": "number"
-      },
-      {
-       "type": "radiogroup",
-       "name": "vascularHealthquestion5",
-       "visibleIf": "{vascularHealthquestion3} = 'Yes'",
-       "title": "Were you ever treated for this condition",
-       "titleLocation": "left",
-       "choices": [
-        {
-         "value": "yes",
-         "text": "Yes"
-        },
-        {
-         "value": "no",
-         "text": "No"
-        },
-        {
-         "value": "unknown",
-         "text": "Unknown"
-        }
-       ],
-       "colCount": 0
-      },
-      {
-       "type": "radiogroup",
-       "name": "vascularHealthquestion6",
-       "visibleIf": "{vascularHealthquestion5} = 'yes'",
-       "title": "Are you currently treating this condition?",
-       "titleLocation": "left",
-       "choices": [
-        {
-         "value": "yes",
-         "text": "Yes"
-        },
-        {
-         "value": "no",
-         "text": "No"
-        },
-        {
-         "value": "unknown",
-         "text": "Unknown"
-        }
-       ],
-       "colCount": 0
-      },
-      {
-       "type": "paneldynamic",
-       "name": "vascularHealthquestion7",
-       "visibleIf": "{vascularHealthquestion6} = 'yes'",
-       "title": "Please indicate how you are treating the condition:",
-       "templateElements": [
-        {
-         "type": "checkbox",
-         "name": "vascularHealthquestion8",
-         "title": "Medication/supplements (please list the medications you believe to be taking for this condition):",
-         "titleLocation": "top",
-         "choices": [
-          {
-           "value": "diet",
-           "text": "Diet"
-          },
-          {
-           "value": "excersise",
-           "text": "Excersise"
-          }
-         ],
-         "colCount": 2
-        },
-        {
-         "type": "dropdown",
-         "name": "vascularHealthquestion9",
-         "startWithNewLine": false,
-         "title": "Other medication",
-         "titleLocation": "left",
-         "choices": [
-          "item1",
-          "item2",
-          "item3"
-         ],
-         "hasOther": true
-        },
-        {
-         "type": "html",
-         "name": "question1"
-        }
-       ],
-       "allowAddPanel": false,
-       "allowRemovePanel": false,
-       "panelCount": 1,
-       "minPanelCount": 1,
-       "maxPanelCount": 1
+       "value": "unknown",
+       "text": "Unknown"
       }
      ],
-     "title": "6.Have you ever been diagnosed with a medical condition related to artery/vascular health or function?"
+     "otherText": "Unknown",
+     "colCount": 0
+    },
+    {
+     "type": "radiogroup",
+     "name": "7.2",
+     "visibleIf": "{7.1} = 'yes'",
+     "title": "How long have you had this condition?",
+     "enableIf": "{7.1} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "0to5years",
+       "text": "0 to 5 Years"
+      },
+      {
+       "value": "6to10years",
+       "text": "6 to 10 Years"
+      },
+      {
+       "value": "11to20years",
+       "text": "11 to 20 Years"
+      },
+      {
+       "value": "21to30years",
+       "text": "21 to 30 Years"
+      },
+      {
+       "value": "30plusyears",
+       "text": "30+ Years"
+      }
+     ],
+     "colCount": 5
+    },
+    {
+     "type": "radiogroup",
+     "name": "7.3",
+     "visibleIf": "{7.1} = 'yes'",
+     "title": "Were you ever treated for this condition",
+     "titleLocation": "left",
+     "enableIf": "{7.1} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      },
+      {
+       "value": "unknown",
+       "text": "Unknown"
+      }
+     ],
+     "colCount": 0
+    },
+    {
+     "type": "radiogroup",
+     "name": "7.4",
+     "visibleIf": "{7.1} = 'yes' and {7.3} = 'yes'",
+     "title": "Are you currently treating this condition?",
+     "titleLocation": "left",
+     "enableIf": "{7.1} = 'yes' and {7.3} = 'yes'",
+     "isRequired": true,
+     "choices": [
+      {
+       "value": "yes",
+       "text": "Yes"
+      },
+      {
+       "value": "no",
+       "text": "No"
+      },
+      {
+       "value": "unknown",
+       "text": "Unknown"
+      }
+     ],
+     "colCount": 0
+    },
+    {
+     "type": "dropdown",
+     "name": "7.5",
+     "visibleIf": "{7.1} = 'yes' and {7.3} = 'yes' and {7.4} = 'yes'",
+     "title": "Vascular Medication/supplements",
+     "titleLocation": "left",
+     "description": "please select the medications you believe to be taking for this condition",
+     "enableIf": "{7.1} = 'yes' and {7.3} = 'yes' and {7.4} = 'yes'",
+     "defaultValue": "No prescribed medications",
+     "isRequired": true,
+     "renderAs": "select2",
+     "choicesByUrl": {
+      "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
+     }
+    },
+    {
+     "type": "checkbox",
+     "name": "7.6",
+     "visibleIf": "{7.1} = 'yes' and {7.3} = 'yes' and {7.4} = 'yes'",
+     "titleLocation": "hidden",
+     "enableIf": "{7.1} = 'yes' and {7.3} = 'yes' and {7.4} = 'yes'",
+     "choices": [
+      {
+       "value": "diet",
+       "text": "Diet"
+      },
+      {
+       "value": "exercise",
+       "text": "Exercise"
+      }
+     ],
+     "hasOther": true,
+     "colCount": 3
     }
    ],
    "title": "Vascular health check"
@@ -836,5 +900,7 @@
  ],
  "showPageTitles": false,
  "showQuestionNumbers": "off",
- "showProgressBar": "top"
+ "showProgressBar": "top",
+ "checkErrorsMode": "onComplete",
+ "showPreviewBeforeComplete": "showAllQuestions"
 }

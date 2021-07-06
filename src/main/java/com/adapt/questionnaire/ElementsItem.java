@@ -69,4 +69,8 @@ public class ElementsItem {
 
     @SerializedName("popupdescription")
     private String popupdescription;
+
+    @SerializedName("defaultValue")
+    private String defaultValue;
+
 }

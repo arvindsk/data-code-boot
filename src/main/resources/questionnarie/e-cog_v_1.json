@@ -1,7 +1,7 @@
 {
   "title": "Everyday Cognition (E-Cog)",
   "completedHtml": "<h2>Thank you for submitting the Questionnaire<h2>",
-  "description": "Directions: Please rate your ability to perform various everyday tasks NOW, as compared to your own baseline (for example, compared to your ability to do these same tasks now as compared to 10 years ago). In other words, try to remember how you were doing about 10 years ago and indicate any change in your level of ability. Rate the amount of change on the following scale: 1) there has been no change compared to 10 years ago, 2) I occasionally performs the task worse but not all the time, 3) I consistently perform the task a little worse, 4) I perform the task much worse or, 9) I don’t know/not applicable. Circle the number that fits your response.",
+  "description": "Directions: Please rate your ability to perform various everyday tasks NOW, as compared to your own baseline (for example, compared to your ability to do these same tasks now as compared to 10 years ago). In other words, try to remember how you were doing about 10 years ago and indicate any change in your level of ability. Rate the amount of change on the following scale: 1) there has been no change compared to 10 years ago, 2) I occasionally performs the task worse but not all the time, 3) I consistently perform the task a little worse, 4) I perform the task much worse or, 9) I don’t know/not applicable. Choose the number that fits your response.",
   "pages": [
     {
       "name": "memorypage",
@@ -9,9 +9,9 @@
         {
           "type": "matrix",
           "name": "1",
-          "isRequired": true,
+          "title": "Compared to 10 years ago, has there been any change in Memory? *",
+          "isRequired": false,
           "isAllRowRequired":true,
-          "title": "Memory",
           "columns": [
             {
               "value": "1",
@@ -83,8 +83,8 @@
           "type": "matrix",
           "name": "2",
           "isAllRowRequired":true,
-          "isRequired": true,
-          "title": "Language",
+          "isRequired": false,
+          "title": "Compared to 10 years ago, has there been any change in Language? *",
           "columns": [
             {
               "value": "1",
@@ -155,9 +155,9 @@
         {
           "type": "matrix",
           "name": "3",
-          "isRequired": true,
+          "isRequired": false,
           "isAllRowRequired":true,
-          "title": "Visual-spatial and Perceptual Abilities",
+          "title": "Compared to 10 years ago, has there been any change in Visual-Spatial and Perceptual Abilities? *",
           "columns": [
             {
               "value": "1",
@@ -224,9 +224,9 @@
         {
           "type": "matrix",
           "name": "4",
-          "isRequired": true,
+          "isRequired": false,
           "isAllRowRequired":true,
-          "title": "Executive Functioning: Planning",
+          "title": "Compared to 10 years ago, has there been any change in Executive Functioning: Planning? *",
           "columns": [
             {
               "value": "1",
@@ -281,9 +281,9 @@
         {
           "type": "matrix",
           "name": "5",
-          "isRequired": true,
+          "isRequired": false,
           "isAllRowRequired":true,
-          "title": "Executive Functioning: Organization",
+          "title": "Compared to 10 years ago, has there been any change in Executive Functioning: Organization? *",
           "columns": [
             {
               "value": "1",
@@ -342,9 +342,9 @@
         {
           "type": "matrix",
           "name": "6",
-          "isRequired": true,
+          "isRequired": false,
           "isAllRowRequired":true,
-          "title": "Executive Functioning: Divided Attention",
+          "title": "Compared to 10 years ago, has there been any change in Executive Functioning: Divided Attention? *",
           "columns": [
             {
               "value": "1",
@@ -390,7 +390,9 @@
       "title": "Compared to 10 years ago, has there been any change in… "
     }
   ],
+  "showPageTitles": false,
   "showQuestionNumbers": "off",
+  "showProgressBar": "top",
   "showPreviewBeforeComplete": "showAllQuestions",
   "checkErrorsMode": "onComplete"
 }

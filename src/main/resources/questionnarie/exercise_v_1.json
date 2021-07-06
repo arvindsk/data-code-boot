@@ -3,14 +3,15 @@
   "completedHtml": "<h2>Thank you for submitting the Questionnaire<h2>",
   "pages": [
     {
-      "name": "rapa1",
+      "name": "rapa1page",
       "elements": [
         {
-          "type": "checkbox",
-          "name": "2",
-          "isRequired": true,
-          "title": "1. I rarely or never do any physical activities.",
-          "choices": [
+          "type": "matrix",
+          "name": "question1",
+          "isRequired": false,
+          "isAllRowRequired":true,
+          "title": "How physically active are you?",
+          "columns": [
             {
               "value": "yes",
               "text": "Yes"
@@ -20,123 +21,50 @@
               "text": "No"
             }
           ],
-          "colCount": 2
-        },
-        {
-          "type": "checkbox",
-          "name": "3",
-          "isRequired": true,
-          "title": "2. I do some light or moderate physical activities, but not every week.",
-          "choices": [
+          "rows": [
             {
-              "value": "yes",
-              "text": "Yes"
+              "value": "1",
+              "text": "1. I rarely or never do any physical activities."
             },
             {
-              "value": "no",
-              "text": "No"
-            }
-          ],
-          "colCount": 2
-        },
-        {
-          "type": "checkbox",
-          "name": "4",
-          "isRequired": true,
-          "title": "3. I do some light physical activity every week.",
-          "choices": [
-            {
-              "value": "yes",
-              "text": "Yes"
+              "value": "2",
+              "text": "2. I do some light or moderate physical activities, but not every week."
             },
             {
-              "value": "no",
-              "text": "No"
-            }
-          ],
-          "colCount": 2
-        },
-        {
-          "type": "checkbox",
-          "name": "5",
-          "isRequired": true,
-          "title": "4. I do moderate physical activities every week, but less than 30 minutes a day or 5 days a week.",
-          "choices": [
-            {
-              "value": "yes",
-              "text": "Yes"
+              "value": "3",
+              "text": "3. I do some light physical activity every week."
             },
             {
-              "value": "no",
-              "text": "No"
-            }
-          ],
-          "colCount": 2
-        },
-        {
-          "type": "checkbox",
-          "name": "6",
-          "isRequired": true,
-          "title": "5. I do vigorous physical activities every week, but less than 20 minutes a day or 3 days a week.",
-          "choices": [
-            {
-              "value": "yes",
-              "text": "Yes"
+              "value": "4",
+              "text": "4. I do moderate physical activities every week, but less than 30 minutes a day or 5 days a week."
             },
             {
-              "value": "no",
-              "text": "No"
-            }
-          ],
-          "colCount": 2
-        },
-        {
-          "type": "checkbox",
-          "name": "7",
-          "isRequired": true,
-          "title": "6. I do 30 minutes or more a day of moderate physical activities, 5 or more days a week.",
-          "choices": [
-            {
-              "value": "yes",
-              "text": "Yes"
+              "value": "5",
+              "text": "5. I do vigorous physical activities every week, but less than 20 minutes a day or 3 days a week."
             },
             {
-              "value": "no",
-              "text": "No"
-            }
-          ],
-          "colCount": 2
-        },
-        {
-          "type": "checkbox",
-          "name": "8",
-          "isRequired": true,
-          "title": "7. I do 20 minutes or more a day of vigorous physical activities, 3 or more days a week.",
-          "choices": [
-            {
-              "value": "yes",
-              "text": "Yes"
+              "value": "6",
+              "text": "6. I do 30 minutes or more a day of moderate physical activities, 5 or more days a week."
             },
             {
-              "value": "no",
-              "text": "No"
+              "value": "7",
+              "text": "7. I do 20 minutes or more a day of vigorous physical activities, 3 or more days a week."
             }
-          ],
-          "colCount": 2
+          ]
         }
       ],
-      "title": "RAPA 1",
-      "description": "How physically active are you? (Check one answer on each question)"
+      "title": "RAPA 1"
     },
     {
-      "name": "rapa2",
+      "name": "rapa2page",
       "elements": [
         {
-          "type": "checkbox",
-          "name": "9",
-          "isRequired": true,
-          "title": "8. I do activities to increase muscle strength, such as lifting weights or calisthenics, once a week or more.",
-          "choices": [
+          "type": "matrix",
+          "name": "question2",
+          "isRequired": false,
+          "isAllRowRequired":true,
+          "title": "How physically active are you?",
+          "columns": [
             {
               "value": "yes",
               "text": "Yes"
@@ -146,31 +74,23 @@
               "text": "No"
             }
           ],
-          "colCount": 2
-        },
-        {
-          "type": "checkbox",
-          "name": "10",
-          "isRequired": true,
-          "title": "9. I do activities to improve flexibility, such as stretching or yoga, once a week or more.",
-          "choices": [
+          "rows": [
             {
-              "value": "yes",
-              "text": "Yes"
+              "value": "1",
+              "text": "1. I do activities to increase muscle strength, such as lifting weights or calisthenics, once a week or more."
             },
             {
-              "value": "no",
-              "text": "No"
+              "value": "2",
+              "text": "2.  I do activities to improve flexibility, such as stretching or yoga, once a week or more."
             }
-          ],
-          "colCount": 2
+          ]
         }
       ],
-      "title": "RAPA 2",
-      "description": "How physically active are you? (Check one answer on each question)"
+      "title": "RAPA 2"
     }
   ],
   "showQuestionNumbers": "off",
-  "showPreviewBeforeComplete": "showAllQuestions",
-  "checkErrorsMode": "onComplete"
+  "showProgressBar": "top",
+  "checkErrorsMode": "onComplete",
+  "showPreviewBeforeComplete": "showAllQuestions"
 }

@@ -8,43 +8,46 @@
         {
           "type": "text",
           "name": "1",
-          "isRequired": true,
           "width": "50px",
           "minWidth": "50px",
           "maxWidth": "50px",
           "startWithNewLine": false,
           "title": "height(m)",
           "titleLocation": "left",
-          "inputType": "number"
+          "isRequired": true,
+          "inputType": "number",
+          "min": "1"
         },
         {
           "type": "text",
           "name": "2",
-          "isRequired": true,
           "width": "50px",
           "minWidth": "50px",
           "maxWidth": "50px",
           "title": "Weight(kg)",
           "titleLocation": "left",
-          "inputType": "number"
+          "isRequired": true,
+          "inputType": "number",
+          "min": "1"
         },
         {
           "type": "text",
           "name": "3",
-          "isRequired": true,
           "width": "50px",
           "minWidth": "50px",
           "maxWidth": "50px",
           "title": "Age",
           "titleLocation": "left",
-          "inputType": "number"
+          "isRequired": true,
+          "inputType": "number",
+          "min": "1"
         },
         {
           "type": "radiogroup",
           "name": "4",
-          "isRequired": true,
           "title": "Sex:",
           "titleLocation": "left",
+          "isRequired": true,
           "choices": [
             {
               "value": "male",
@@ -64,10 +67,10 @@
       "name": "cetegory1",
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "5",
-          "isRequired": true,
           "title": "1. Do you snore?",
+          "isRequired": true,
           "choices": [
             {
               "value": "yes",
@@ -85,11 +88,11 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "6",
+          "visibleIf": "{5} = 'yes'",
+          "title": "Your snoring is:",
           "isRequired": true,
-          "visibleIf": "{5} = ['yes']",
-          "title": "2. Your snoring is:",
           "choices": [
             {
               "value": "a",
@@ -111,11 +114,11 @@
           "colCount": 2
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "7",
+          "visibleIf": "{5} = 'yes'",
+          "title": "How often do you snore?",
           "isRequired": true,
-          "visibleIf": "{5} = ['yes']",
-          "title": "3. How often do you snore?",
           "choices": [
             {
               "value": "a",
@@ -141,11 +144,11 @@
           "colCount": 2
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "8",
+          "visibleIf": "{5} = 'yes'",
+          "title": "Has your snoring ever bothered other people?",
           "isRequired": true,
-          "visibleIf": "{5} = ['yes']",
-          "title": "4. Has your snoring ever bothered other people?",
           "choices": [
             {
               "value": "yes",
@@ -163,11 +166,11 @@
           "colCount": 3
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "9",
+          "visibleIf": "{5} = 'yes'",
+          "title": "Has anyone noticed that you quit breathing during your sleep?",
           "isRequired": true,
-          "visibleIf": "{5} = ['yes']",
-          "title": "5. Has anyone noticed that you quit breathing during your sleep?",
           "choices": [
             {
               "value": "a",
@@ -200,10 +203,10 @@
       "name": "category2",
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "10",
+          "title": "2. How often do you feel tired or fatigued after your sleep?",
           "isRequired": true,
-          "title": "6. How often do you feel tired or fatigued after your sleep?",
           "choices": [
             {
               "value": "a",
@@ -229,10 +232,10 @@
           "colCount": 2
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "11",
+          "title": "3. During your waking time, do you feel tired, fatigued, or not up to par?",
           "isRequired": true,
-          "title": "7. During your waking time, do you feel tired, fatigued, or not up to par?",
           "choices": [
             {
               "value": "a",
@@ -258,10 +261,10 @@
           "colCount": 2
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "12",
+          "title": "4. Have you ever nodded off or fallen asleep while driving a vehicle?",
           "isRequired": true,
-          "title": "8. Have you ever nodded off or fallen asleep while driving a vehicle?",
           "choices": [
             {
               "value": "yes",
@@ -275,11 +278,11 @@
           "colCount": 2
         },
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "13",
+          "visibleIf": "{12} = 'yes'",
+          "title": " How often does this occur?",
           "isRequired": true,
-          "visibleIf": "{12} = ['yes']",
-          "title": "9. How often does this occur?",
           "choices": [
             {
               "value": "a",
@@ -311,10 +314,10 @@
       "name": "category3",
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "14",
+          "title": "5. Do you have high blood pressure?",
           "isRequired": true,
-          "title": "10. Do you have high blood pressure?",
           "choices": [
             {
               "value": "yes",
@@ -336,6 +339,7 @@
     }
   ],
   "showQuestionNumbers": "off",
-  "showPreviewBeforeComplete": "showAllQuestions",
-  "checkErrorsMode": "onComplete"
+  "showProgressBar": "top",
+  "checkErrorsMode": "onComplete",
+  "showPreviewBeforeComplete": "showAllQuestions"
 }
