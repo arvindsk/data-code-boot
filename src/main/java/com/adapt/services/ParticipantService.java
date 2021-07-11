@@ -36,7 +36,7 @@ public class ParticipantService {
         this.medicineListEntityRepository = medicineListEntityRepository;
     }
 
-    public List<Participant> getParticipants(String host) {
+    public List<Participant> getParticipants(String timeline) {
         List<Participant> participants = new ArrayList<>();
         List<ParticipantsEntity> participantsEntities = participantsEntityRepository.findAll();
         for (ParticipantsEntity participantsEntity : participantsEntities) {
@@ -53,7 +53,9 @@ public class ParticipantService {
                     .completedDate(participantStudyList.size() > 0 ? participantStudyList.get(0).getCompletedTime() : null)
                     .build();
 
-            participants.add(participant);
+            if(timeline.equalsIgnoreCase(participant.getTimeline())) {
+                participants.add(participant);
+            }
         }
         return participants;
     }
@@ -101,6 +103,10 @@ public class ParticipantService {
         } else {
             List<ParticipantStudyEntity> participantStudyTimelineList = participantStudyEntityRepository
                     .findByParticipantIdAndCompletedTimeIsNotNullOrderByCompletedTime(participantId);
+            if(participantStudyTimelineList.isEmpty()){
+                participantStudyTimelineList = participantStudyEntityRepository
+                        .findByParticipantId(participantId);
+            }
             Date firstAttemptTime = participantStudyTimelineList.get(0).getCompletedTime();
             if (firstAttemptTime != null) {
                 Calendar calendar = Calendar.getInstance();
@@ -123,11 +129,13 @@ public class ParticipantService {
                     .studyName(Study.getStudyNameForKey(entity.getStudyId()))
                     .status(entity.getStatus())
                     .timeline(entity.getTimeline())
-                    .completedDate(entity.getCompletedTime())
                     .participantId(entity.getParticipantId())
                     .activeTimeline(activeTimeline)
                     .firstName(getFirstName(participantId))
                     .build();
+            if(entity.getCompletedTime()!=null) {
+                participantStudy.setCompletedDate(entity.getCompletedTime());
+            }
             participantStudyList.add(participantStudy);
         }
         return participantStudyList;

@@ -19,11 +19,11 @@ public class ParticipantController {
         this.participantService = participantService;
     }
 
-    @GetMapping(value = "get-all-participants",consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "get-all-participants",consumes = "application/json", produces = "application/json")
     public  @ResponseBody
-    List<Participant> getParticipants(String host) {
+    List<Participant> getParticipants(@RequestBody String timeline) {
 
-        List<Participant> participants = participantService.getParticipants(host);
+        List<Participant> participants = participantService.getParticipants(timeline);
         return participants;
     }
 
