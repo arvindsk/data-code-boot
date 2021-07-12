@@ -111,12 +111,17 @@ public class ParticipantService {
             if (firstAttemptTime != null) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(firstAttemptTime);
-                Calendar calendar1 = Calendar.getInstance();
                 calendar.add(Calendar.MONTH, 9);
-                if (calendar1.after(calendar)) {
+                Calendar calendar2 = Calendar.getInstance();
+                calendar2.setTime(firstAttemptTime);
+                calendar2.add(Calendar.MONTH, 15);
+                Calendar calendar1 = Calendar.getInstance();
+
+                if (calendar1.after(calendar) && calendar2.before(calendar)) {
                     activeTimeline = Timeline.FIRST_YEAR.getTimelineName();
                     calendar.add(Calendar.MONTH, 24);
-                    if (calendar1.after(calendar)) {
+                    calendar2.add(Calendar.MONTH, 24);
+                    if (calendar1.after(calendar) && calendar2.before(calendar)) {
                         activeTimeline = Timeline.THIRD_YEAR.getTimelineName();
                     }
                 }
