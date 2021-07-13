@@ -71,9 +71,6 @@ public class ParticipantService {
                     break;
             }
 
-            if("Baseline".equalsIgnoreCase(participant.getTimeline())timeline.equalsIgnoreCase(participant.getTimeline())) {
-                participants.add(participant);
-            }
         }
         return participants;
     }
@@ -113,6 +110,7 @@ public class ParticipantService {
         Integer participantId = participant.getParticipantId();
         String timeline = participant.getTimeline();
         String activeTimeline = Timeline.BASELINE.getTimelineName();
+        boolean isTimelineEnded = false;
 
         List<ParticipantStudyEntity> participantStudyEntityList = participantStudyEntityRepository.findByParticipantIdAndTimeline(participantId, timeline);
         if (Objects.isNull(participantStudyEntityList) || participantStudyEntityList.isEmpty()) {
@@ -135,12 +133,19 @@ public class ParticipantService {
                 calendar2.add(Calendar.MONTH, 15);
                 Calendar calendar1 = Calendar.getInstance();
 
-                if (calendar1.after(calendar) && calendar2.before(calendar)) {
+                if (calendar1.after(calendar)) {
                     activeTimeline = Timeline.FIRST_YEAR.getTimelineName();
+                    if(calendar1.after(calendar2)){
+                        isTimelineEnded = true;
+                    }
                     calendar.add(Calendar.MONTH, 24);
                     calendar2.add(Calendar.MONTH, 24);
-                    if (calendar1.after(calendar) && calendar2.before(calendar)) {
+                    if (calendar1.after(calendar)) {
+                        isTimelineEnded = false;
                         activeTimeline = Timeline.THIRD_YEAR.getTimelineName();
+                        if(calendar1.after(calendar2)){
+                            isTimelineEnded = true;
+                        }
                     }
                 }
             }
@@ -154,6 +159,7 @@ public class ParticipantService {
                     .timeline(entity.getTimeline())
                     .participantId(entity.getParticipantId())
                     .activeTimeline(activeTimeline)
+                    .endedTimeline(isTimelineEnded)
                     .firstName(getFirstName(participantId))
                     .build();
             if(entity.getCompletedTime()!=null) {

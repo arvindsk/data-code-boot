@@ -19,5 +19,6 @@ public class ParticipantStudy {
     private Date completedDate;
     private boolean enabled;
     private String activeTimeline;
+    private boolean endedTimeline;
 
 }
