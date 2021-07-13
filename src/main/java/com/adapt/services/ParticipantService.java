@@ -53,7 +53,25 @@ public class ParticipantService {
                     .completedDate(participantStudyList.size() > 0 ? participantStudyList.get(0).getCompletedTime() : null)
                     .build();
 
-            if(timeline.equalsIgnoreCase(participant.getTimeline())) {
+            switch(timeline){
+                case "Baseline":
+                    if(timeline.equalsIgnoreCase(participant.getTimeline())){
+                        participants.add(participant);
+                    }
+                    break;
+                case "Firstyear":
+                    if(timeline.equalsIgnoreCase(participant.getTimeline()) || "Baseline".equalsIgnoreCase(participant.getTimeline())){
+                        participants.add(participant);
+                    }
+                    break;
+                case "Thirdyear":
+                    if(timeline.equalsIgnoreCase(participant.getTimeline()) || "Baseline".equalsIgnoreCase(participant.getTimeline()) || "Firstyear".equalsIgnoreCase(participant.getTimeline())){
+                        participants.add(participant);
+                    }
+                    break;
+            }
+
+            if("Baseline".equalsIgnoreCase(participant.getTimeline())timeline.equalsIgnoreCase(participant.getTimeline())) {
                 participants.add(participant);
             }
         }
