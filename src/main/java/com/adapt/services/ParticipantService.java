@@ -86,7 +86,7 @@ public class ParticipantService {
         }
         participantStudyEntity.setStudyInformation(participantStudy.getStudyInformation());
         if ("completed".equalsIgnoreCase(participantStudy.getStatus())) {
-            participantStudyEntity.setStatus(Status.COMPLETED.getStatusName());
+            participantStudyEntity.setStatus(Status.SUBMITTED.getStatusName());
             participantStudyEntity.setCompletedTime(new Date());
         } else if ("running".equalsIgnoreCase(participantStudy.getStatus())) {
             participantStudyEntity.setStatus(Status.IN_PROGRESS.getStatusName());

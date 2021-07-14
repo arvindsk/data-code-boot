@@ -14,7 +14,7 @@ CREATE TABLE adaptdb.questionnaires (questionnaires_id int NOT NULL AUTO_INCREME
 DROP TABLE IF EXISTS adaptdb.study;
 CREATE TABLE adaptdb.study (study_id int NOT NULL, study_name varchar(255), PRIMARY KEY (study_id)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
 INSERT INTO adaptdb.study (study_id, study_name) VALUES (1001, 'Vascular Risk');
-INSERT INTO adaptdb.study (study_id, study_name) VALUES (1002, 'Sleep Study');
+INSERT INTO adaptdb.study (study_id, study_name) VALUES (1002, 'Sleep');
 INSERT INTO adaptdb.study (study_id, study_name) VALUES (1003, 'Everyday Cognition (E-Cog)');
 INSERT INTO adaptdb.study (study_id, study_name) VALUES (1004, 'Diet Screening');
 INSERT INTO adaptdb.study (study_id, study_name) VALUES (1005, 'Physical Activity Screening');

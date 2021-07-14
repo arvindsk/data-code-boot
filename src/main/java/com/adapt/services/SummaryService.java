@@ -11,9 +11,7 @@ import com.adapt.repository.StudyEntityRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class SummaryService {
@@ -40,13 +38,13 @@ public class SummaryService {
         List<StudyEntity> studies = studyEntityRepository.findAll();
         for(StudyEntity study : studies){
             String studyName = study.getStudyName();
-            Long baselineStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimelineAndStatus(study.getStudyId(), Timeline.BASELINE.getTimelineName(), Status.COMPLETED.getStatusName()).size());
+            Long baselineStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimelineAndStatus(study.getStudyId(), Timeline.BASELINE.getTimelineName(), Status.SUBMITTED.getStatusName()).size());
             SummaryMap baselineMap = new SummaryMap(studyName, baselineStudyCount);
             studyCountBaselineMap.add(baselineMap);
-            Long firstyearStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimelineAndStatus(study.getStudyId(), Timeline.FIRST_YEAR.getTimelineName(),Status.COMPLETED.getStatusName()).size());
+            Long firstyearStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimelineAndStatus(study.getStudyId(), Timeline.FIRST_YEAR.getTimelineName(),Status.SUBMITTED.getStatusName()).size());
             SummaryMap firstyearMap = new SummaryMap(studyName, firstyearStudyCount);
             studyCountFirstYearMap.add(firstyearMap);
-            Long thirdyearStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimelineAndStatus(study.getStudyId(), Timeline.THIRD_YEAR.getTimelineName(),Status.COMPLETED.getStatusName()).size());
+            Long thirdyearStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimelineAndStatus(study.getStudyId(), Timeline.THIRD_YEAR.getTimelineName(),Status.SUBMITTED.getStatusName()).size());
             SummaryMap thirdyearMap = new SummaryMap(studyName, thirdyearStudyCount);
             studyCountThirdYearMap.add(thirdyearMap);
         }
