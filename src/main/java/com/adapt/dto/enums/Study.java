@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum Study {
     VASCULAR_RISK(1001, "Vascular Risk"),
-    CARDIO_VASCULAR_RISK(1002, "Sleep Study"),
+    CARDIO_VASCULAR_RISK(1002, "Sleep"),
     MEMORY(1003, "Everyday Cognition (E-Cog)"),
     DIET(1004, "Diet Screening"),
     EXERCISE(1005, "Physical Activity Screening");
