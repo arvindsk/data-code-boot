@@ -29,7 +29,7 @@
           "visibleIf": "{1.1} = 'relative'",
           "title": "Relationship to Patient:",
           "titleLocation": "left",
-          "isRequired": true
+          "isRequired": false
         },
         {
           "type": "html",

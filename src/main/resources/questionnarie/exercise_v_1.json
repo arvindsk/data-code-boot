@@ -47,7 +47,6 @@
         {
           "type": "radiogroup",
           "name": "4",
-          "visibleIf": "{3} = 'no' or {3} = 'dontknow'",
           "indent": 2,
           "title": "2. I do some light or moderate physical activities, but not every week.",
           "choices": [
@@ -69,7 +68,6 @@
         {
           "type": "radiogroup",
           "name": "5",
-          "visibleIf": "{3} = 'no' or {3} = 'dontknow'",
           "indent": 2,
           "title": "3. I do some light physical activity every week.",
           "choices": [
@@ -91,7 +89,6 @@
         {
           "type": "radiogroup",
           "name": "6",
-          "visibleIf": "{3} = 'no' or {3} = 'dontknow'",
           "indent": 2,
           "title": "4. I do moderate physical activities every week, but less than 30 minutes a day or 5 days a week.",
           "choices": [
@@ -113,7 +110,6 @@
         {
           "type": "radiogroup",
           "name": "7",
-          "visibleIf": "{3} = 'no' or {3} = 'dontknow'",
           "indent": 2,
           "title": "5. I do vigorous physical activities every week, but less than 20 minutes a day or 3 days a week.",
           "choices": [
@@ -135,7 +131,6 @@
         {
           "type": "radiogroup",
           "name": "8",
-          "visibleIf": "{3} = 'no' or {3} = 'dontknow'",
           "indent": 2,
           "title": "6. I do 30 minutes or more a day of moderate physical activities, 5 or more days a week.",
           "choices": [
@@ -157,7 +152,6 @@
         {
           "type": "radiogroup",
           "name": "9",
-          "visibleIf": "{3} = 'no' or {3} = 'dontknow'",
           "indent": 2,
           "title": "7. I do 20 minutes or more a day of vigorous physical activities, 3 or more days a week.",
           "choices": [

@@ -11,7 +11,6 @@ DROP TABLE IF EXISTS `adapt_dev`.`questionnaires`;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
-
 CREATE TABLE `questionnaires` (
     `questionnaires_id` int(11) NOT NULL AUTO_INCREMENT,
     `show_progress_bar` varchar(45) DEFAULT NULL,
@@ -24,11 +23,8 @@ CREATE TABLE `questionnaires` (
     `study_id` INT NOT NULL,
     PRIMARY KEY (`questionnaires_id`),
     KEY `study_idx1` (`study_id`),
-    CONSTRAINT questionnaires_fk1 FOREIGN KEY (study_id) REFERENCES `study` (`study_id`),
-    UNIQUE KEY `question_type_UNIQUE` (`question_type`)
+    CONSTRAINT questionnaires_fk1 FOREIGN KEY (study_id) REFERENCES `study` (`study_id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
-
-
 
 CREATE TABLE `pages` (
     `page_id` int(11) NOT NULL AUTO_INCREMENT,
