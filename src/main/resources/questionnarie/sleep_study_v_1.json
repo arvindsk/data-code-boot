@@ -14,7 +14,7 @@
           "startWithNewLine": false,
           "title": "height(m)",
           "titleLocation": "left",
-          "isRequired": true,
+          "isRequired": false,
           "inputType": "number",
           "min": "1"
         },
@@ -26,7 +26,7 @@
           "maxWidth": "50px",
           "title": "Weight(kg)",
           "titleLocation": "left",
-          "isRequired": true,
+          "isRequired": false,
           "inputType": "number",
           "min": "1"
         },
@@ -38,7 +38,7 @@
           "maxWidth": "50px",
           "title": "Age",
           "titleLocation": "left",
-          "isRequired": true,
+          "isRequired": false,
           "inputType": "number",
           "min": "1"
         },
@@ -47,7 +47,7 @@
           "name": "4",
           "title": "Sex:",
           "titleLocation": "left",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "male",
@@ -70,7 +70,7 @@
           "type": "radiogroup",
           "name": "5",
           "title": "1. Do you snore?",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -92,7 +92,7 @@
           "name": "6",
           "visibleIf": "{5} = 'yes'",
           "title": "Your snoring is:",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "a",
@@ -109,6 +109,10 @@
             {
               "value": "d",
               "text": "Very loud can be heard in adjacent rooms"
+            },
+            {
+              "value": "dontknow",
+              "text": "Don't know"
             }
           ],
           "colCount": 2
@@ -118,7 +122,7 @@
           "name": "7",
           "visibleIf": "{5} = 'yes'",
           "title": "How often do you snore?",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "a",
@@ -139,6 +143,10 @@
             {
               "value": "e",
               "text": "Never or nearly never"
+            },
+            {
+              "value": "dontknow",
+              "text": "Don't know"
             }
           ],
           "colCount": 2
@@ -148,7 +156,7 @@
           "name": "8",
           "visibleIf": "{5} = 'yes'",
           "title": "Has your snoring ever bothered other people?",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -170,7 +178,7 @@
           "name": "9",
           "visibleIf": "{5} = 'yes'",
           "title": "Has anyone noticed that you quit breathing during your sleep?",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "a",
@@ -191,6 +199,10 @@
             {
               "value": "e",
               "text": "Never or nearly never"
+            },
+            {
+              "value": "dontknow",
+              "text": "Don't know"
             }
           ],
           "colCount": 2
@@ -206,7 +218,7 @@
           "type": "radiogroup",
           "name": "10",
           "title": "2. How often do you feel tired or fatigued after your sleep?",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "a",
@@ -227,6 +239,10 @@
             {
               "value": "e",
               "text": "Never or nearly never"
+            },
+            {
+              "value": "dontknow",
+              "text": "Don't know"
             }
           ],
           "colCount": 2
@@ -235,7 +251,7 @@
           "type": "radiogroup",
           "name": "11",
           "title": "3. During your waking time, do you feel tired, fatigued, or not up to par?",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "a",
@@ -256,6 +272,10 @@
             {
               "value": "e",
               "text": "Never or nearly never"
+            },
+            {
+              "value": "dontknow",
+              "text": "Don't know"
             }
           ],
           "colCount": 2
@@ -264,7 +284,7 @@
           "type": "radiogroup",
           "name": "12",
           "title": "4. Have you ever nodded off or fallen asleep while driving a vehicle?",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -273,16 +293,20 @@
             {
               "value": "no",
               "text": "No"
+            },
+            {
+              "value": "dontknow",
+              "text": "Don't know"
             }
           ],
-          "colCount": 2
+          "colCount": 3
         },
         {
           "type": "radiogroup",
           "name": "13",
           "visibleIf": "{12} = 'yes'",
           "title": " How often does this occur?",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "a",
@@ -303,6 +327,10 @@
             {
               "value": "e",
               "text": "Never or nearly never"
+            },
+            {
+              "value": "dontknow",
+              "text": "Don't know"
             }
           ],
           "colCount": 2
@@ -317,7 +345,7 @@
           "type": "radiogroup",
           "name": "14",
           "title": "5. Do you have high blood pressure?",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",

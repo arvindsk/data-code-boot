@@ -61,7 +61,7 @@ public class QuestionnaireController {
             switch (type) {
                 case "Vascular Risk":
                     return loadJson("questionnarie/vascular_v.1.json");
-                case "Sleep Study":
+                case "Sleep":
                     return loadJson("questionnarie/sleep_study_v_1.json");
                 case "Everyday Cognition (E-Cog)":
                     return loadJson("questionnarie/e-cog_v_1.json");
@@ -102,7 +102,7 @@ public class QuestionnaireController {
             case "Vascular Risk":
                 json = loadJson("questionnarie/vascular_v.1.json");
                 break;
-            case "Sleep Study":
+            case "Sleep":
                 json = loadJson("questionnarie/sleep_study_v_1.json");
                 break;
             case "Everyday Cognition (E-Cog)":

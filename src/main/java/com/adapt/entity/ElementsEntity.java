@@ -89,6 +89,9 @@ public class ElementsEntity implements Serializable {
     @Column(name = "required_if")
     private String requiredIf;
 
+    @Column(name = "indent")
+    private Integer indent;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

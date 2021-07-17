@@ -10,7 +10,7 @@
           "name": "1.1",
           "title": "Completed By",
           "titleLocation": "top",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "patient",
@@ -45,7 +45,7 @@
         {
           "type": "radiogroup",
           "name": "2.1",
-          "isRequired": true,
+          "isRequired": false,
           "title": "1. Have you ever been diagnosed with a medical condition related to high or elevated blood pressure?",
           "titleLocation": "top",
           "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe elevated blood pressure:</b><br>Hypertension\n<br/>Malignant Hypertension\n<br/>Elevated Blood Pressure\n<br/>Diastolic Hypertension\n<br/>Renal Hypertension\n<br/>Borderline Hypertension\n<br/>Systolic Hypertension\n<br/>Reno-vascular Hypertension\n<br/>Pre-hypertension",
@@ -72,7 +72,7 @@
           "visibleIf": "{2.1} = 'yes'",
           "title": "How long have you had this condition?",
           "enableIf": "{2.1} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "0to5years",
@@ -104,7 +104,7 @@
           "title": "Were you ever treated for this condition",
           "titleLocation": "left",
           "enableIf": "{2.1} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -128,7 +128,7 @@
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
           "enableIf": "{2.1} = 'yes' and {2.3} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -154,7 +154,7 @@
           "description": "Please select the medications you believe to be taking for this condition",
           "enableIf": "{2.1} = 'yes' and {2.3} = 'yes' and {2.4} = 'yes'",
           "defaultValue": "No prescribed medications",
-          "isRequired": true,
+          "isRequired": false,
           "renderAs": "select2",
           "choicesByUrl": {
             "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
@@ -189,7 +189,7 @@
         {
           "type": "radiogroup",
           "name": "3.1",
-          "isRequired": true,
+          "isRequired": false,
           "title": "2. Have you ever been diagnosed with a medical condition related to high or elevated cholesterol levels?",
           "titleLocation": "top",
           "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to elevated cholesterol:</b><br>High Cholesterol\n<br/>High HDL and/or LDL levels\n<br/>High Triglycerides\n<br/>Hypercholesterolemia\n<br/>Lipid Disorder\n<br/>Hyperlipidemia\n<br/>Hypertriglyceridemia",
@@ -216,7 +216,7 @@
           "visibleIf": "{3.1} = 'yes'",
           "title": "How long have you had this condition?",
           "enableIf": "{3.1} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "0to5years",
@@ -248,7 +248,7 @@
           "title": "Were you ever treated for this condition",
           "titleLocation": "left",
           "enableIf": "{3.1} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -272,7 +272,7 @@
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
           "enableIf": "{3.1} = 'yes' and {3.3} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -298,7 +298,7 @@
           "description": "please select the medications you believe to be taking for this condition",
           "enableIf": "{3.1} = 'yes' and {3.3} = 'yes' and {3.4} = 'yes'",
           "defaultValue": "No prescribed medications",
-          "isRequired": true,
+          "isRequired": false,
           "renderAs": "select2",
           "choicesByUrl": {
             "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
@@ -336,7 +336,7 @@
           "title": "3. Have you ever been diagnosed with a medical condition related to Diabetes Mellitus?",
           "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe diabetes:</b><br>Diabetes Type I <br/>High Blood Glucose/Sugar <br/>Abnormal Glycated Hemoglobin<br/>Diabetes Type II or Adult-Onset <br/>Hyperglycemia<br/>Level (HbA1c) <br/>Insulin-dependent Diabetes<br/>Insufficient Fasting <br/>Abnormal Glucose Tolerance<br/>Non-insulin dependent Diabetes <br/>Prediabetes<br/>Glucose (IFG) <br/>Brittle Diabetes<br/>Abnormal Fasting Plasma <br/>Metabolic Syndrome<br/>Insulin Resistance <br/>Glucose Level (FPG)",
           "titleLocation": "top",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -360,7 +360,7 @@
           "visibleIf": "{4.1} = 'yes'",
           "title": "How long have you had this condition?",
           "enableIf": "{4.1} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "0to5years",
@@ -392,7 +392,7 @@
           "title": "Were you ever treated for this condition",
           "titleLocation": "left",
           "enableIf": "{4.1} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -416,7 +416,7 @@
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
           "enableIf": "{4.1} = 'yes' and {4.3} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -442,7 +442,7 @@
           "description": "please select the medications you believe to be taking for this condition",
           "enableIf": "{4.1} = 'yes' and {4.3} = 'yes' and {4.4} = 'yes'",
           "defaultValue": "No prescribed medications",
-          "isRequired": true,
+          "isRequired": false,
           "renderAs": "select2",
           "choicesByUrl": {
             "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
@@ -480,7 +480,7 @@
           "title": "4. Have you ever been diagnosed with a medical condition related to kidney health or function?",
           "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe kidney problems:</b><br>Kidney Disease\n<br/>Chronic Kidney Disease\n<br/>Nephropathy\n<br/>Renal Disease or Failure\n<br/>Impaired Kidney Function",
           "titleLocation": "top",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -504,7 +504,7 @@
           "visibleIf": "{5.1} = 'yes'",
           "title": "How long have you had this condition?",
           "enableIf": "{5.1} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "0to5years",
@@ -536,7 +536,7 @@
           "title": "Were you ever treated for this condition",
           "titleLocation": "left",
           "enableIf": "{5.1} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -560,7 +560,7 @@
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
           "enableIf": "{5.1} = 'yes' and {5.3} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -586,7 +586,7 @@
           "description": "Please select the medications you believe to be taking for this condition",
           "enableIf": "{5.1} = 'yes' and {5.3} = 'yes' and {5.4} = 'yes'",
           "defaultValue": "No prescribed medications",
-          "isRequired": true,
+          "isRequired": false,
           "renderAs": "select2",
           "choicesByUrl": {
             "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
@@ -624,7 +624,7 @@
           "title": "5. Have you ever been diagnosed with a medical condition related to heart health or function?",
           "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe heart problems:</b><br>Heart Disease \n<br/>Arrhythmia\n<br/>Bypass Surgery\n<br/>Hypertensive Heart Disease \n<br/>Heart Attack/Cardiac Arrest \n<br/>Cardiac Bypass Procedure\n<br/>Coronary Heart Disease \n<br/>Atrial Fibrillation\n<br/>Heart Valve Problems\n<br/>Congestive Heart Failure\n<br/>Unsteady Heartbeat (Flutter)<br/>Pacemaker\n<br/>Angina (Chest Pain)<br/>Coronary Angioplasty/Stent",
           "titleLocation": "top",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -648,7 +648,7 @@
           "visibleIf": "{6.1} = 'yes'",
           "title": "How long have you had this condition?",
           "enableIf": "{6.1} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "0to5years",
@@ -680,7 +680,7 @@
           "title": "Were you ever treated for this condition",
           "titleLocation": "left",
           "enableIf": "{6.1} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -704,7 +704,7 @@
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
           "enableIf": "{6.1} = 'yes' and {6.3} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -730,7 +730,7 @@
           "description": "Please select the medications you believe to be taking for this condition",
           "enableIf": "{6.1} = 'yes' and {6.3} = 'yes' and {6.4} = 'yes'",
           "defaultValue": "No prescribed medications",
-          "isRequired": true,
+          "isRequired": false,
           "renderAs": "select2",
           "choicesByUrl": {
             "url": "http://localhost:8080/api/adapt/questionnaire/medicine"
@@ -768,7 +768,7 @@
           "title": "6. Have you ever been diagnosed with a medical condition related to artery/vascular health or function?",
           "popupdescription": "<b>below are some of the term(s) that may have been used by your doctor to describe vascular disease:</b><br/>Arterial Disease <br/>Carotid Artery Disease <br/>Carotid Endarterectomy<br/>Atherosclerosis <br/>Carotid Bruit <br/>TIA or “Mini-Stroke”<br/>Intermittent Claudication <br/>Carotid Stenosis <br/>Stroke<br/>Peripheral Vascular Disease <br/>Carotid Surgery",
           "titleLocation": "top",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -792,7 +792,7 @@
           "visibleIf": "{7.1} = 'yes'",
           "title": "How long have you had this condition?",
           "enableIf": "{7.1} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "0to5years",
@@ -824,7 +824,7 @@
           "title": "Were you ever treated for this condition",
           "titleLocation": "left",
           "enableIf": "{7.1} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -848,7 +848,7 @@
           "title": "Are you currently treating this condition?",
           "titleLocation": "left",
           "enableIf": "{7.1} = 'yes' and {7.3} = 'yes'",
-          "isRequired": true,
+          "isRequired": false,
           "choices": [
             {
               "value": "yes",
@@ -874,7 +874,7 @@
           "description": "please select the medications you believe to be taking for this condition",
           "enableIf": "{7.1} = 'yes' and {7.3} = 'yes' and {7.4} = 'yes'",
           "defaultValue": "No prescribed medications",
-          "isRequired": true,
+          "isRequired": false,
           "renderAs": "select2",
           "choicesByUrl": {
             "url": "http://localhost:8080/api/adapt/questionnaire/medicine"

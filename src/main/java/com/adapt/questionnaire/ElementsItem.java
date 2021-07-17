@@ -82,4 +82,8 @@ public class ElementsItem {
     @SerializedName("requiredIf")
     private String requiredIf;
 
+    @SerializedName("indent")
+    private int indent;
+
+
 }
