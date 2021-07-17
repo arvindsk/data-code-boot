@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface QuestionnairesEntityRepository extends JpaRepository<QuestionnairesEntity, Integer>, JpaSpecificationExecutor<QuestionnairesEntity> {
-    QuestionnairesEntity findQuestionnairesEntitiesByQuestionType(String questionType);
+    QuestionnairesEntity findQuestionnairesEntitiesByStudyId(Integer studyId);
 
 }

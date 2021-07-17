@@ -29,16 +29,17 @@ public class QuestionnaireService {
         this.rowsEntityRepository = rowsEntityRepository;
     }
 
-    public void saveQuestionnaire(Questionnaire questionnaire) {
+    public void saveQuestionnaire(Questionnaire questionnaire, int studyId) {
         QuestionnairesEntity questionnairesEntity = QuestionnairesEntity.builder()
                 .showProgressBar(questionnaire.getShowProgressBar())
                 .showPageTitles(questionnaire.isShowPageTitles())
                 .showQuestionNumbers(questionnaire.getShowQuestionNumbers())
                 .completedHtml(questionnaire.getCompletedHtml())
                 .title(questionnaire.getTitle())
-                .questionType(questionnaire.getQuestionType())
+                //.questionType(questionnaire.getQuestionType())
                 .showPreviewBeforeComplete(questionnaire.getShowPreviewBeforeComplete())
                 .checkErrorsMode(questionnaire.getCheckErrorsMode())
+                .studyId(studyId)
                 //.pages(getPagesEntity(questionnaire.getPages()))
                 .build();
 
@@ -154,9 +155,9 @@ public class QuestionnaireService {
 
     }
 
-    public Questionnaire getQuestionnaire(String type) {
+    public Questionnaire getQuestionnaire(Integer studyId) {
         try {
-            QuestionnairesEntity questionnaireEntity = questionnairesEntityRepository.findQuestionnairesEntitiesByQuestionType(type);
+            QuestionnairesEntity questionnaireEntity = questionnairesEntityRepository.findQuestionnairesEntitiesByStudyId(studyId);
 
             return Questionnaire.builder()
                     .showProgressBar(questionnaireEntity.getShowProgressBar())
@@ -164,7 +165,7 @@ public class QuestionnaireService {
                     .showQuestionNumbers(questionnaireEntity.getShowQuestionNumbers())
                     .completedHtml(questionnaireEntity.getCompletedHtml())
                     .title(questionnaireEntity.getTitle())
-                    .questionType(questionnaireEntity.getQuestionType())
+                  //  .questionType(questionnaireEntity.getQuestionType())
                     .showPreviewBeforeComplete(questionnaireEntity.getShowPreviewBeforeComplete())
                     .checkErrorsMode(questionnaireEntity.getCheckErrorsMode())
                     .pages(getPagesEntity(questionnaireEntity.getPages()))

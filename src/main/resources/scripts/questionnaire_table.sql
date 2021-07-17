@@ -1,15 +1,16 @@
 SET FOREIGN_KEY_CHECKS = 0;
-DROP TABLE `adapt_dev`.`questionnaire`;
-DROP TABLE `adapt_dev`.`questionnaire_sequence`;
+DROP TABLE IF EXISTS `adapt_dev`.`questionnaire` ;
+DROP TABLE IF EXISTS `adapt_dev`.`questionnaire_sequence` ;
 
-DROP TABLE `adapt_dev`.`rows`;
-DROP TABLE `adapt_dev`.`choices`;
-DROP TABLE `adapt_dev`.`columns`;
-DROP TABLE `adapt_dev`.`elements`;
-DROP TABLE `adapt_dev`.`pages`;
-DROP TABLE `adapt_dev`.`questionnaires`;
+DROP TABLE IF EXISTS `adapt_dev`.`rows`;
+DROP TABLE IF EXISTS `adapt_dev`.`choices`;
+DROP TABLE IF EXISTS `adapt_dev`.`columns`;
+DROP TABLE IF EXISTS `adapt_dev`.`elements`;
+DROP TABLE IF EXISTS `adapt_dev`.`pages`;
+DROP TABLE IF EXISTS `adapt_dev`.`questionnaires`;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
 
 CREATE TABLE `questionnaires` (
     `questionnaires_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -18,12 +19,16 @@ CREATE TABLE `questionnaires` (
     `show_question_numbers` varchar(45) DEFAULT NULL,
     `completed_html` blob,
     `title` varchar(500) DEFAULT NULL,
-    `question_type` varchar(255) NOT NULL,
     `show_preview_before_complete` varchar(255) DEFAULT NULL,
     `check_errors_mode` varchar(255) DEFAULT NULL,
+    `study_id` INT NOT NULL,
     PRIMARY KEY (`questionnaires_id`),
+    KEY `study_idx1` (`study_id`),
+    CONSTRAINT questionnaires_fk1 FOREIGN KEY (study_id) REFERENCES `study` (`study_id`),
     UNIQUE KEY `question_type_UNIQUE` (`question_type`)
     ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+
 
 CREATE TABLE `pages` (
     `page_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -61,6 +66,7 @@ CREATE TABLE `elements` (
     `min` int(11) DEFAULT NULL,
     `max` int(11) DEFAULT NULL,
     `required_if` varchar(255) DEFAULT NULL,
+    `indent` int(11) DEFAULT '0',
     PRIMARY KEY (`name`,`questionnaires_id`),
     KEY `elements_id` (`elements_id`),
     KEY `page_id_idx` (`elements_id`,`page_id`),

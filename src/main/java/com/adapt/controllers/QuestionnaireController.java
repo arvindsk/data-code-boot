@@ -49,25 +49,25 @@ public class QuestionnaireController {
     @GetMapping(value = "questionnaireType", consumes = "application/json", produces = "application/json")
     public @ResponseBody
     String getVascularQuestionnaire(@RequestParam Map<String, String> params) {
-        String type = params.get("questionnaireType");
+        String type = params.get("study_id");
+        int studyId=Integer.parseInt(type);
 
         if (adaptPropertiesConfig.isLoadFromDatabase()) {
-            Questionnaire questionnaire = questionnaireService.getQuestionnaire(type);
+            Questionnaire questionnaire = questionnaireService.getQuestionnaire(studyId);
 
             return new Gson().toJson(questionnaire);
 
         } else {
-
-            switch (type) {
-                case "Vascular Risk":
+            switch (studyId) {
+                case 1001:
                     return loadJson("questionnarie/vascular_v.1.json");
-                case "Sleep":
+                case 1002:
                     return loadJson("questionnarie/sleep_study_v_1.json");
-                case "Everyday Cognition (E-Cog)":
+                case 1003:
                     return loadJson("questionnarie/e-cog_v_1.json");
-                case "Physical Activity Screening":
+                case 1005:
                     return loadJson("questionnarie/exercise_v_1.json");
-                case "Diet Screening":
+                case 1004:
                     return loadJson("questionnarie/diet_v_1.json");
 
                 default:
@@ -95,23 +95,23 @@ public class QuestionnaireController {
     String saveQuestionnaire(@RequestParam Map<String, String> params) {
 
         String json;
+        String type = params.get("study_id");
+        int studyId=Integer.parseInt(type);
 
-        String type = params.get("questionnaireType");
-
-        switch (type) {
-            case "Vascular Risk":
+        switch (studyId) {
+            case 1001:
                 json = loadJson("questionnarie/vascular_v.1.json");
                 break;
-            case "Sleep":
+            case 1002:
                 json = loadJson("questionnarie/sleep_study_v_1.json");
                 break;
-            case "Everyday Cognition (E-Cog)":
+            case 1003:
                 json = loadJson("questionnarie/e-cog_v_1.json");
                 break;
-            case "Physical Activity Screening":
+            case 1005:
                 json = loadJson("questionnarie/exercise_v_1.json");
                 break;
-            case "Diet Screening":
+            case 1004:
                 json = loadJson("questionnarie/diet_v_1.json");
                 break;
 
@@ -122,7 +122,7 @@ public class QuestionnaireController {
         Questionnaire questionnaire = new Gson().fromJson(json, Questionnaire.class);
         questionnaire.setQuestionType(type);
         try {
-            questionnaireService.saveQuestionnaire(questionnaire);
+            questionnaireService.saveQuestionnaire(questionnaire,studyId);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -40,13 +40,14 @@ public class QuestionnairesEntity implements Serializable {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "question_type", nullable = false)
-    private String questionType;
     @Column(name = "show_preview_before_complete")
     private String showPreviewBeforeComplete;
 
     @Column(name = "check_errors_mode")
     private String checkErrorsMode;
+
+    @Column(name = "study_id")
+    private Integer studyId;
 
     @OneToMany(mappedBy = "questionnairesEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PagesEntity> pages = new HashSet<>();
