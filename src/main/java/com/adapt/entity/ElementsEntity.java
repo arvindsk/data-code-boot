@@ -92,6 +92,18 @@ public class ElementsEntity implements Serializable {
     @Column(name = "indent")
     private Integer indent;
 
+    @Column(name = "image_link")
+    private String imageLink;
+
+    @Column(name = "image_height")
+    private Integer imageHeight;
+
+    @Column(name = "image_width")
+    private Integer imageWidth;
+
+    @Column(name = "html")
+    private String html;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

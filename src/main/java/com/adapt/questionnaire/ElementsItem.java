@@ -85,5 +85,15 @@ public class ElementsItem {
     @SerializedName("indent")
     private int indent;
 
+    @SerializedName("imageLink")
+    private String imageLink;
 
+    @SerializedName("imageHeight")
+    private Integer imageHeight;
+
+    @SerializedName("imageWidth")
+    private Integer imageWidth;
+
+    @SerializedName("html")
+    private String html;
 }

@@ -639,3 +639,40 @@ INSERT INTO choices (chioce_id, name, value, elements_id) VALUES (466, 'Yes', 'y
 INSERT INTO choices (chioce_id, name, value, elements_id) VALUES (467, 'No', 'no', 209);
 INSERT INTO choices (chioce_id, name, value, elements_id) VALUES (468, 'Don''t know', 'dontknow', 209);
 
+--update scripts--
+ALTER TABLE    `elements` ADD (image_link VARCHAR(255));
+ALTER TABLE    `elements` ADD (image_height INT);
+ALTER TABLE    `elements` ADD (image_width INT);
+ALTER TABLE    `elements` ADD (html blob);
+
+update elements set image_link='/assets/excercise_v_2.png',image_height=800,image_width=800 where elements_id=198 and type='image';
+
+update elements set html='Please respond to the following questions to the best of your ability. They are to be answered based on the
+Patient’s medical history. If you do not know the exact year in which a given condition first began or was
+diagnosed, please use your best judgement to approximate the year. A list of commonly prescribed
+medications is included on pages 5-6 for your convenience to aide you in identifying which condition(s) your
+medications may be treating.
+ <br/><b>Please answer each question as thoroughly as possible. The more information you provide, the better your doctor will be able to help you. </b>' where elements_id=81;
+update elements set html='<h2> <b>How physically active are you? <b></h2>' where elements_id=199;
+update elements set html='<h2> <b>How physically active are you? <b></h2>' where elements_id=207;
+update questionnaires set show_page_titles=1 where study_id=1005;
+
+INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (1, '{3}==''yes''', '4', 'no', 'setvalue', 17);
+INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (2, '{3}==''no'' or {3}==''dontknow''', '4', 'null', 'setvalue', 17);
+
+INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (3, '{3}==''yes''', '5', 'no', 'setvalue', 17);
+INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (4, '{3}==''no'' or {3}==''dontknow''', '5', 'null', 'setvalue', 17);
+
+INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (5, '{3}==''yes''', '6', 'no', 'setvalue', 17);
+INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (6, '{3}==''no'' or {3}==''dontknow''', '6', 'null', 'setvalue', 17);
+
+INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (7, '{3}==''yes''', '7', 'no', 'setvalue', 17);
+INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (8, '{3}==''no'' or {3}==''dontknow''', '7', 'null', 'setvalue', 17);
+
+INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (9, '{3}==''yes''', '8', 'no', 'setvalue', 17);
+INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (10, '{3}==''no'' or {3}==''dontknow''', '8', 'null', 'setvalue', 17);
+
+INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (11, '{3}==''yes''', '9', 'no', 'setvalue', 17);
+INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (12, '{3}==''no'' or {3}==''dontknow''', '9', 'null', 'setvalue', 17);
+
+commit;

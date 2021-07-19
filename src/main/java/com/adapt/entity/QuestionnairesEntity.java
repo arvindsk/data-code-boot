@@ -52,4 +52,7 @@ public class QuestionnairesEntity implements Serializable {
     @OneToMany(mappedBy = "questionnairesEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PagesEntity> pages = new HashSet<>();
 
+    @OneToMany(mappedBy = "questionnairesEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<QuestionnaireTriggersEntity> triggers = new HashSet<>();
+
 }

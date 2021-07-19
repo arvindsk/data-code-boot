@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS `adapt_dev`.`columns`;
 DROP TABLE IF EXISTS `adapt_dev`.`elements`;
 DROP TABLE IF EXISTS `adapt_dev`.`pages`;
 DROP TABLE IF EXISTS `adapt_dev`.`questionnaires`;
+DROP TABLE IF EXISTS `adapt_dev`.`questionnaire_triggers`;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -101,3 +102,15 @@ CREATE TABLE `rows` (
     KEY `rows_elements_id_fk` (`elements_id`),
     CONSTRAINT `rows_elements_id_fk` FOREIGN KEY (`elements_id`) REFERENCES `elements` (`elements_id`) ON DELETE NO ACTION
     ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `questionnaire_triggers` (
+    `questionnaire_trigger_id` int(11) NOT NULL AUTO_INCREMENT,
+    `expression` varchar(255) NOT NULL,
+    `set_to_name` varchar(255) DEFAULT NULL,
+    `set_value` varchar(255) DEFAULT NULL,
+    `type` varchar(255) DEFAULT NULL,
+    `questionnaires_id` int(11) NOT NULL,
+    PRIMARY KEY (`questionnaire_trigger_id`),
+    KEY `questionnaires_id_idx` (`questionnaires_id`),
+    CONSTRAINT `questionnaires_id_trigger` FOREIGN KEY (`questionnaires_id`) REFERENCES `questionnaires` (`questionnaires_id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;

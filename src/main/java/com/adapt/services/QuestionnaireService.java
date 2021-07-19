@@ -17,16 +17,20 @@ public class QuestionnaireService {
     private final ChoicesEntityRepository choicesEntityRepository;
     private final ColumnsEntityRepository columnsEntityRepository;
     private final RowsEntityRepository rowsEntityRepository;
+    private final QuestionnaireTriggersEntityRepository triggersEntityRepository;
+
 
     public QuestionnaireService(QuestionnairesEntityRepository questionnairesEntityRepository, PagesEntityRepository pagesEntityRepository,
                                 ElementsEntityRepository elementsEntityRepository, ChoicesEntityRepository choicesEntityRepository,
-                                ColumnsEntityRepository columnsEntityRepository, RowsEntityRepository rowsEntityRepository) {
+                                ColumnsEntityRepository columnsEntityRepository, RowsEntityRepository rowsEntityRepository,
+                                QuestionnaireTriggersEntityRepository triggersEntityRepository) {
         this.questionnairesEntityRepository = questionnairesEntityRepository;
         this.pagesEntityRepository = pagesEntityRepository;
         this.elementsEntityRepository = elementsEntityRepository;
         this.choicesEntityRepository = choicesEntityRepository;
         this.columnsEntityRepository = columnsEntityRepository;
         this.rowsEntityRepository = rowsEntityRepository;
+        this.triggersEntityRepository=triggersEntityRepository;
     }
 
     public void saveQuestionnaire(Questionnaire questionnaire, int studyId) {
@@ -47,9 +51,25 @@ public class QuestionnaireService {
         QuestionnairesEntity updatedEntity = questionnairesEntityRepository.saveAndFlush(questionnairesEntity);
         //updatedEntity.setPages(updatedPages(questionnaire.getPages(),updatedEntity));
         updatedPages(questionnaire.getPages(), updatedEntity);
+        updateTriggers(questionnaire.getTriggers(),updatedEntity);
 
         // questionnairesEntityRepository.saveAndFlush(updatedEntity);
 
+    }
+
+    private void updateTriggers(List<TriggersItem> triggers, QuestionnairesEntity updatedEntity) {
+
+        for (TriggersItem triggersItem : triggers) {
+            QuestionnaireTriggersEntity triggersEntity = QuestionnaireTriggersEntity.builder()
+                    .expression(triggersItem.getExpression())
+                    .setValue(triggersItem.getSetValue())
+                    .setToName(triggersItem.getSetToName())
+                    .type(triggersItem.getSetValue())
+                    .questionnairesEntity(updatedEntity)
+                    //.elementsEntities(getElementEntity(triggersItem.getElements()))
+                    .build();
+            QuestionnaireTriggersEntity updatedPagesEntity = this.triggersEntityRepository.saveAndFlush(triggersEntity);
+        }
     }
 
     private void updatedPages(List<PagesItem> pages, QuestionnairesEntity updatedEntity) {
@@ -94,6 +114,10 @@ public class QuestionnaireService {
                     .max(elementsItem.getMax())
                     .requiredIf(elementsItem.getRequiredIf())
                     .indent(elementsItem.getIndent())
+                    .imageLink(elementsItem.getImageLink())
+                    .imageWidth(elementsItem.getImageWidth())
+                    .imageHeight(elementsItem.getImageHeight())
+                    .html(elementsItem.getHtml())
                     .pagesEntity(pagesEntity)
                     //.choices(getChoicesEntity(elementsItem.getChoices()))
                     //.rows(getRowsEntity(elementsItem.getRows()))
@@ -169,11 +193,26 @@ public class QuestionnaireService {
                     .showPreviewBeforeComplete(questionnaireEntity.getShowPreviewBeforeComplete())
                     .checkErrorsMode(questionnaireEntity.getCheckErrorsMode())
                     .pages(getPagesEntity(questionnaireEntity.getPages()))
+                    .triggers(getTriggers(questionnaireEntity.getTriggers()))
                     .build();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private List<TriggersItem> getTriggers(Set<QuestionnaireTriggersEntity> triggers) {
+        if (Objects.nonNull(triggers) && !triggers.isEmpty()) {
+            Comparator<QuestionnaireTriggersEntity> idComparator = Comparator.comparing(QuestionnaireTriggersEntity::getQuestionnaireTriggerId);
+            List<QuestionnaireTriggersEntity> sortedTriggers = triggers.stream().sorted(idComparator).collect(Collectors.toList());
+            return sortedTriggers.stream().map(triggersEntity -> TriggersItem.builder()
+                    .expression(triggersEntity.getExpression())
+                    .setToName(triggersEntity.getSetToName())
+                    .setValue(triggersEntity.getSetValue())
+                    .type(triggersEntity.getType())
+                    .build()).collect(Collectors.toList());
+        }
+        return new ArrayList<>();
     }
 
     private List<PagesItem> getPagesEntity(Set<PagesEntity> pages) {
@@ -216,6 +255,10 @@ public class QuestionnaireService {
                     .max(elementsEntity.getMax())
                     .requiredIf(elementsEntity.getRequiredIf())
                     .indent(elementsEntity.getIndent())
+                    .imageLink(elementsEntity.getImageLink())
+                    .imageHeight(elementsEntity.getImageHeight())
+                    .imageWidth(elementsEntity.getImageWidth())
+                    .html(elementsEntity.getHtml())
                     .defaultValue(elementsEntity.getDefaultValue())
                     .choices(getChoices(elementsEntity.getChoices()))
                     .rows(getRows(elementsEntity.getRows()))

@@ -227,6 +227,80 @@
       "title": "RAPA 2"
     }
   ],
+  "triggers": [
+    {
+      "type": "setvalue",
+      "expression": "{3}=='yes'",
+      "setToName": "4",
+      "setValue": "no"
+    },
+    {
+      "type": "setvalue",
+      "expression": "{3}=='no' or {3}=='dontknow'",
+      "setToName": "4",
+      "setValue": "null"
+    },
+    {
+      "type": "setvalue",
+      "expression": "{3}=='yes'",
+      "setToName": "5",
+      "setValue": "no"
+    },
+    {
+      "type": "setvalue",
+      "expression": "{3}=='no' or {3}=='dontknow'",
+      "setToName": "5",
+      "setValue": "null"
+    },
+    {
+      "type": "setvalue",
+      "expression": "{3}=='yes'",
+      "setToName": "6",
+      "setValue": "no"
+    },
+    {
+      "type": "setvalue",
+      "expression": "{3}=='no' or {3}=='dontknow'",
+      "setToName": "6",
+      "setValue": "null"
+    },
+    {
+      "type": "setvalue",
+      "expression": "{3}=='yes'",
+      "setToName": "7",
+      "setValue": "no"
+    },
+    {
+      "type": "setvalue",
+      "expression": "{3}=='no' or {3}=='dontknow'",
+      "setToName": "7",
+      "setValue": "null"
+    },
+    {
+      "type": "setvalue",
+      "expression": "{3}=='yes'",
+      "setToName": "8",
+      "setValue": "no"
+    },
+    {
+      "type": "setvalue",
+      "expression": "{3}=='no' or {3}=='dontknow'",
+      "setToName": "8",
+      "setValue": "null"
+    },
+    {
+      "type": "setvalue",
+      "expression": "{3}=='yes'",
+      "setToName": "9",
+      "setValue": "no"
+    },
+    {
+      "type": "setvalue",
+      "expression": "{3}=='no' or {3}=='dontknow'",
+      "setToName": "9",
+      "setValue": "null"
+    }
+  ],
   "showQuestionNumbers": "off",
   "checkErrorsMode": "onComplete",
   "showPreviewBeforeComplete": "showAllQuestions"

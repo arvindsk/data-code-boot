@@ -3,7 +3,6 @@ package com.adapt.questionnaire;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -36,4 +35,7 @@ public class Questionnaire {
     private String checkErrorsMode;
 
     private String questionType;
+
+    @SerializedName("triggers")
+    private List<TriggersItem> triggers;
 }
