@@ -53,7 +53,7 @@ public class ParticipantService {
                     .completedDate(participantStudyList.size() > 0 ? participantStudyList.get(0).getCompletedTime() : null)
                     .build();
 
-            switch(timeline){
+            /*switch(timeline){
                 case "Baseline":
                     if(timeline.equalsIgnoreCase(participant.getTimeline())){
                         participants.add(participant);
@@ -69,7 +69,8 @@ public class ParticipantService {
                         participants.add(participant);
                     }
                     break;
-            }
+            }*/
+            participants.add(participant);
 
         }
         return participants;
