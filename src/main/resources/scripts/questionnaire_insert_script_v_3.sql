@@ -675,4 +675,5 @@ INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to
 INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (11, '{3}==''yes''', '9', 'no', 'setvalue', 17);
 INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (12, '{3}==''no'' or {3}==''dontknow''', '9', 'null', 'setvalue', 17);
 
+update elements set max=200 where input_type='number';
 commit;
