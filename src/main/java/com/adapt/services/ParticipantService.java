@@ -36,9 +36,9 @@ public class ParticipantService {
         this.medicineListEntityRepository = medicineListEntityRepository;
     }
 
-    public List<Participant> getParticipants(String timeline) {
+    public List<Participant> getParticipants(String host) {
         List<Participant> participants = new ArrayList<>();
-        List<ParticipantsEntity> participantsEntities = participantsEntityRepository.findAll();
+        List<ParticipantsEntity> participantsEntities = participantsEntityRepository.findAllByLoghost(host);
         for (ParticipantsEntity participantsEntity : participantsEntities) {
             List<ParticipantStudyEntity> participantStudyList = participantStudyEntityRepository.
                     findByParticipantIdOrderByCompletedTimeDesc(participantsEntity.getParticipantId());

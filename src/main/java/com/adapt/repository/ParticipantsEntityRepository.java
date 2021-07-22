@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ParticipantsEntityRepository extends JpaRepository<ParticipantsEntity, Integer>, JpaSpecificationExecutor<ParticipantsEntity> {
 
-    List<ParticipantsEntity> findAll();
+    List<ParticipantsEntity> findAllByLoghost(String host);
 }

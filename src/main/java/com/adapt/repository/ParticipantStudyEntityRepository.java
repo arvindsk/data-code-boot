@@ -11,7 +11,7 @@ public interface ParticipantStudyEntityRepository extends JpaRepository<Particip
 
     List<ParticipantStudyEntity> findByParticipantId(Integer participantId);
     List<ParticipantStudyEntity> findByParticipantIdAndTimeline(Integer participantId,String timeline);
-    List<ParticipantStudyEntity> findByStudyIdAndTimelineAndStatus(Integer studyId, String timeline, String status);
+    List<ParticipantStudyEntity> findByStudyIdAndTimelineAndStatusAndParticipantIdIn(Integer studyId, String timeline, String status, List<Integer> participantIds);
     List<ParticipantStudyEntity> findByParticipantIdOrderByCompletedTimeDesc(Integer participantId);
     List<ParticipantStudyEntity> findByParticipantIdAndCompletedTimeIsNotNullOrderByCompletedTime(Integer participantId);
 

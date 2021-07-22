@@ -21,9 +21,9 @@ public class ParticipantController {
 
     @PostMapping(value = "get-all-participants",consumes = "application/json", produces = "application/json")
     public  @ResponseBody
-    List<Participant> getParticipants(@RequestBody String timeline) {
+    List<Participant> getParticipants(@RequestBody String host) {
 
-        List<Participant> participants = participantService.getParticipants(timeline);
+        List<Participant> participants = participantService.getParticipants(host);
         return participants;
     }
 

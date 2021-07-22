@@ -1,9 +1,11 @@
 package com.adapt.services;
 
+import com.adapt.dto.Participant;
 import com.adapt.dto.Summary;
 import com.adapt.dto.SummaryMap;
 import com.adapt.dto.enums.Status;
 import com.adapt.dto.enums.Timeline;
+import com.adapt.entity.ParticipantsEntity;
 import com.adapt.entity.StudyEntity;
 import com.adapt.repository.ParticipantStudyEntityRepository;
 import com.adapt.repository.ParticipantsEntityRepository;
@@ -30,21 +32,44 @@ public class SummaryService {
 
     public Summary summary(String host){
         Summary response = new Summary();
-        Long participantCount = participantsEntityRepository.count();
-        response.setParticipantCount(participantCount);
+        //Long participantCount = participantsEntityRepository.count();
+        List<ParticipantsEntity> participantList = participantsEntityRepository.findAllByLoghost(host);
+        List<Integer> participantIds = new ArrayList<Integer>();
+        for(ParticipantsEntity entity : participantList){
+            participantIds.add(entity.getParticipantId());
+        }
+        response.setParticipantCount(participantList.size());
         List<SummaryMap> studyCountBaselineMap = new ArrayList<SummaryMap>();
         List<SummaryMap> studyCountFirstYearMap = new ArrayList<SummaryMap>();
         List<SummaryMap> studyCountThirdYearMap = new ArrayList<SummaryMap>();
         List<StudyEntity> studies = studyEntityRepository.findAll();
         for(StudyEntity study : studies){
             String studyName = study.getStudyName();
-            Long baselineStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimelineAndStatus(study.getStudyId(), Timeline.BASELINE.getTimelineName(), Status.SUBMITTED.getStatusName()).size());
+            Long baselineStudyCount = Long.valueOf(
+                    participantStudyEntityRepository.findByStudyIdAndTimelineAndStatusAndParticipantIdIn(
+                            study.getStudyId(),
+                            Timeline.BASELINE.getTimelineName(),
+                            Status.SUBMITTED.getStatusName(),
+                            participantIds)
+                            .size());
             SummaryMap baselineMap = new SummaryMap(studyName, baselineStudyCount);
             studyCountBaselineMap.add(baselineMap);
-            Long firstyearStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimelineAndStatus(study.getStudyId(), Timeline.FIRST_YEAR.getTimelineName(),Status.SUBMITTED.getStatusName()).size());
+            Long firstyearStudyCount = Long.valueOf(
+                    participantStudyEntityRepository.findByStudyIdAndTimelineAndStatusAndParticipantIdIn(
+                            study.getStudyId(),
+                            Timeline.FIRST_YEAR.getTimelineName(),
+                            Status.SUBMITTED.getStatusName(),
+                            participantIds)
+                            .size());
             SummaryMap firstyearMap = new SummaryMap(studyName, firstyearStudyCount);
             studyCountFirstYearMap.add(firstyearMap);
-            Long thirdyearStudyCount = Long.valueOf(participantStudyEntityRepository.findByStudyIdAndTimelineAndStatus(study.getStudyId(), Timeline.THIRD_YEAR.getTimelineName(),Status.SUBMITTED.getStatusName()).size());
+            Long thirdyearStudyCount = Long.valueOf(
+                    participantStudyEntityRepository.findByStudyIdAndTimelineAndStatusAndParticipantIdIn(
+                            study.getStudyId(),
+                            Timeline.THIRD_YEAR.getTimelineName(),
+                            Status.SUBMITTED.getStatusName(),
+                            participantIds)
+                            .size());
             SummaryMap thirdyearMap = new SummaryMap(studyName, thirdyearStudyCount);
             studyCountThirdYearMap.add(thirdyearMap);
         }

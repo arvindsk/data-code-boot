@@ -12,7 +12,7 @@ import java.util.Map;
 @Getter
 @Setter
 public class Summary {
-    private Long participantCount;
+    private int participantCount;
     private List<SummaryMap> baselineStudySummary;
     private List<SummaryMap> firstyearStudySummary;
     private List<SummaryMap> thirdyearStudySummary;
