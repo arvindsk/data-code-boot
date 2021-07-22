@@ -639,7 +639,7 @@ INSERT INTO choices (chioce_id, name, value, elements_id) VALUES (466, 'Yes', 'y
 INSERT INTO choices (chioce_id, name, value, elements_id) VALUES (467, 'No', 'no', 209);
 INSERT INTO choices (chioce_id, name, value, elements_id) VALUES (468, 'Don''t know', 'dontknow', 209);
 
---update scripts--
+
 ALTER TABLE    `elements` ADD (image_link VARCHAR(255));
 ALTER TABLE    `elements` ADD (image_height INT);
 ALTER TABLE    `elements` ADD (image_width INT);
@@ -676,4 +676,10 @@ INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to
 INSERT INTO questionnaire_triggers (questionnaire_trigger_id, expression, set_to_name, set_value, type, questionnaires_id) VALUES (12, '{3}==''no'' or {3}==''dontknow''', '9', 'null', 'setvalue', 17);
 
 update elements set max=200 where input_type='number';
+
+update columns set name='Better or no change (1)' where value=1;
+update columns set name='Questionable / occasionally worse (2)' where value=2;
+update columns set name='Consistently a little worse (3)' where value=3;
+update columns set name='Consistently much Worse (4)' where value=4;
+update columns set name='Don’t know / Not applicable (9)' where value=9;
 commit;
