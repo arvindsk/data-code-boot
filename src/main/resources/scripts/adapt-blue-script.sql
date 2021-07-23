@@ -795,7 +795,7 @@ INSERT INTO adaptdb.questionnaires (questionnaires_id, show_progress_bar, show_p
 INSERT INTO adaptdb.questionnaires (questionnaires_id, show_progress_bar, show_page_titles, show_question_numbers, completed_html, title, show_preview_before_complete, check_errors_mode, study_id) VALUES (16, 'top', 0, 'off', '<h2>Thank you for submitting the Questionnaire<h2>', 'Diet screener questionnaire', 'showAllQuestions', 'onComplete', 1004);
 INSERT INTO adaptdb.questionnaires (questionnaires_id, show_progress_bar, show_page_titles, show_question_numbers, completed_html, title, show_preview_before_complete, check_errors_mode, study_id) VALUES (17, null, 0, 'off', '<h2>Thank you for submitting the Questionnaire<h2>', 'Physical Activity Screening', 'showAllQuestions', 'onComplete', 1005);
 
-INSERT INTO adaptdb.choices (chioce_id, name, value, elements_id) VALUES (105, 'Patient', 'patient', 79);
+INSERT INTO adaptdb.choices (chioce_id, name, value, elements_id) VALUES (105, 'Participant', 'patient', 79);
 INSERT INTO adaptdb.choices (chioce_id, name, value, elements_id) VALUES (106, 'Informant/Family Member', 'relative', 79);
 INSERT INTO adaptdb.choices (chioce_id, name, value, elements_id) VALUES (107, 'Yes', 'yes', 82);
 INSERT INTO adaptdb.choices (chioce_id, name, value, elements_id) VALUES (108, 'No', 'no', 82);
@@ -1196,7 +1196,7 @@ INSERT INTO adaptdb.elements (elements_id, start_with_new_line, has_other, name,
 INSERT INTO adaptdb.elements (elements_id, start_with_new_line, has_other, name, visible_if, type, title, title_location, col_count, description, input_type, other_text, page_id, questionnaires_id, choices_by_url, is_required, enable_if, render_as, is_all_row_required, default_value, min, max, required_if, indent, image_height, image_width, image_link) VALUES (138, 1, 0, '1', null, 'text', '1. How old are you?', 'left', 0, null, 'number', null, 25, 16, null, 0, null, null, 0, null, 1, 200, null, 0, null, null, null);
 INSERT INTO adaptdb.elements (elements_id, start_with_new_line, has_other, name, visible_if, type, title, title_location, col_count, description, input_type, other_text, page_id, questionnaires_id, choices_by_url, is_required, enable_if, render_as, is_all_row_required, default_value, min, max, required_if, indent, image_height, image_width, image_link) VALUES (198, 1, 0, '1', null, 'image', null, null, 0, null, null, null, 35, 17, null, 0, null, null, 0, null, 0, 0, null, 0, 800, 800, '/assets/excercise_v_2.png');
 INSERT INTO adaptdb.elements (elements_id, start_with_new_line, has_other, name, visible_if, type, title, title_location, col_count, description, input_type, other_text, page_id, questionnaires_id, choices_by_url, is_required, enable_if, render_as, is_all_row_required, default_value, min, max, required_if, indent, image_height, image_width, image_link) VALUES (79, 1, 0, '1.1', null, 'radiogroup', 'Completed By', 'top', 2, null, null, null, 8, 13, null, 0, null, null, 0, null, 0, 0, null, 0, null, null, null);
-INSERT INTO adaptdb.elements (elements_id, start_with_new_line, has_other, name, visible_if, type, title, title_location, col_count, description, input_type, other_text, page_id, questionnaires_id, choices_by_url, is_required, enable_if, render_as, is_all_row_required, default_value, min, max, required_if, indent, image_height, image_width, image_link) VALUES (80, 1, 0, '1.2', '{1.1} = ''relative''', 'text', 'Relationship to Patient:', 'left', 0, null, null, null, 8, 13, null, 0, null, null, 0, null, 0, 0, null, 0, null, null, null);
+INSERT INTO adaptdb.elements (elements_id, start_with_new_line, has_other, name, visible_if, type, title, title_location, col_count, description, input_type, other_text, page_id, questionnaires_id, choices_by_url, is_required, enable_if, render_as, is_all_row_required, default_value, min, max, required_if, indent, image_height, image_width, image_link) VALUES (80, 1, 0, '1.2', '{1.1} = ''relative''', 'text', 'Relationship to Participant:', 'left', 0, null, null, null, 8, 13, null, 0, null, null, 0, null, 0, 0, null, 0, null, null, null);
 INSERT INTO adaptdb.elements (elements_id, start_with_new_line, has_other, name, visible_if, type, title, title_location, col_count, description, input_type, other_text, page_id, questionnaires_id, choices_by_url, is_required, enable_if, render_as, is_all_row_required, default_value, min, max, required_if, indent, image_height, image_width, image_link) VALUES (81, 1, 0, '1.3', null, 'html', null, null, 0, null, null, null, 8, 13, null, 0, null, null, 0, null, 0, 0, null, 0, null, null, null);
 INSERT INTO adaptdb.elements (elements_id, start_with_new_line, has_other, name, visible_if, type, title, title_location, col_count, description, input_type, other_text, page_id, questionnaires_id, choices_by_url, is_required, enable_if, render_as, is_all_row_required, default_value, min, max, required_if, indent, image_height, image_width, image_link) VALUES (127, 1, 0, '10', null, 'radiogroup', '2. How often do you feel tired or fatigued after your sleep?', null, 2, null, null, null, 17, 14, null, 0, null, null, 0, null, 0, 0, null, 0, null, null, null);
 INSERT INTO adaptdb.elements (elements_id, start_with_new_line, has_other, name, visible_if, type, title, title_location, col_count, description, input_type, other_text, page_id, questionnaires_id, choices_by_url, is_required, enable_if, render_as, is_all_row_required, default_value, min, max, required_if, indent, image_height, image_width, image_link) VALUES (156, 1, 0, '10', null, 'radiogroup', '10. During the past month, did you drink any coffee or tea that had sugar or honey added to it? Include coffee and tea you sweetened yourself and presweetened tea and coffee drinks such as Arizona Iced Tea and Frappuccino. Do not include artificially sweetened coffee or diet tea', null, 3, null, null, null, 28, 16, null, 0, null, null, 0, null, 0, 0, null, 0, null, null, null);
@@ -1413,3 +1413,17 @@ INSERT INTO adaptdb.rows (row_id, name, value, elements_id) VALUES (38, '1. The 
 INSERT INTO adaptdb.rows (row_id, name, value, elements_id) VALUES (39, '2. Returning to a task after being interrupted.', '2', 137);
 INSERT INTO adaptdb.rows (row_id, name, value, elements_id) VALUES (40, '3. The ability to concentrate on and complete a task without being distracted by other things.', '3', 137);
 INSERT INTO adaptdb.rows (row_id, name, value, elements_id) VALUES (41, '4. Working on a particular task while talking to someone at the same time.', '4', 137);
+
+CREATE TABLE
+    adaptdb.site
+    (
+        site_id INT NOT NULL,
+        site_code VARCHAR(25) NOT NULL,
+        site_name VARCHAR(255) NOT NULL,
+        PRIMARY KEY (site_id)
+    )
+    ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO adaptdb.site (site_id, site_code, site_name) VALUES (1, 'ucdavis', 'University of California at Davis');
+INSERT INTO adaptdb.site (site_id, site_code, site_name) VALUES (2, 'rush', 'Rush University');
+

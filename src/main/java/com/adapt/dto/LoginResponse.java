@@ -11,4 +11,5 @@ public class LoginResponse {
     private String status;
     private String name;
     private String site;
+    private String sitename;
 }

@@ -682,4 +682,6 @@ update columns set name='Questionable / occasionally worse (2)' where value=2;
 update columns set name='Consistently a little worse (3)' where value=3;
 update columns set name='Consistently much Worse (4)' where value=4;
 update columns set name='Don’t know / Not applicable (9)' where value=9;
+update choices set name='Participant' where choice_id=105;
+update elements set title='Relationship to Participant:' where elements_id=80;
 commit;
