@@ -12,4 +12,5 @@ public class LoginResponse {
     private String name;
     private String site;
     private String sitename;
+    private Integer naccId;
 }

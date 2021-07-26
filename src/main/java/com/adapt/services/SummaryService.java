@@ -33,7 +33,7 @@ public class SummaryService {
     public Summary summary(String host){
         Summary response = new Summary();
         //Long participantCount = participantsEntityRepository.count();
-        List<ParticipantsEntity> participantList = participantsEntityRepository.findAllByLoghost(host);
+        List<ParticipantsEntity> participantList = participantsEntityRepository.findAllByNaccID(host);
         List<Integer> participantIds = new ArrayList<Integer>();
         for(ParticipantsEntity entity : participantList){
             participantIds.add(entity.getParticipantId());

@@ -28,9 +28,9 @@ public class LoginService {
             if (request.getEmailId().equalsIgnoreCase(user.getUsername()) &&
                     request.getPassword().equalsIgnoreCase(user.getUserpass())) {
                 SiteEntity site = siteEntityRepository.findBySiteCode(user.getSite());
-                return new LoginResponse("success", user.getFname(), user.getSite(), site.getSiteName());
+                return new LoginResponse("success", user.getFname(), user.getSite(), site.getSiteName(), site.getNaccId());
             }
         }
-        return new LoginResponse("failed","","","");
+        return new LoginResponse("failed","","","", Integer.valueOf(0));
     }
 }

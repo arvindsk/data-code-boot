@@ -19,10 +19,13 @@ public class SiteEntity implements Serializable {
     @Column(name = "site_id", nullable = false)
     private Integer siteId;
 
-    @Column(name = "site_code", nullable = false)
+    @Column(name = "site", nullable = false)
     private String siteCode;
 
     @Column(name = "site_name", nullable = false)
     private String siteName;
+
+    @Column(name = "nacc_id", nullable = false)
+    private Integer naccId;
 
 }

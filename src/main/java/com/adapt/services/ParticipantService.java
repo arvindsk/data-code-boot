@@ -38,7 +38,7 @@ public class ParticipantService {
 
     public List<Participant> getParticipants(String host) {
         List<Participant> participants = new ArrayList<>();
-        List<ParticipantsEntity> participantsEntities = participantsEntityRepository.findAllByLoghost(host);
+        List<ParticipantsEntity> participantsEntities = participantsEntityRepository.findAllByNaccID(host);
         for (ParticipantsEntity participantsEntity : participantsEntities) {
             List<ParticipantStudyEntity> participantStudyList = participantStudyEntityRepository.
                     findByParticipantIdOrderByCompletedTimeDesc(participantsEntity.getParticipantId());
