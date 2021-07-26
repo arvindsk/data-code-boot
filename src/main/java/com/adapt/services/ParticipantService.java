@@ -43,6 +43,108 @@ public class ParticipantService {
             List<ParticipantStudyEntity> participantStudyList = participantStudyEntityRepository.
                     findByParticipantIdOrderByCompletedTimeDesc(participantsEntity.getParticipantId());
 
+            String baselineStatus = null;
+            String firstyearStatus = null;
+            String thirdyearStatus = null;
+
+            for(ParticipantStudyEntity participantStudy : participantStudyList){
+                if("Baseline".equalsIgnoreCase(participantStudy.getTimeline())){
+
+                    if(participantStudy.getCompletedTime()!=null){
+                        if(baselineStatus==null) {
+                            baselineStatus = Status.COMPLETED.getStatusName();
+                        }else if(Status.NOT_STARTED.getStatusName().equalsIgnoreCase(baselineStatus)){
+                            baselineStatus = Status.IN_PROGRESS.getStatusName();
+                        }
+                    }else{
+                        if(participantStudy.getStudyInformation()!=null){
+                            baselineStatus = Status.IN_PROGRESS.getStatusName();
+                        }
+                        if(baselineStatus==null || Status.NOT_STARTED.getStatusName().equalsIgnoreCase(baselineStatus)) {
+                            baselineStatus = Status.NOT_STARTED.getStatusName();
+                        }else{
+                            baselineStatus = Status.IN_PROGRESS.getStatusName();
+                        }
+                    }
+                }
+                if("Firstyear".equalsIgnoreCase(participantStudy.getTimeline())){
+
+                    if(participantStudy.getCompletedTime()!=null){
+                        if(firstyearStatus==null) {
+                            firstyearStatus = Status.COMPLETED.getStatusName();
+                        }else if(Status.NOT_STARTED.getStatusName().equalsIgnoreCase(firstyearStatus)){
+                            firstyearStatus = Status.IN_PROGRESS.getStatusName();
+                        }
+                    }else{
+                        if(participantStudy.getStudyInformation()!=null){
+                            firstyearStatus = Status.IN_PROGRESS.getStatusName();
+                        }
+                        if(firstyearStatus==null || Status.NOT_STARTED.getStatusName().equalsIgnoreCase(firstyearStatus)) {
+                            firstyearStatus = Status.NOT_STARTED.getStatusName();
+                        }else{
+                            firstyearStatus = Status.IN_PROGRESS.getStatusName();
+                        }
+                    }
+                }
+                if("Thirdyear".equalsIgnoreCase(participantStudy.getTimeline())){
+
+                    if(participantStudy.getCompletedTime()!=null){
+                        if(thirdyearStatus==null) {
+                            thirdyearStatus = Status.COMPLETED.getStatusName();
+                        }else if(Status.NOT_STARTED.getStatusName().equalsIgnoreCase(thirdyearStatus)){
+                            thirdyearStatus = Status.IN_PROGRESS.getStatusName();
+                        }
+                    }else{
+                        if(participantStudy.getStudyInformation()!=null){
+                            thirdyearStatus = Status.IN_PROGRESS.getStatusName();
+                        }
+                        if(thirdyearStatus==null || Status.NOT_STARTED.getStatusName().equalsIgnoreCase(thirdyearStatus)) {
+                            thirdyearStatus = Status.NOT_STARTED.getStatusName();
+                        }else{
+                            thirdyearStatus = Status.IN_PROGRESS.getStatusName();
+                        }
+                    }
+                }
+
+            }
+            List<ParticipantStudyEntity> participantStudyTimelineList = participantStudyEntityRepository
+                    .findByParticipantIdAndCompletedTimeIsNotNullOrderByCompletedTime(participantsEntity.getParticipantId());
+            if(participantStudyTimelineList.isEmpty()){
+                participantStudyTimelineList = participantStudyEntityRepository
+                        .findByParticipantId(participantsEntity.getParticipantId());
+            }
+            if(!participantStudyTimelineList.isEmpty()) {
+                Date firstAttemptTime = participantStudyTimelineList.get(0).getCompletedTime();
+                if (firstAttemptTime != null) {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(firstAttemptTime);
+                    calendar.add(Calendar.MONTH, 12);
+                    Calendar calendar2 = Calendar.getInstance();
+                    calendar2.setTime(firstAttemptTime);
+                    calendar2.add(Calendar.MONTH, 24);
+                    Calendar calendar1 = Calendar.getInstance();
+
+                    if (calendar1.after(calendar)) {
+                        //activeTimeline = Timeline.FIRST_YEAR.getTimelineName();
+                            if (Status.IN_PROGRESS.getStatusName().equalsIgnoreCase(baselineStatus)) {
+                                baselineStatus = Status.IN_COMPLETE.getStatusName();
+                        }
+                        calendar.add(Calendar.MONTH, 18);
+                        calendar2.add(Calendar.MONTH, 18);
+                        if (calendar1.after(calendar)) {
+                            //activeTimeline = Timeline.THIRD_YEAR.getTimelineName();
+                            if (Status.IN_PROGRESS.getStatusName().equalsIgnoreCase(firstyearStatus)) {
+                                firstyearStatus = Status.IN_COMPLETE.getStatusName();
+                            }
+                            if (calendar1.after(calendar2)) {
+                                if (Status.IN_PROGRESS.getStatusName().equalsIgnoreCase(thirdyearStatus)) {
+                                    thirdyearStatus = Status.IN_COMPLETE.getStatusName();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             Participant participant = Participant.builder()
                     .participantId(participantsEntity.getParticipantId())
                     .firstName(participantsEntity.getFirstName())
@@ -50,7 +152,10 @@ public class ParticipantService {
                     .timeline(participantStudyList.size() > 0 ? participantStudyList.get(0).getTimeline() : "Baseline")
                     .registeredDate(participantsEntity.getAutotime())
                     .dob(participantsEntity.getDob()!=null && !"".equalsIgnoreCase(participantsEntity.getDob())?participantsEntity.getDob().substring(0,5):"")
-                    .completedDate(participantStudyList.size() > 0 ? participantStudyList.get(0).getCompletedTime() : null)
+                    .baselineStatus(baselineStatus!=null?baselineStatus:Status.NOT_STARTED.getStatusName())
+                    .firstyearStatus(firstyearStatus!=null?firstyearStatus:Status.NOT_STARTED.getStatusName())
+                    .thirdyearStatus(thirdyearStatus!=null?thirdyearStatus:Status.NOT_STARTED.getStatusName())
+                    //.completedDate(participantStudyList.size() > 0 ? participantStudyList.get(0).getCompletedTime() : null)
                     .build();
 
             /*switch(timeline){

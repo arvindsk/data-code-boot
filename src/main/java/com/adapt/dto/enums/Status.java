@@ -6,7 +6,9 @@ import java.util.Map;
 public enum Status {NOT_STARTED(1001, "Not Started"),
     IN_PROGRESS(1002, "In-Progress"),
     SUBMITTED(1003, "Submitted"),
-    NOT_ATTEMPTED(1003, "Not Attempted");
+    NOT_ATTEMPTED(1004, "Not Attempted"),
+    IN_COMPLETE(1005, "In-Complete"),
+    COMPLETED(1006, "Completed");
 
     private final Integer statusId;
     private final String statusName;

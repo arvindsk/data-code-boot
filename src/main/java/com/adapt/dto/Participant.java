@@ -13,5 +13,7 @@ public class Participant {
     private String dob;
     private Date registeredDate;
     private String timeline;
-    private Date completedDate;
+    private String baselineStatus;
+    private String firstyearStatus;
+    private String thirdyearStatus;
 }
