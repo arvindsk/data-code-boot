@@ -1444,5 +1444,7 @@ INSERT INTO adaptdb.site (site_id, site, site_name, nacc_id) VALUES (8, 'UM Mich
 INSERT INTO adaptdb.site (site_id, site, site_name, nacc_id) VALUES (9, 'New Mexico', 'University of New Mexico', 48);
 INSERT INTO adaptdb.site (site_id, site, site_name, nacc_id) VALUES (10, 'UTH SCSA - San Antonio', 'University of Texas Health Science Center at San Antonio - UT Health San Antonio', 67);
 INSERT INTO adaptdb.site (site_id, site, site_name, nacc_id) VALUES (11, 'Kentucky', 'University of Kentucky', 19);
+INSERT INTO adaptdb.site (site_id, site, site_name, nacc_id) VALUES (12, 'Columbia', 'University of Columbia', 4);
+INSERT INTO adaptdb.site (site_id, site, site_name, nacc_id) VALUES (13, 'Wake Forest', 'University of Wake Forest', 42);
 
 commit;
