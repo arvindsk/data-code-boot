@@ -24,7 +24,7 @@
           "width": "50px",
           "minWidth": "50px",
           "maxWidth": "50px",
-          "title": "Weight(kg)",
+          "title": "Weight(lbs)",
           "titleLocation": "left",
           "isRequired": false,
           "inputType": "number",
