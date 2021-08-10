@@ -1004,5 +1004,5 @@ INSERT INTO medicine_list (medicine_id, name) VALUES (302, 'Zocor');
 
 
 update elements set title='Other treatments',title_location='top',is_required=0 where name in ('2.6','3.6','4.6','5.6','6.6','7.6') and page_id in (9,10,11,12,13,14);
-update elements set title='Height(Ft and Inches)' where elements_id=118;
+update elements set title='Height(ft)' where elements_id=118;
 commit ;
