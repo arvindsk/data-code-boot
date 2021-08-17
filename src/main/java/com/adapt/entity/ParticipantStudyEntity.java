@@ -34,20 +34,32 @@ public class ParticipantStudyEntity implements Serializable {
 
     @Column(name = "status")
     private String status;
+
     @Column(name = "completed_time")
     private Date completedTime;
+
+    @Column(name = "access")
+    private String access;
+
+    @Column(name = "quid")
+    private String quid;
 
     public ParticipantStudyEntity(){
 
     }
 
     @Builder
-    public ParticipantStudyEntity(Integer participantId, String studyInformation, String timeline, Integer studyId, String status, Date completedTime) {
+    public ParticipantStudyEntity(
+            Integer participantId, String studyInformation,
+            String timeline, Integer studyId, String status,
+            Date completedTime, String access, String quid) {
         this.participantId = participantId;
         this.studyInformation = studyInformation;
         this.timeline = timeline;
         this.studyId = studyId;
         this.status = status;
         this.completedTime = completedTime;
+        this.access = access;
+        this.quid = quid;
     }
 }

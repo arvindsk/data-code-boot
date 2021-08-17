@@ -20,5 +20,7 @@ public class ParticipantStudy {
     private boolean enabled;
     private String activeTimeline;
     private boolean endedTimeline;
+    private String access;
+    private String quid;
 
 }

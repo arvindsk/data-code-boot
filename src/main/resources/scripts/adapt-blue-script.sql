@@ -3,7 +3,7 @@ CREATE DATABASE adaptdb;
 CREATE TABLE adaptdb.choices (choice_id int NOT NULL AUTO_INCREMENT, name varchar(255), value varchar(255), elements_id int NOT NULL, PRIMARY KEY (choice_id), INDEX elements_id_idx (elements_id)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
 CREATE TABLE adaptdb.elements (elements_id int NOT NULL AUTO_INCREMENT, startWithNewLine tinyint, hasOther tinyint, name varchar(255) NOT NULL, visibleIf varchar(255), type varchar(255) NOT NULL, title varchar(500), titleLocation varchar(45), colCount int, description longtext, inputType varchar(255), otherText varchar(255), popupdescription blob, page_id int NOT NULL, questionnaires_id int NOT NULL, PRIMARY KEY (name, questionnaires_id), INDEX elements_id (elements_id), INDEX page_id_idx (elements_id, page_id), INDEX page_id_idx1 (page_id), INDEX questionnaires_id_idx (questionnaires_id)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
 CREATE TABLE adaptdb.pages (page_id int NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL, title varchar(255), questionnaires_id int NOT NULL, PRIMARY KEY (name, questionnaires_id), CONSTRAINT name_UNIQUE UNIQUE (name), INDEX questionnaires_id_idx (questionnaires_id), INDEX page_id (page_id)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
-CREATE TABLE adaptdb.participant_study (participant_study_id int NOT NULL AUTO_INCREMENT, participant_id int NOT NULL, study_information longtext, timeline varchar(255), study_id int, status varchar(255), completed_time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NULL, PRIMARY KEY (participant_study_id), INDEX participant_study_FK_1 (study_id), INDEX participant_study_FK_2 (participant_id)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
+CREATE TABLE adaptdb.participant_study (participant_study_id int NOT NULL AUTO_INCREMENT, participant_id int NOT NULL, study_information longtext, timeline varchar(255), study_id int, status varchar(255), completed_time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NULL, access VARCHAR(255), quid VARCHAR(255), PRIMARY KEY (participant_study_id), INDEX participant_study_FK_1 (study_id), INDEX participant_study_FK_2 (participant_id)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
 CREATE TABLE adaptdb.participants (participant_id int NOT NULL AUTO_INCREMENT, autotime timestamp DEFAULT CURRENT_TIMESTAMP, logid varchar(15), loghost varchar(20), first_name varchar(255) NOT NULL, last_name varchar(255) NOT NULL, naccID varchar(45) NOT NULL, gender varchar(45) NOT NULL, race varchar(255) NOT NULL, ethnicity varchar(255) NOT NULL, dob varchar(45) NOT NULL, ques1 varchar(45) NOT NULL, ques2 varchar(45) NOT NULL, ques3 varchar(45) NOT NULL, ques4 varchar(45) NOT NULL, autolog timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, revlogid varchar(15), revloghost varchar(40), PRIMARY KEY (participant_id)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
 DROP TABLE IF EXISTS adaptdb.questionnaire;
 CREATE TABLE adaptdb.questionnaire (questionnaire_id int NOT NULL AUTO_INCREMENT, questionnaire_type varchar(45), questions longtext, PRIMARY KEY (questionnaire_id)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
@@ -1447,4 +1447,15 @@ INSERT INTO adaptdb.site (site_id, site, site_name, nacc_id) VALUES (11, 'Kentuc
 INSERT INTO adaptdb.site (site_id, site, site_name, nacc_id) VALUES (12, 'Columbia', 'University of Columbia', 4);
 INSERT INTO adaptdb.site (site_id, site, site_name, nacc_id) VALUES (13, 'Wake Forest', 'University of Wake Forest', 42);
 
+CREATE TABLE
+    adaptdb.participant_email
+    (
+        participant_email_id INT NOT NULL,
+        participant_id INT NOT NULL,
+        email VARCHAR(255),
+        PRIMARY KEY (participant_email_id),
+        CONSTRAINT participantemail_fk1 FOREIGN KEY (participant_id) REFERENCES
+        adaptdb.participants (participant_id)
+    )
+    ENGINE=InnoDB DEFAULT CHARSET=latin1
 commit;

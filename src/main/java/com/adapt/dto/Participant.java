@@ -16,4 +16,5 @@ public class Participant {
     private String baselineStatus;
     private String firstyearStatus;
     private String thirdyearStatus;
+    private String email;
 }

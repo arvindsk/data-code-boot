@@ -2,17 +2,12 @@ package com.adapt.services;
 
 import com.adapt.dto.Participant;
 import com.adapt.dto.ParticipantStudy;
+import com.adapt.dto.enums.Access;
 import com.adapt.dto.enums.Status;
 import com.adapt.dto.enums.Study;
 import com.adapt.dto.enums.Timeline;
-import com.adapt.entity.CerealListEntity;
-import com.adapt.entity.MedicineListEntity;
-import com.adapt.entity.ParticipantStudyEntity;
-import com.adapt.entity.ParticipantsEntity;
-import com.adapt.repository.CerealListEntityRepository;
-import com.adapt.repository.MedicineListEntityRepository;
-import com.adapt.repository.ParticipantStudyEntityRepository;
-import com.adapt.repository.ParticipantsEntityRepository;
+import com.adapt.entity.*;
+import com.adapt.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -25,15 +20,18 @@ public class ParticipantService {
     private final ParticipantStudyEntityRepository participantStudyEntityRepository;
     private final CerealListEntityRepository cerealListEntityRepository;
     private final MedicineListEntityRepository medicineListEntityRepository;
+    private final ParticipantEmailEntityRepository participantEmailEntityRepository;
 
     public ParticipantService(ParticipantsEntityRepository participantsEntityRepository,
                               ParticipantStudyEntityRepository participantStudyEntityRepository,
                               CerealListEntityRepository cerealListEntityRepository,
-                              MedicineListEntityRepository medicineListEntityRepository) {
+                              MedicineListEntityRepository medicineListEntityRepository,
+                              ParticipantEmailEntityRepository participantEmailEntityRepository) {
         this.participantsEntityRepository = participantsEntityRepository;
         this.participantStudyEntityRepository = participantStudyEntityRepository;
         this.cerealListEntityRepository = cerealListEntityRepository;
         this.medicineListEntityRepository = medicineListEntityRepository;
+        this.participantEmailEntityRepository = participantEmailEntityRepository;
     }
 
     public List<Participant> getParticipants(String host) {
@@ -145,6 +143,7 @@ public class ParticipantService {
                     }
                 }
             }
+            ParticipantEmailEntity emailEntity = participantEmailEntityRepository.findByParticipantId(participantsEntity.getParticipantId());
             Participant participant = Participant.builder()
                     .participantId(participantsEntity.getParticipantId())
                     .firstName(participantsEntity.getFirstName())
@@ -155,6 +154,7 @@ public class ParticipantService {
                     .baselineStatus(baselineStatus!=null?baselineStatus:Status.NOT_STARTED.getStatusName())
                     .firstyearStatus(firstyearStatus!=null?firstyearStatus:Status.NOT_STARTED.getStatusName())
                     .thirdyearStatus(thirdyearStatus!=null?thirdyearStatus:Status.NOT_STARTED.getStatusName())
+                    .email(emailEntity.getEmail()!=null?emailEntity.getEmail():"")
                     //.completedDate(participantStudyList.size() > 0 ? participantStudyList.get(0).getCompletedTime() : null)
                     .build();
 
@@ -189,8 +189,10 @@ public class ParticipantService {
             participantStudyEntity.setParticipantId(participantStudy.getParticipantId());
             participantStudyEntity.setStudyId(participantStudy.getStudyId());
             participantStudyEntity.setTimeline(participantStudy.getTimeline());
+            participantStudyEntity.setQuid(generateGUID());
         }
         participantStudyEntity.setStudyInformation(participantStudy.getStudyInformation());
+        participantStudyEntity.setAccess(participantStudy.getAccess());
         if ("completed".equalsIgnoreCase(participantStudy.getStatus())) {
             participantStudyEntity.setStatus(Status.SUBMITTED.getStatusName());
             participantStudyEntity.setCompletedTime(new Date());
@@ -267,6 +269,8 @@ public class ParticipantService {
                     .activeTimeline(activeTimeline)
                     .endedTimeline(isTimelineEnded)
                     .firstName(getFirstName(participantId))
+                    .access(entity.getAccess())
+                    .quid(entity.getQuid())
                     .build();
             if(entity.getCompletedTime()!=null) {
                 participantStudy.setCompletedDate(entity.getCompletedTime());
@@ -295,34 +299,43 @@ public class ParticipantService {
         List<ParticipantStudyEntity> participantStudyEntityList = new ArrayList<>();
         ParticipantStudyEntity vascularStudy = ParticipantStudyEntity.builder()
                 .studyId(Study.VASCULAR_RISK.getStudyId())
+                .access(Access.ONSITE_COORDINATOR)
                 .status("Not Started")
                 .timeline(timeline)
                 .participantId(participantId)
+                .quid(generateGUID())
                 .build();
         ParticipantStudyEntity cardioVascular = ParticipantStudyEntity.builder()
                 .studyId(Study.CARDIO_VASCULAR_RISK.getStudyId())
+                .access(Access.ONSITE_COORDINATOR)
                 .status("Not Started")
                 .timeline(timeline)
                 .participantId(participantId)
+                .quid(generateGUID())
                 .build();
         ParticipantStudyEntity memoryStudy = ParticipantStudyEntity.builder()
                 .studyId(Study.MEMORY.getStudyId())
+                .access(Access.ONSITE_COORDINATOR)
                 .status("Not Started")
                 .timeline(timeline)
                 .participantId(participantId)
+                .quid(generateGUID())
                 .build();
         ParticipantStudyEntity dietStudy = ParticipantStudyEntity.builder()
                 .studyId(Study.DIET.getStudyId())
+                .access(Access.ONSITE_COORDINATOR)
                 .status("Not Started")
                 .timeline(timeline)
                 .participantId(participantId)
+                .quid(generateGUID())
                 .build();
-
         ParticipantStudyEntity exerciseStudy = ParticipantStudyEntity.builder()
                 .studyId(Study.EXERCISE.getStudyId())
+                .access(Access.ONSITE_COORDINATOR)
                 .status("Not Started")
                 .timeline(timeline)
                 .participantId(participantId)
+                .quid(generateGUID())
                 .build();
 
         participantStudyEntityList.add(vascularStudy);
@@ -331,6 +344,11 @@ public class ParticipantService {
         participantStudyEntityList.add(dietStudy);
         participantStudyEntityList.add(exerciseStudy);
         return participantStudyEntityList;
+    }
+
+    private String generateGUID(){
+        UUID randomId = java.util.UUID.randomUUID();
+        return randomId.toString();
     }
 
     public List<String> getDrugsList() {
