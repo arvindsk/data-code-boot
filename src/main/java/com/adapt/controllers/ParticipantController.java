@@ -34,4 +34,13 @@ public class ParticipantController {
         List<ParticipantStudy> participantStudyList = participantService.getParticipantStudyList(participant);
         return participantStudyList;
     }
+
+    @PostMapping("send-email")
+    public @ResponseBody
+    boolean sendEmail(@RequestParam("emailId") String email,
+                               @RequestParam("url") String url) {
+
+            return participantService.generateEmail(email, url);
+
+    }
 }

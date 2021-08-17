@@ -8,30 +8,43 @@ import com.adapt.dto.enums.Study;
 import com.adapt.dto.enums.Timeline;
 import com.adapt.entity.*;
 import com.adapt.repository.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.mail.javamail.JavaMailSender;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 @Service
 public class ParticipantService {
+
+    @Value("${mail.userName}")
+    private String userName;
 
     private final ParticipantsEntityRepository participantsEntityRepository;
     private final ParticipantStudyEntityRepository participantStudyEntityRepository;
     private final CerealListEntityRepository cerealListEntityRepository;
     private final MedicineListEntityRepository medicineListEntityRepository;
     private final ParticipantEmailEntityRepository participantEmailEntityRepository;
+    private JavaMailSender emailSender;
 
     public ParticipantService(ParticipantsEntityRepository participantsEntityRepository,
                               ParticipantStudyEntityRepository participantStudyEntityRepository,
                               CerealListEntityRepository cerealListEntityRepository,
                               MedicineListEntityRepository medicineListEntityRepository,
-                              ParticipantEmailEntityRepository participantEmailEntityRepository) {
+                              ParticipantEmailEntityRepository participantEmailEntityRepository,
+                              JavaMailSender emailSender) {
         this.participantsEntityRepository = participantsEntityRepository;
         this.participantStudyEntityRepository = participantStudyEntityRepository;
         this.cerealListEntityRepository = cerealListEntityRepository;
         this.medicineListEntityRepository = medicineListEntityRepository;
         this.participantEmailEntityRepository = participantEmailEntityRepository;
+        this.emailSender = emailSender;
     }
 
     public List<Participant> getParticipants(String host) {
@@ -280,6 +293,50 @@ public class ParticipantService {
         return participantStudyList;
     }
 
+    public boolean generateEmail(String email, String url){
+
+        try {
+
+            // Create a default MimeMessage object.
+            MimeMessage message = emailSender.createMimeMessage();
+
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(userName));
+
+            // Set To: header field of the header.
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+
+            // Set Subject: header field
+            message.setSubject("This is the Subject Line!");
+
+            // Now set the actual message
+            message.setText("This is actual message"+url);
+
+            // Send message
+            emailSender.send(message);
+            System.out.println("Sent message successfully....");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+            return false;
+        }
+
+
+        return true;
+    }
+
+    public List<String> getDrugsList() {
+        List<MedicineListEntity> medicineListEntityList = this.medicineListEntityRepository.findAll();
+
+        return medicineListEntityList.stream().map(MedicineListEntity::getName).collect(Collectors.toList());
+
+    }
+
+    public List<String> getCerealList() {
+        List<CerealListEntity> cerealListEntityList = this.cerealListEntityRepository.findAll();
+
+        return cerealListEntityList.stream().map(CerealListEntity::getName).collect(Collectors.toList());
+    }
+
     private String getFirstName(Integer participantId) {
         if (Objects.nonNull(participantId)) {
             ParticipantsEntity participantsEntity = participantsEntityRepository.getById(participantId);
@@ -299,7 +356,7 @@ public class ParticipantService {
         List<ParticipantStudyEntity> participantStudyEntityList = new ArrayList<>();
         ParticipantStudyEntity vascularStudy = ParticipantStudyEntity.builder()
                 .studyId(Study.VASCULAR_RISK.getStudyId())
-                .access(Access.ONSITE_COORDINATOR)
+                .access(Access.ONSITE_COORDINATOR.getAccessValue())
                 .status("Not Started")
                 .timeline(timeline)
                 .participantId(participantId)
@@ -307,7 +364,7 @@ public class ParticipantService {
                 .build();
         ParticipantStudyEntity cardioVascular = ParticipantStudyEntity.builder()
                 .studyId(Study.CARDIO_VASCULAR_RISK.getStudyId())
-                .access(Access.ONSITE_COORDINATOR)
+                .access(Access.ONSITE_COORDINATOR.getAccessValue())
                 .status("Not Started")
                 .timeline(timeline)
                 .participantId(participantId)
@@ -315,7 +372,7 @@ public class ParticipantService {
                 .build();
         ParticipantStudyEntity memoryStudy = ParticipantStudyEntity.builder()
                 .studyId(Study.MEMORY.getStudyId())
-                .access(Access.ONSITE_COORDINATOR)
+                .access(Access.ONSITE_COORDINATOR.getAccessValue())
                 .status("Not Started")
                 .timeline(timeline)
                 .participantId(participantId)
@@ -323,7 +380,7 @@ public class ParticipantService {
                 .build();
         ParticipantStudyEntity dietStudy = ParticipantStudyEntity.builder()
                 .studyId(Study.DIET.getStudyId())
-                .access(Access.ONSITE_COORDINATOR)
+                .access(Access.ONSITE_COORDINATOR.getAccessValue())
                 .status("Not Started")
                 .timeline(timeline)
                 .participantId(participantId)
@@ -331,7 +388,7 @@ public class ParticipantService {
                 .build();
         ParticipantStudyEntity exerciseStudy = ParticipantStudyEntity.builder()
                 .studyId(Study.EXERCISE.getStudyId())
-                .access(Access.ONSITE_COORDINATOR)
+                .access(Access.ONSITE_COORDINATOR.getAccessValue())
                 .status("Not Started")
                 .timeline(timeline)
                 .participantId(participantId)
@@ -349,18 +406,5 @@ public class ParticipantService {
     private String generateGUID(){
         UUID randomId = java.util.UUID.randomUUID();
         return randomId.toString();
-    }
-
-    public List<String> getDrugsList() {
-        List<MedicineListEntity> medicineListEntityList = this.medicineListEntityRepository.findAll();
-
-        return medicineListEntityList.stream().map(MedicineListEntity::getName).collect(Collectors.toList());
-
-    }
-
-    public List<String> getCerealList() {
-        List<CerealListEntity> cerealListEntityList = this.cerealListEntityRepository.findAll();
-
-        return cerealListEntityList.stream().map(CerealListEntity::getName).collect(Collectors.toList());
     }
 }
