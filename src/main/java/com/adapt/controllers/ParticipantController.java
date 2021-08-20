@@ -65,10 +65,10 @@ public class ParticipantController {
 
     @PostMapping("send-email")
     public @ResponseBody
-    boolean sendEmail(@RequestParam("emailId") String email,
-                               @RequestParam("url") String url) {
+    UpdateStatus sendEmail(@RequestBody ParticipantStudy participantStudy ){
+       return participantService.sendMail(participantStudy);
 
-            return participantService.generateEmail(email, url);
+            //return participantService.generateEmail(email, url);
 
     }
 }

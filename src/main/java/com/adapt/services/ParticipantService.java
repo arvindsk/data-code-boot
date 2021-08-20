@@ -23,6 +23,8 @@ public class ParticipantService {
 
     @Value("${mail.userName}")
     private String userName;
+    @Value("${app.redirect-url}")
+    private String url;
 
     private final ParticipantsEntityRepository participantsEntityRepository;
     private final ParticipantStudyEntityRepository participantStudyEntityRepository;
@@ -274,6 +276,14 @@ public class ParticipantService {
                 }
             }
         }
+        String email=null;
+
+        ParticipantEmailEntity emailEntity = participantEmailEntityRepository.findByParticipantId(participant.getParticipantId());
+
+
+        if (Objects.nonNull(emailEntity)) {
+            email=emailEntity.getEmail();
+        }
         for (ParticipantStudyEntity entity : participantStudyEntityList) {
             ParticipantStudy participantStudy = ParticipantStudy.builder().studyId(entity.getStudyId())
                     .participantStudyId(entity.getParticipantStudyId())
@@ -286,6 +296,7 @@ public class ParticipantService {
                     .endedTimeline(isTimelineEnded)
                     .firstName(getFirstName(participantId))
                     .access(entity.getAccess())
+                    .email(email)
                     .quid(entity.getQuid())
                     .build();
             if(entity.getCompletedTime()!=null) {
@@ -485,6 +496,37 @@ public class ParticipantService {
                     .status(StatusFlag.FAILURE)
                     .message(e.getMessage())
                     .build();
+        }
+    }
+
+    public UpdateStatus sendMail(ParticipantStudy participantStudy) {
+        try {
+            String email=participantStudy.getEmail();
+
+            ParticipantEmailEntity emailEntity = participantEmailEntityRepository.findByParticipantId(participantStudy.getParticipantId());
+
+
+            if (Objects.nonNull(emailEntity)) {
+                emailEntity.setEmail(email);
+            }else {
+                emailEntity=ParticipantEmailEntity.builder()
+                        .participantId(participantStudy.getParticipantId())
+                        .email(email)
+                        .build();
+            }
+            participantEmailEntityRepository.saveAndFlush(emailEntity);
+
+            ParticipantStudyEntity participantStudyEntity=participantStudyEntityRepository.findParticipantStudyEntityByParticipantStudyId(participantStudy.getParticipantStudyId());
+            String quid = participantStudyEntity.getQuid();
+            String mailUrl=url.concat(quid);
+            generateEmail(email,mailUrl);
+
+            participantStudyEntity.setStatus(Status.SEND_EMAIL.getStatusName());
+            participantStudyEntityRepository.saveAndFlush(participantStudyEntity);
+            return UpdateStatus.builder().status(StatusFlag.SUCCESS).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return UpdateStatus.builder().status(StatusFlag.FAILURE).build();
         }
     }
 }

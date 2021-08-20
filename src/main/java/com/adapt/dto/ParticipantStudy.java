@@ -22,5 +22,6 @@ public class ParticipantStudy {
     private boolean endedTimeline;
     private String access;
     private String quid;
+    private String email;
 
 }
