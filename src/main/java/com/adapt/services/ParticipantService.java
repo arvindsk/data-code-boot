@@ -2,10 +2,8 @@ package com.adapt.services;
 
 import com.adapt.dto.Participant;
 import com.adapt.dto.ParticipantStudy;
-import com.adapt.dto.enums.Access;
-import com.adapt.dto.enums.Status;
-import com.adapt.dto.enums.Study;
-import com.adapt.dto.enums.Timeline;
+import com.adapt.dto.UpdateStatus;
+import com.adapt.dto.enums.*;
 import com.adapt.entity.*;
 import com.adapt.repository.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -157,6 +155,7 @@ public class ParticipantService {
                 }
             }
             ParticipantEmailEntity emailEntity = participantEmailEntityRepository.findByParticipantId(participantsEntity.getParticipantId());
+            String email = Objects.nonNull(emailEntity)?emailEntity.getEmail() != null ? emailEntity.getEmail() : "":null;
             Participant participant = Participant.builder()
                     .participantId(participantsEntity.getParticipantId())
                     .firstName(participantsEntity.getFirstName())
@@ -167,7 +166,7 @@ public class ParticipantService {
                     .baselineStatus(baselineStatus!=null?baselineStatus:Status.NOT_STARTED.getStatusName())
                     .firstyearStatus(firstyearStatus!=null?firstyearStatus:Status.NOT_STARTED.getStatusName())
                     .thirdyearStatus(thirdyearStatus!=null?thirdyearStatus:Status.NOT_STARTED.getStatusName())
-                    .email(emailEntity.getEmail()!=null?emailEntity.getEmail():"")
+                    .email(email)
                     //.completedDate(participantStudyList.size() > 0 ? participantStudyList.get(0).getCompletedTime() : null)
                     .build();
 
@@ -202,11 +201,15 @@ public class ParticipantService {
             participantStudyEntity.setParticipantId(participantStudy.getParticipantId());
             participantStudyEntity.setStudyId(participantStudy.getStudyId());
             participantStudyEntity.setTimeline(participantStudy.getTimeline());
-            participantStudyEntity.setQuid(generateGUID());
+           // participantStudyEntity.setQuid(generateGUID());
         }
         participantStudyEntity.setStudyInformation(participantStudy.getStudyInformation());
         participantStudyEntity.setAccess(participantStudy.getAccess());
-        if ("completed".equalsIgnoreCase(participantStudy.getStatus())) {
+        if ((Access.ONSITE_PARTICIPANT.getAccessValue().equalsIgnoreCase(participantStudy.getAccess())
+                || Access.EMAIL_PARTICIPANT.getAccessValue().equalsIgnoreCase(participantStudy.getAccess()))
+                && "completed".equalsIgnoreCase(participantStudy.getStatus())) {
+            participantStudyEntity.setStatus(Status.READY_FOR_SUBMISSION.getStatusName());
+        } else if ("completed".equalsIgnoreCase(participantStudy.getStatus())) {
             participantStudyEntity.setStatus(Status.SUBMITTED.getStatusName());
             participantStudyEntity.setCompletedTime(new Date());
         } else if ("running".equalsIgnoreCase(participantStudy.getStatus())) {
@@ -291,6 +294,59 @@ public class ParticipantService {
             participantStudyList.add(participantStudy);
         }
         return participantStudyList;
+    }
+
+    public ParticipantStudy getParticipantStudy(String quid){
+        ParticipantStudyEntity entity = participantStudyEntityRepository.findByQuid(quid);
+        Integer participantId=entity.getParticipantId();
+        String activeTimeline = Timeline.BASELINE.getTimelineName();
+        boolean isTimelineEnded = false;
+
+        List<ParticipantStudyEntity> participantStudyTimelineList = participantStudyEntityRepository
+                .findByParticipantIdAndCompletedTimeIsNotNullOrderByCompletedTime(participantId);
+        if(participantStudyTimelineList.isEmpty()){
+            participantStudyTimelineList = participantStudyEntityRepository
+                    .findByParticipantId(participantId);
+        }
+        Date firstAttemptTime = participantStudyTimelineList.get(0).getCompletedTime();
+        if (firstAttemptTime != null) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(firstAttemptTime);
+            calendar.add(Calendar.MONTH, 12);
+            Calendar calendar2 = Calendar.getInstance();
+            calendar2.setTime(firstAttemptTime);
+            calendar2.add(Calendar.MONTH, 24);
+            Calendar calendar1 = Calendar.getInstance();
+
+            if (calendar1.after(calendar)) {
+                activeTimeline = Timeline.FIRST_YEAR.getTimelineName();
+                if(calendar1.after(calendar2)){
+                    isTimelineEnded = true;
+                }
+                calendar.add(Calendar.MONTH, 18);
+                calendar2.add(Calendar.MONTH, 18);
+                if (calendar1.after(calendar)) {
+                    isTimelineEnded = false;
+                    activeTimeline = Timeline.THIRD_YEAR.getTimelineName();
+                    if(calendar1.after(calendar2)){
+                        isTimelineEnded = true;
+                    }
+                }
+            }
+        }
+        return ParticipantStudy.builder().studyId(entity.getStudyId())
+                .participantStudyId(entity.getParticipantStudyId())
+                .studyInformation(entity.getStudyInformation())
+                .studyName(Study.getStudyNameForKey(entity.getStudyId()))
+                .status(entity.getStatus())
+                .timeline(entity.getTimeline())
+                .participantId(entity.getParticipantId())
+                .activeTimeline(activeTimeline)
+                .endedTimeline(isTimelineEnded)
+                .firstName(getFirstName(entity.getParticipantId()))
+                .access(entity.getAccess())
+                .quid(entity.getQuid())
+                .build();
     }
 
     public boolean generateEmail(String email, String url){
@@ -406,5 +462,29 @@ public class ParticipantService {
     private String generateGUID(){
         UUID randomId = java.util.UUID.randomUUID();
         return randomId.toString();
+    }
+
+    public UpdateStatus updateParticipantStudy(ParticipantStudy participantStudy) {
+        try {
+            ParticipantStudyEntity entity = participantStudyEntityRepository.findParticipantStudyEntityByParticipantStudyId(participantStudy.getParticipantStudyId());
+            entity.setAccess(participantStudy.getAccess());
+            if ("completed".equalsIgnoreCase(participantStudy.getStatus())) {
+                entity.setStatus(Status.SUBMITTED.getStatusName());
+                entity.setCompletedTime(new Date());
+            }else {
+                entity.setStatus(participantStudy.getStatus());
+            }
+
+            participantStudyEntityRepository.saveAndFlush(entity);
+
+            return UpdateStatus.builder()
+                    .status(StatusFlag.SUCCESS)
+                    .build();
+        } catch (Exception e) {
+            return UpdateStatus.builder()
+                    .status(StatusFlag.FAILURE)
+                    .message(e.getMessage())
+                    .build();
+        }
     }
 }

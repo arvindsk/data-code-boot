@@ -8,7 +8,8 @@ public enum Status {NOT_STARTED(1001, "Not Started"),
     SUBMITTED(1003, "Submitted"),
     NOT_ATTEMPTED(1004, "Not Attempted"),
     IN_COMPLETE(1005, "In-Complete"),
-    COMPLETED(1006, "Completed");
+    COMPLETED(1006, "Completed"),
+    READY_FOR_SUBMISSION(1007, "Ready for Submission");
 
     private final Integer statusId;
     private final String statusName;
