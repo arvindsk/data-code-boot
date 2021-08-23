@@ -670,16 +670,16 @@ INSERT INTO adaptdb.cereal_list (cereal_id, name) VALUES (323, 'Whole wheat, cra
 INSERT INTO adaptdb.cereal_list (cereal_id, name) VALUES (324, 'Zoom');
 
 SET FOREIGN_KEY_CHECKS = 0;
-DROP TABLE IF EXISTS `adapt_dev`.`questionnaire` ;
-DROP TABLE IF EXISTS `adapt_dev`.`questionnaire_sequence` ;
+DROP TABLE IF EXISTS adaptdb.questionnaire ;
+DROP TABLE IF EXISTS adaptdb.questionnaire_sequence;
 
-DROP TABLE IF EXISTS `adapt_dev`.`rows`;
-DROP TABLE IF EXISTS `adapt_dev`.`choices`;
-DROP TABLE IF EXISTS `adapt_dev`.`columns`;
-DROP TABLE IF EXISTS `adapt_dev`.`elements`;
-DROP TABLE IF EXISTS `adapt_dev`.`pages`;
-DROP TABLE IF EXISTS `adapt_dev`.`questionnaires`;
-DROP TABLE IF EXISTS `adapt_dev`.`questionnaire_triggers`;
+DROP TABLE IF EXISTS adaptdb.rows;
+DROP TABLE IF EXISTS adaptdb.choices;
+DROP TABLE IF EXISTS adaptdb.columns;
+DROP TABLE IF EXISTS adaptdb.elements;
+DROP TABLE IF EXISTS adaptdb.pages;
+DROP TABLE IF EXISTS adaptdb.questionnaires;
+DROP TABLE IF EXISTS adaptdb.questionnaire_triggers;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -1422,6 +1422,8 @@ INSERT INTO adaptdb.rows (row_id, name, value, elements_id) VALUES (39, '2. Retu
 INSERT INTO adaptdb.rows (row_id, name, value, elements_id) VALUES (40, '3. The ability to concentrate on and complete a task without being distracted by other things.', '3', 137);
 INSERT INTO adaptdb.rows (row_id, name, value, elements_id) VALUES (41, '4. Working on a particular task while talking to someone at the same time.', '4', 137);
 
+DROP TABLE IF EXISTS adaptdb.site;
+
 CREATE TABLE
     adaptdb.site
     (
@@ -1447,15 +1449,18 @@ INSERT INTO adaptdb.site (site_id, site, site_name, nacc_id) VALUES (11, 'Kentuc
 INSERT INTO adaptdb.site (site_id, site, site_name, nacc_id) VALUES (12, 'Columbia', 'University of Columbia', 4);
 INSERT INTO adaptdb.site (site_id, site, site_name, nacc_id) VALUES (13, 'Wake Forest', 'University of Wake Forest', 42);
 
+DROP TABLE IF EXISTS adaptdb.participant_email;
+
 CREATE TABLE
     adaptdb.participant_email
     (
-        participant_email_id INT NOT NULL,
+        participant_email_id INT NOT NULL AUTO_INCREMENT,
         participant_id INT NOT NULL,
         email VARCHAR(255),
         PRIMARY KEY (participant_email_id),
         CONSTRAINT participantemail_fk1 FOREIGN KEY (participant_id) REFERENCES
         adaptdb.participants (participant_id)
     )
-    ENGINE=InnoDB DEFAULT CHARSET=latin1
+    ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 commit;

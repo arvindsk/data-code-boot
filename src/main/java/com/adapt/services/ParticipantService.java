@@ -369,16 +369,17 @@ public class ParticipantService {
             MimeMessage message = emailSender.createMimeMessage();
 
             // Set From: header field of the header.
-            message.setFrom(new InternetAddress(userName));
+            message.setFrom(userName);
 
             // Set To: header field of the header.
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+            message.setRecipients(Message.RecipientType.TO, email);
 
             // Set Subject: header field
-            message.setSubject("This is the Subject Line!");
+            message.setSubject("Your Adapt Questionnaire");
 
             // Now set the actual message
-            message.setText("This is actual message"+url);
+            String html = "\n<a href='"+url+"'>Click here for the questionnaire</a>";
+            message.setText(html, "UTF-8", "html");
 
             // Send message
             emailSender.send(message);
