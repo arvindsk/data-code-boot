@@ -6,6 +6,7 @@ import com.adapt.dto.UpdateStatus;
 import com.adapt.dto.enums.*;
 import com.adapt.entity.*;
 import com.adapt.repository.*;
+import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -479,10 +480,24 @@ public class ParticipantService {
         try {
             ParticipantStudyEntity entity = participantStudyEntityRepository.findParticipantStudyEntityByParticipantStudyId(participantStudy.getParticipantStudyId());
             entity.setAccess(participantStudy.getAccess());
-            if ("completed".equalsIgnoreCase(participantStudy.getStatus())) {
+            if (Status.IN_PROGRESS.getStatusName().equalsIgnoreCase(participantStudy.getStatus())
+                    && Access.EMAIL_PARTICIPANT.getAccessValue().equalsIgnoreCase(participantStudy.getAccess())) {
+                entity.setStatus(Status.EMAIL_IN_PROGRESS.getStatusName());
+            } else if (Status.EMAIL_IN_PROGRESS.getStatusName().equalsIgnoreCase(participantStudy.getStatus())
+                    && !Access.EMAIL_PARTICIPANT.getAccessValue().equalsIgnoreCase(participantStudy.getAccess())) {
+                entity.setStatus(Status.IN_PROGRESS.getStatusName());
+            } else if (Status.SEND_EMAIL.getStatusName().equalsIgnoreCase(participantStudy.getStatus())
+                    && !Access.EMAIL_PARTICIPANT.getAccessValue().equalsIgnoreCase(participantStudy.getAccess())) {
+                if(Strings.isNullOrEmpty(participantStudy.getStudyInformation())){
+                    entity.setStatus(Status.NOT_STARTED.getStatusName());
+                }else {
+                    entity.setStatus(Status.IN_PROGRESS.getStatusName());
+                }
+
+            }else if ("completed".equalsIgnoreCase(participantStudy.getStatus())) {
                 entity.setStatus(Status.SUBMITTED.getStatusName());
                 entity.setCompletedTime(new Date());
-            }else {
+            } else {
                 entity.setStatus(participantStudy.getStatus());
             }
 

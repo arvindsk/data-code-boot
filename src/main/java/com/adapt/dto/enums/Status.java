@@ -10,7 +10,8 @@ public enum Status {NOT_STARTED(1001, "Not Started"),
     IN_COMPLETE(1005, "In-Complete"),
     COMPLETED(1006, "Completed"),
     READY_FOR_SUBMISSION(1007, "Ready for Submission"),
-    SEND_EMAIL(1008, "Send Email");
+    SEND_EMAIL(1008, "Send Email"),
+    EMAIL_IN_PROGRESS(1009, "Email-In-Progress");
 
     private final Integer statusId;
     private final String statusName;
