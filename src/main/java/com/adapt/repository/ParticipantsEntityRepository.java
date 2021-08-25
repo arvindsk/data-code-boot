@@ -9,4 +9,6 @@ import java.util.List;
 public interface ParticipantsEntityRepository extends JpaRepository<ParticipantsEntity, Integer>, JpaSpecificationExecutor<ParticipantsEntity> {
 
     List<ParticipantsEntity> findAllByNaccID(String host);
+    ParticipantsEntity findByParticipantId(Integer participantId);
+
 }

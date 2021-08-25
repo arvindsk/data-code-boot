@@ -361,7 +361,7 @@ public class ParticipantService {
                 .build();
     }
 
-    public boolean generateEmail(String email, String url){
+    public boolean generateEmail(String email, String userName, String lastName, String url){
 
         try {
 
@@ -375,10 +375,10 @@ public class ParticipantService {
             message.setRecipients(Message.RecipientType.TO, email);
 
             // Set Subject: header field
-            message.setSubject("Your Adapt Questionnaire");
+            message.setSubject("Your Adapt questionnaire is here");
 
             // Now set the actual message
-            String html = "\n<a href='"+url+"'>Click here for the questionnaire</a>";
+            String html = "<p>Dear Mr."+lastName+"</p><p>Please click on the link shared below to complete the questionnaire and submit it online. Call us if you need any further information or assistance for completing the questionnaire.</p><p>Thank you for your participation.</p><p><<<a href='"+url+"'>LINK HERE</a>>></p>";
             message.setText(html, "UTF-8", "html");
 
             // Send message
@@ -535,7 +535,8 @@ public class ParticipantService {
             ParticipantStudyEntity participantStudyEntity=participantStudyEntityRepository.findParticipantStudyEntityByParticipantStudyId(participantStudy.getParticipantStudyId());
             String quid = participantStudyEntity.getQuid();
             String mailUrl=url.concat(quid);
-            generateEmail(email,mailUrl);
+            ParticipantsEntity participant = participantsEntityRepository.findByParticipantId(participantStudy.getParticipantId());
+            generateEmail(email, userName, participant.getLastName(), mailUrl);
 
             participantStudyEntity.setStatus(Status.SEND_EMAIL.getStatusName());
             participantStudyEntityRepository.saveAndFlush(participantStudyEntity);
