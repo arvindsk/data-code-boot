@@ -96,4 +96,7 @@ public class ElementsItem {
 
     @SerializedName("html")
     private String html;
+
+    @SerializedName("width")
+    private String width;
 }

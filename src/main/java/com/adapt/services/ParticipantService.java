@@ -32,6 +32,7 @@ public class ParticipantService {
     private final CerealListEntityRepository cerealListEntityRepository;
     private final MedicineListEntityRepository medicineListEntityRepository;
     private final ParticipantEmailEntityRepository participantEmailEntityRepository;
+    private final StudyEntityRepository studyEntityRepository;
     private JavaMailSender emailSender;
 
     public ParticipantService(ParticipantsEntityRepository participantsEntityRepository,
@@ -39,12 +40,14 @@ public class ParticipantService {
                               CerealListEntityRepository cerealListEntityRepository,
                               MedicineListEntityRepository medicineListEntityRepository,
                               ParticipantEmailEntityRepository participantEmailEntityRepository,
+                              StudyEntityRepository studyEntityRepository,
                               JavaMailSender emailSender) {
         this.participantsEntityRepository = participantsEntityRepository;
         this.participantStudyEntityRepository = participantStudyEntityRepository;
         this.cerealListEntityRepository = cerealListEntityRepository;
         this.medicineListEntityRepository = medicineListEntityRepository;
         this.participantEmailEntityRepository = participantEmailEntityRepository;
+        this.studyEntityRepository = studyEntityRepository;
         this.emailSender = emailSender;
     }
 
@@ -212,6 +215,7 @@ public class ParticipantService {
                 || Access.EMAIL_PARTICIPANT.getAccessValue().equalsIgnoreCase(participantStudy.getAccess()))
                 && "completed".equalsIgnoreCase(participantStudy.getStatus())) {
             participantStudyEntity.setStatus(Status.READY_FOR_SUBMISSION.getStatusName());
+            participantStudyEntity.setQuid(generateGUID());
         } else if ("completed".equalsIgnoreCase(participantStudy.getStatus())) {
             participantStudyEntity.setStatus(Status.SUBMITTED.getStatusName());
             participantStudyEntity.setCompletedTime(new Date());
@@ -361,7 +365,7 @@ public class ParticipantService {
                 .build();
     }
 
-    public boolean generateEmail(String email, String userName, String lastName, String url){
+    public boolean generateEmail(String email, String userName, String lastName, String url, String questionaire){
 
         try {
 
@@ -375,10 +379,10 @@ public class ParticipantService {
             message.setRecipients(Message.RecipientType.TO, email);
 
             // Set Subject: header field
-            message.setSubject("Your Adapt questionnaire is here");
+            message.setSubject("DVCID Sleep questionnaire");
 
             // Now set the actual message
-            String html = "<p>Dear Mr."+lastName+"</p><p>Please click on the link shared below to complete the questionnaire and submit it online. Call us if you need any further information or assistance for completing the questionnaire.</p><p>Thank you for your participation.</p><p><<<a href='"+url+"'>LINK HERE</a>>></p>";
+            String html = "<p>Dear Mr/Mrs. "+lastName+"</p><p>&nbsp;</p><p>Welcome to <b>DVCID <u>"+questionaire+" Study</u></b>.</p><p>&nbsp;</p><p>Please take a few moments to complete the questionnaire and submit it online.</p><p>Call us if you need any further information or assistance for completing the questionnaire.</p><p>&nbsp;</p><p><<<a href='"+url+"'>Click here for the questionnaire</a>>></p><p>&nbsp;</p><p>Note: <u>Please <b>do not reply to this email</b>, We would not receive your response. Kindly contact the study coordinator for any concerns.</u></p><p>&nbsp;</p><p>Thank you for your participation.</p><p><b>DVCID Team</b></p>";
             message.setText(html, "UTF-8", "html");
 
             // Send message
@@ -536,7 +540,8 @@ public class ParticipantService {
             String quid = participantStudyEntity.getQuid();
             String mailUrl=url.concat(quid);
             ParticipantsEntity participant = participantsEntityRepository.findByParticipantId(participantStudy.getParticipantId());
-            generateEmail(email, userName, participant.getLastName(), mailUrl);
+            StudyEntity studyEntity = studyEntityRepository.findByStudyId(participantStudyEntity.getStudyId());
+            generateEmail(email, userName, participant.getLastName(), mailUrl, studyEntity.getStudyName());
 
             participantStudyEntity.setStatus(Status.SEND_EMAIL.getStatusName());
             participantStudyEntityRepository.saveAndFlush(participantStudyEntity);

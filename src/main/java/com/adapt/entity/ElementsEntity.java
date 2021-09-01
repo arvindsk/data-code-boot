@@ -104,6 +104,9 @@ public class ElementsEntity implements Serializable {
     @Column(name = "html")
     private String html;
 
+    @Column(name = "width")
+    private String width;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
