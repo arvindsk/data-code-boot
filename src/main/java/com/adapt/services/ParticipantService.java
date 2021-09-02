@@ -215,7 +215,7 @@ public class ParticipantService {
                 || Access.EMAIL_PARTICIPANT.getAccessValue().equalsIgnoreCase(participantStudy.getAccess()))
                 && "completed".equalsIgnoreCase(participantStudy.getStatus())) {
             participantStudyEntity.setStatus(Status.READY_FOR_SUBMISSION.getStatusName());
-            participantStudyEntity.setQuid(generateGUID());
+            //participantStudyEntity.setQuid(generateGUID());
         } else if ("completed".equalsIgnoreCase(participantStudy.getStatus())) {
             participantStudyEntity.setStatus(Status.SUBMITTED.getStatusName());
             participantStudyEntity.setCompletedTime(new Date());
