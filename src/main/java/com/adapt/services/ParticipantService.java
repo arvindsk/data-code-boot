@@ -379,7 +379,7 @@ public class ParticipantService {
             message.setRecipients(Message.RecipientType.TO, email);
 
             // Set Subject: header field
-            message.setSubject("DVCID Sleep questionnaire");
+            message.setSubject("DVCID "+questionaire+" questionnaire");
 
             // Now set the actual message
             String html = "<p>Dear Mr/Mrs. "+lastName+"</p><p>&nbsp;</p><p>Welcome to <b>DVCID <u>"+questionaire+" Study</u></b>.</p><p>&nbsp;</p><p>Please take a few moments to complete the questionnaire and submit it online.</p><p>Call us if you need any further information or assistance for completing the questionnaire.</p><p>&nbsp;</p><p><<<a href='"+url+"'>Click here for the questionnaire</a>>></p><p>&nbsp;</p><p>Note: <u>Please <b>do not reply to this email</b>, We would not receive your response. Kindly contact the study coordinator for any concerns.</u></p><p>&nbsp;</p><p>Thank you for your participation.</p><p><b>DVCID Team</b></p>";
