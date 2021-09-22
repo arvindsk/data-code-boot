@@ -1,7 +1,5 @@
 DROP DATABASE IF EXISTS adaptdb;
 CREATE DATABASE adaptdb;
-DROP TABLE IF EXISTS adaptdb.questionnaire;
-CREATE TABLE adaptdb.questionnaire (questionnaire_id int NOT NULL AUTO_INCREMENT, questionnaire_type varchar(45), questions longtext, PRIMARY KEY (questionnaire_id)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
 DROP TABLE IF EXISTS adaptdb.study;
 CREATE TABLE adaptdb.study (study_id int NOT NULL, study_name varchar(255), PRIMARY KEY (study_id)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
 INSERT INTO adaptdb.study (study_id, study_name) VALUES (1001, 'Vascular Risk');
@@ -10,13 +8,13 @@ INSERT INTO adaptdb.study (study_id, study_name) VALUES (1003, 'Everyday Cogniti
 INSERT INTO adaptdb.study (study_id, study_name) VALUES (1004, 'Diet Screening');
 INSERT INTO adaptdb.study (study_id, study_name) VALUES (1005, 'Physical Activity Screening');
 DROP TABLE IF EXISTS adaptdb.participants;
-CREATE TABLE adaptdb.participants (participant_id int NOT NULL AUTO_INCREMENT, autotime timestamp DEFAULT CURRENT_TIMESTAMP, logid varchar(15), loghost varchar(20), first_name varchar(255) NOT NULL, last_name varchar(255) NOT NULL, naccID varchar(45) NOT NULL, gender varchar(45) NOT NULL, race varchar(255) NOT NULL, ethnicity varchar(255) NOT NULL, dob varchar(45) NOT NULL, ques1 varchar(45) NOT NULL, ques2 varchar(45) NOT NULL, ques3 varchar(45) NOT NULL, ques4 varchar(45) NOT NULL, autolog timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, revlogid varchar(15), revloghost varchar(40), PRIMARY KEY (participant_id)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
+CREATE TABLE adaptdb.participants (projectid varchar(9) DEFAULT NULL, id int(11) NOT NULL AUTO_INCREMENT, autotime timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, logid varchar(100) NOT NULL, loghost varchar(100) DEFAULT NULL, firstName varchar(25) NOT NULL, lastName varchar(25) NOT NULL, patientID varchar(25) NOT NULL, siteID varchar(2) DEFAULT NULL, naccID varchar(25) DEFAULT NULL, gender varchar(7) NOT NULL, race varchar(50) NOT NULL, ethnicity varchar(30) NOT NULL, dob varchar(7) NOT NULL, ques1 varchar(12) NOT NULL, ques2 varchar(12) NOT NULL, ques3 varchar(12) NOT NULL, ques4 varchar(12) NOT NULL, ques5 varchar(12) DEFAULT NULL, ques6 varchar(12) DEFAULT NULL, autolog timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, revlogid varchar(100) DEFAULT NULL, revloghost varchar(100) DEFAULT NULL, PRIMARY KEY (id), UNIQUE KEY U_ProjectID (projectid), UNIQUE KEY U_Paticipant (patientID, siteID)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
 DROP TABLE IF EXISTS adaptdb.participant_study;
 CREATE TABLE adaptdb.participant_study (participant_study_id int NOT NULL AUTO_INCREMENT, participant_id int NOT NULL, study_information longtext, timeline varchar(255), study_id int, status varchar(255), completed_time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NULL, access VARCHAR(255), quid VARCHAR(255), PRIMARY KEY (participant_study_id), INDEX participant_study_FK_1 (study_id), INDEX participant_study_FK_2 (participant_id)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
 DROP TABLE IF EXISTS adaptdb.webroles;
 CREATE TABLE adaptdb.webroles (username varchar(100) NOT NULL, rolename varchar(20) NOT NULL, PRIMARY KEY (username, rolename)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
 DROP TABLE IF EXISTS adaptdb.webusers;
-CREATE TABLE adaptdb.webusers (id int(10) unsigned NOT NULL AUTO_INCREMENT, tprefix varchar(5), fname varchar(20), lname varchar(20), tsuffix varchar(5), username varchar(100) NOT NULL, userpass varchar(15), wphone varchar(16), email varchar(100), site varchar(100), active varchar(1) DEFAULT 'Y', hostname varchar(50), PRIMARY KEY (username), CONSTRAINT rowno UNIQUE (id)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
+CREATE TABLE adaptdb.webusers (sitename varchar(50) DEFAULT NULL, siteID varchar(3) NOT NULL, name varchar(200) DEFAULT NULL, username varchar(100) NOT NULL, email varchar(200) DEFAULT NULL, title varchar(3) DEFAULT NULL, active varchar(3) DEFAULT NULL, password varchar(10) DEFAULT NULL, userpass varchar(200) DEFAULT NULL, PRIMARY KEY (username)) ENGINE=InnoDB DEFAULT CHARSET=latin1 DEFAULT COLLATE=latin1_swedish_ci;
 DROP TABLE IF EXISTS adaptdb.medicine_list;
 CREATE TABLE adaptdb.medicine_list (
   medicine_id int(11) NOT NULL AUTO_INCREMENT,
@@ -659,8 +657,6 @@ INSERT INTO adaptdb.cereal_list (cereal_id, name) VALUES (323, 'Whole wheat, cra
 INSERT INTO adaptdb.cereal_list (cereal_id, name) VALUES (324, 'Zoom');
 
 SET FOREIGN_KEY_CHECKS = 0;
-DROP TABLE IF EXISTS adaptdb.questionnaire ;
-DROP TABLE IF EXISTS adaptdb.questionnaire_sequence;
 
 DROP TABLE IF EXISTS adaptdb.rows;
 DROP TABLE IF EXISTS adaptdb.choices;
@@ -1484,7 +1480,7 @@ CREATE TABLE
         email VARCHAR(255),
         PRIMARY KEY (participant_email_id),
         CONSTRAINT participantemail_fk1 FOREIGN KEY (participant_id) REFERENCES
-        adaptdb.participants (participant_id)
+        adaptdb.participants (id)
     )
     ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

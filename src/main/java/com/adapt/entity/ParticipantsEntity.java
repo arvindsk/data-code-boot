@@ -11,11 +11,14 @@ import java.util.Date;
 @Table(name = "participants")
 public class ParticipantsEntity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
     @Id
-    @Column(name = "participant_id", nullable = false)
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer participantId;
+
+    @Column(name = "projectid")
+    private String projectId;
 
     @Column(name = "autotime", nullable = false)
     private Date autotime;
@@ -26,11 +29,17 @@ public class ParticipantsEntity implements Serializable {
     @Column(name = "loghost")
     private String loghost;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "patientID")
+    private String patientId;
+
+    @Column(name = "firstname", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "lastname", nullable = false)
     private String lastName;
+
+    @Column(name = "siteID", nullable = false)
+    private String siteId;
 
     @Column(name = "naccID", nullable = false)
     private String naccID;
@@ -58,6 +67,12 @@ public class ParticipantsEntity implements Serializable {
 
     @Column(name = "ques4", nullable = false)
     private String ques4;
+
+    @Column(name = "ques5", nullable = false)
+    private String ques5;
+
+    @Column(name = "ques6", nullable = false)
+    private String ques6;
 
     @Column(name = "autolog", nullable = false)
     private Date autolog;

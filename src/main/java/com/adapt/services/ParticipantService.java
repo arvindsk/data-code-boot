@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 @Service
@@ -53,7 +52,7 @@ public class ParticipantService {
 
     public List<Participant> getParticipants(String host) {
         List<Participant> participants = new ArrayList<>();
-        List<ParticipantsEntity> participantsEntities = participantsEntityRepository.findAllByNaccID(host);
+        List<ParticipantsEntity> participantsEntities = participantsEntityRepository.findAllBySiteId(host);
         for (ParticipantsEntity participantsEntity : participantsEntities) {
             List<ParticipantStudyEntity> participantStudyList = participantStudyEntityRepository.
                     findByParticipantIdOrderByCompletedTimeDesc(participantsEntity.getParticipantId());
@@ -168,7 +167,7 @@ public class ParticipantService {
                     .lastName(participantsEntity.getLastName())
                     .timeline(participantStudyList.size() > 0 ? participantStudyList.get(0).getTimeline() : "Baseline")
                     .registeredDate(participantsEntity.getAutotime())
-                    .dob(participantsEntity.getDob()!=null && !"".equalsIgnoreCase(participantsEntity.getDob())?participantsEntity.getDob().substring(0,5):"")
+                    .dob(participantsEntity.getDob()!=null && !"".equalsIgnoreCase(participantsEntity.getDob())? participantsEntity.getDob().substring(0,5):"")
                     .baselineStatus(baselineStatus!=null?baselineStatus:Status.NOT_STARTED.getStatusName())
                     .firstyearStatus(firstyearStatus!=null?firstyearStatus:Status.NOT_STARTED.getStatusName())
                     .thirdyearStatus(thirdyearStatus!=null?thirdyearStatus:Status.NOT_STARTED.getStatusName())

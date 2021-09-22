@@ -24,11 +24,13 @@ public class LoginService {
 
     public LoginResponse login(LoginRequest request){
         WebusersEntity user = webusersEntityRepository.findByUsername(request.getEmailId());
-        if (user!=null && user.getUsername() != null && user.getUserpass() != null) {
+        if (user!=null && user.getActive()!=null &&
+                user.getUsername() != null && user.getPassword() != null) {
             if (request.getEmailId().equalsIgnoreCase(user.getUsername()) &&
-                    request.getPassword().equalsIgnoreCase(user.getUserpass())) {
-                SiteEntity site = siteEntityRepository.findBySiteCode(user.getSite());
-                return new LoginResponse("success", user.getFname(), user.getSite(), site.getSiteName(), site.getNaccId());
+                    request.getPassword().equalsIgnoreCase(user.getPassword()) &&
+                    "Yes".equalsIgnoreCase(user.getActive())) {
+                SiteEntity site = siteEntityRepository.findByNaccId(Integer.valueOf(user.getSiteId()));
+                return new LoginResponse("success", user.getName(), user.getSitename(), site.getSiteName(), site.getNaccId());
             }
         }
         return new LoginResponse("failed","","","", Integer.valueOf(0));

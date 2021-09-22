@@ -1,6 +1,5 @@
 package com.adapt.services;
 
-import com.adapt.dto.Participant;
 import com.adapt.dto.Summary;
 import com.adapt.dto.SummaryMap;
 import com.adapt.dto.enums.Status;
@@ -33,7 +32,7 @@ public class SummaryService {
     public Summary summary(String host){
         Summary response = new Summary();
         //Long participantCount = participantsEntityRepository.count();
-        List<ParticipantsEntity> participantList = participantsEntityRepository.findAllByNaccID(host);
+        List<ParticipantsEntity> participantList = participantsEntityRepository.findAllBySiteId(host);
         List<Integer> participantIds = new ArrayList<Integer>();
         for(ParticipantsEntity entity : participantList){
             participantIds.add(entity.getParticipantId());
