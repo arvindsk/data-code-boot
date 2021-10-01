@@ -9,6 +9,7 @@ import java.util.Date;
 @Builder
 public class ParticipantStudy {
     private String firstName;
+    private String patientId;
     private String timeline;
     private String studyName;
     private String studyInformation;

@@ -163,11 +163,12 @@ public class ParticipantService {
             String email = Objects.nonNull(emailEntity)?emailEntity.getEmail() != null ? emailEntity.getEmail() : "":null;
             Participant participant = Participant.builder()
                     .participantId(participantsEntity.getParticipantId())
+                    .patientId(participantsEntity.getPatientId())
                     .firstName(participantsEntity.getFirstName())
                     .lastName(participantsEntity.getLastName())
                     .timeline(participantStudyList.size() > 0 ? participantStudyList.get(0).getTimeline() : "Baseline")
                     .registeredDate(participantsEntity.getAutotime())
-                    .dob(participantsEntity.getDob()!=null && !"".equalsIgnoreCase(participantsEntity.getDob())? participantsEntity.getDob().substring(0,5):"")
+                    .dob(participantsEntity.getDob())
                     .baselineStatus(baselineStatus!=null?baselineStatus:Status.NOT_STARTED.getStatusName())
                     .firstyearStatus(firstyearStatus!=null?firstyearStatus:Status.NOT_STARTED.getStatusName())
                     .thirdyearStatus(thirdyearStatus!=null?thirdyearStatus:Status.NOT_STARTED.getStatusName())
@@ -175,23 +176,6 @@ public class ParticipantService {
                     //.completedDate(participantStudyList.size() > 0 ? participantStudyList.get(0).getCompletedTime() : null)
                     .build();
 
-            /*switch(timeline){
-                case "Baseline":
-                    if(timeline.equalsIgnoreCase(participant.getTimeline())){
-                        participants.add(participant);
-                    }
-                    break;
-                case "Firstyear":
-                    if(timeline.equalsIgnoreCase(participant.getTimeline()) || "Baseline".equalsIgnoreCase(participant.getTimeline())){
-                        participants.add(participant);
-                    }
-                    break;
-                case "Thirdyear":
-                    if(timeline.equalsIgnoreCase(participant.getTimeline()) || "Baseline".equalsIgnoreCase(participant.getTimeline()) || "Firstyear".equalsIgnoreCase(participant.getTimeline())){
-                        participants.add(participant);
-                    }
-                    break;
-            }*/
             participants.add(participant);
 
         }
@@ -299,6 +283,7 @@ public class ParticipantService {
                     .activeTimeline(activeTimeline)
                     .endedTimeline(isTimelineEnded)
                     .firstName(getFirstName(participantId))
+                    .patientId(getPatientId(participantId))
                     .access(entity.getAccess())
                     .email(email)
                     .quid(entity.getQuid())
@@ -413,6 +398,14 @@ public class ParticipantService {
         if (Objects.nonNull(participantId)) {
             ParticipantsEntity participantsEntity = participantsEntityRepository.getById(participantId);
             return participantsEntity.getFirstName();
+        }
+        return null;
+    }
+
+    private String getPatientId(Integer participantId) {
+        if (Objects.nonNull(participantId)) {
+            ParticipantsEntity participantsEntity = participantsEntityRepository.getById(participantId);
+            return participantsEntity.getPatientId();
         }
         return null;
     }

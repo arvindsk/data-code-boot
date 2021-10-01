@@ -8,6 +8,7 @@ import java.util.Date;
 @Data
 public class Participant {
     private Integer participantId;
+    private String patientId;
     private String firstName;
     private String lastName;
     private String dob;
