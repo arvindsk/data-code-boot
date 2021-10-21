@@ -233,7 +233,9 @@ public class QuestionnaireService {
     private List<ElementsItem> getElements(Set<ElementsEntity> elementsEntities) {
 
         if (Objects.nonNull(elementsEntities) && !elementsEntities.isEmpty()) {
-            Comparator<ElementsEntity> idComparator = Comparator.comparing(ElementsEntity::getElementsId);
+            Comparator<ElementsEntity> idComparator = Comparator.comparing(ElementsEntity::getName);
+
+
             List<ElementsEntity> sortedEntities = elementsEntities.stream().sorted(idComparator).collect(Collectors.toList());
             return sortedEntities.stream().map(elementsEntity -> ElementsItem.builder()
                     .startWithNewLine(elementsEntity.isStartWithNewLine())

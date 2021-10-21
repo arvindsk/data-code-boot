@@ -32,6 +32,7 @@ public class ParticipantService {
     private final MedicineListEntityRepository medicineListEntityRepository;
     private final ParticipantEmailEntityRepository participantEmailEntityRepository;
     private final StudyEntityRepository studyEntityRepository;
+    private final CountEntityRepository countEntityRepository;
     private JavaMailSender emailSender;
 
     public ParticipantService(ParticipantsEntityRepository participantsEntityRepository,
@@ -40,7 +41,7 @@ public class ParticipantService {
                               MedicineListEntityRepository medicineListEntityRepository,
                               ParticipantEmailEntityRepository participantEmailEntityRepository,
                               StudyEntityRepository studyEntityRepository,
-                              JavaMailSender emailSender) {
+                              JavaMailSender emailSender, CountEntityRepository countEntityRepository) {
         this.participantsEntityRepository = participantsEntityRepository;
         this.participantStudyEntityRepository = participantStudyEntityRepository;
         this.cerealListEntityRepository = cerealListEntityRepository;
@@ -48,6 +49,7 @@ public class ParticipantService {
         this.participantEmailEntityRepository = participantEmailEntityRepository;
         this.studyEntityRepository = studyEntityRepository;
         this.emailSender = emailSender;
+        this.countEntityRepository=countEntityRepository;
     }
 
     public List<Participant> getParticipants(String host) {
@@ -392,6 +394,12 @@ public class ParticipantService {
         List<CerealListEntity> cerealListEntityList = this.cerealListEntityRepository.findAll();
 
         return cerealListEntityList.stream().map(CerealListEntity::getName).collect(Collectors.toList());
+    }
+
+    public List<Integer> getCountList() {
+        List<CountEntity> countEntityList = this.countEntityRepository.findAll();
+
+        return countEntityList.stream().map(CountEntity::getName).collect(Collectors.toList());
     }
 
     private String getFirstName(Integer participantId) {
