@@ -35,3 +35,5 @@ INSERT INTO adaptdb.elements (elements_id, start_with_new_line, has_other, name,
     ((SELECT MAX( elements_id ) from adaptdb.elements e)+1, 1, 0, '13', null, 'datetimepicker', 'Date of Assessment', 'left', 0, null, 'text', null, null,
      (select page_id from adaptdb.pages where questionnaires_id=17 and name='AssessmentPage')
         , 17, null, 0, null, null, 0, null, 0, 0, null, 0, null, null, null, null, '30em','30em','30em','MM/DD/YYYY','MM/DD/YYYY');
+
+commit;
