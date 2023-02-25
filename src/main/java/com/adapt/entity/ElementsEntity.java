@@ -107,6 +107,18 @@ public class ElementsEntity implements Serializable {
     @Column(name = "width")
     private String width;
 
+    @Column(name = "min_width")
+    private String minWidth;
+
+    @Column(name = "max_width")
+    private String maxWidth;
+
+    @Column(name = "input_format")
+    private String inputFormat;
+
+    @Column(name = "place_holder")
+    private String placeHolder;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

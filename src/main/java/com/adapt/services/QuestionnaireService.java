@@ -266,6 +266,10 @@ public class QuestionnaireService {
                     .rows(getRows(elementsEntity.getRows()))
                     .columns(getColumns(elementsEntity.getColumns()))
                     .width(elementsEntity.getWidth())
+                    .minWidth(elementsEntity.getMinWidth())
+                    .maxWidth(elementsEntity.getMaxWidth())
+                    .inputFormat(elementsEntity.getInputFormat())
+                    .placeHolder(elementsEntity.getPlaceHolder())
                     .build()).collect(Collectors.toList());
         }
         return new ArrayList<>();

@@ -66,7 +66,7 @@ public class QuestionnaireController {
         } else {
             switch (studyId) {
                 case 1001:
-                    return loadJson("questionnarie/vascular_v.1.json");
+                    return loadJson("questionnarie/vascular_study.json");
                 case 1002:
                     return loadJson("questionnarie/sleep_study_v_1.json");
                 case 1003:

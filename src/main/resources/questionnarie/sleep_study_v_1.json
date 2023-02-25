@@ -364,6 +364,24 @@
         }
       ],
       "title": "CATEGORY 3"
+    },
+    {
+      "elements": [
+        {
+          "name": "15",
+          "title": "Date of Assessment",
+          "titleLocation": "left",
+          "type": "datetimepicker",
+          "inputType": "text",
+          "inputFormat": "MM/DD/YYYY",
+          "placeHolder": "MM/DD/YYYY",
+          "width": "30em",
+          "minWidth": "30em",
+          "maxWidth": "30em"
+        }
+      ],
+      "name": "AssessmentPage",
+      "title": "Assessment"
     }
   ],
   "showQuestionNumbers": "off",

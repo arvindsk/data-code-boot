@@ -243,10 +243,10 @@ public class ParticipantService {
             if (firstAttemptTime != null) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(firstAttemptTime);
-                calendar.add(Calendar.MONTH, 12);
+                calendar.add(Calendar.MONTH, 10);
                 Calendar calendar2 = Calendar.getInstance();
                 calendar2.setTime(firstAttemptTime);
-                calendar2.add(Calendar.MONTH, 24);
+                calendar2.add(Calendar.MONTH, 20);
                 Calendar calendar1 = Calendar.getInstance();
 
                 if (calendar1.after(calendar)) {
@@ -254,8 +254,8 @@ public class ParticipantService {
                     if(calendar1.after(calendar2)){
                         isTimelineEnded = true;
                     }
-                    calendar.add(Calendar.MONTH, 18);
-                    calendar2.add(Calendar.MONTH, 18);
+                    calendar.add(Calendar.MONTH, 16);
+                    calendar2.add(Calendar.MONTH, 16);
                     if (calendar1.after(calendar)) {
                         isTimelineEnded = false;
                         activeTimeline = Timeline.THIRD_YEAR.getTimelineName();

@@ -99,4 +99,16 @@ public class ElementsItem {
 
     @SerializedName("width")
     private String width;
+
+    @SerializedName("minWidth")
+    private String minWidth;
+
+    @SerializedName("maxWidth")
+    private String maxWidth;
+
+    @SerializedName("inputFormat")
+    private String inputFormat;
+
+    @SerializedName("placeHolder")
+    private String placeHolder;
 }
