@@ -35,13 +35,16 @@ public class ParticipantService {
     private final CountEntityRepository countEntityRepository;
     private JavaMailSender emailSender;
 
+    private TimelineIntervalRepository timelineIntervalRepository;
+
     public ParticipantService(ParticipantsEntityRepository participantsEntityRepository,
                               ParticipantStudyEntityRepository participantStudyEntityRepository,
                               CerealListEntityRepository cerealListEntityRepository,
                               MedicineListEntityRepository medicineListEntityRepository,
                               ParticipantEmailEntityRepository participantEmailEntityRepository,
                               StudyEntityRepository studyEntityRepository,
-                              JavaMailSender emailSender, CountEntityRepository countEntityRepository) {
+                              JavaMailSender emailSender, CountEntityRepository countEntityRepository,
+                              TimelineIntervalRepository timelineIntervalRepository) {
         this.participantsEntityRepository = participantsEntityRepository;
         this.participantStudyEntityRepository = participantStudyEntityRepository;
         this.cerealListEntityRepository = cerealListEntityRepository;
@@ -50,6 +53,7 @@ public class ParticipantService {
         this.studyEntityRepository = studyEntityRepository;
         this.emailSender = emailSender;
         this.countEntityRepository=countEntityRepository;
+        this.timelineIntervalRepository=timelineIntervalRepository;
     }
 
     public List<Participant> getParticipants(String host) {
@@ -132,27 +136,35 @@ public class ParticipantService {
             if(!participantStudyTimelineList.isEmpty()) {
                 Date firstAttemptTime = participantStudyTimelineList.get(0).getCompletedTime();
                 if (firstAttemptTime != null) {
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(firstAttemptTime);
-                    calendar.add(Calendar.MONTH, 12);
-                    Calendar calendar2 = Calendar.getInstance();
-                    calendar2.setTime(firstAttemptTime);
-                    calendar2.add(Calendar.MONTH, 24);
-                    Calendar calendar1 = Calendar.getInstance();
 
-                    if (calendar1.after(calendar)) {
+                    Map<String,Integer> timelineMap= getTimelineMap();
+
+                    Calendar calendar_followup1_enabled = Calendar.getInstance();
+                    calendar_followup1_enabled.setTime(firstAttemptTime);
+                    calendar_followup1_enabled.add(Calendar.MONTH, timelineMap.get("followup1_enabled"));
+
+
+                    Calendar calendar_current_instance = Calendar.getInstance();
+
+                    if (calendar_current_instance.after(calendar_followup1_enabled)) {
                         //activeTimeline = Timeline.FIRST_YEAR.getTimelineName();
                             if (Status.IN_PROGRESS.getStatusName().equalsIgnoreCase(baselineStatus)) {
                                 baselineStatus = Status.IN_COMPLETE.getStatusName();
                         }
-                        calendar.add(Calendar.MONTH, 18);
-                        calendar2.add(Calendar.MONTH, 18);
-                        if (calendar1.after(calendar)) {
+                        Calendar calendar_followup2_enabled = Calendar.getInstance();
+                        calendar_followup2_enabled.setTime(firstAttemptTime);
+                        calendar_followup2_enabled.add(Calendar.MONTH, timelineMap.get("followup2_enabled"));
+
+                        Calendar calendar_followup2_disabled = Calendar.getInstance();
+                        calendar_followup2_disabled.setTime(firstAttemptTime);
+                        calendar_followup2_disabled.add(Calendar.MONTH, timelineMap.get("followup2_disabled"));
+
+                        if (calendar_current_instance.after(calendar_followup2_enabled)) {
                             //activeTimeline = Timeline.THIRD_YEAR.getTimelineName();
                             if (Status.IN_PROGRESS.getStatusName().equalsIgnoreCase(firstyearStatus)) {
                                 firstyearStatus = Status.IN_COMPLETE.getStatusName();
                             }
-                            if (calendar1.after(calendar2)) {
+                            if (calendar_current_instance.after(calendar_followup2_disabled)) {
                                 if (Status.IN_PROGRESS.getStatusName().equalsIgnoreCase(thirdyearStatus)) {
                                     thirdyearStatus = Status.IN_COMPLETE.getStatusName();
                                 }
@@ -222,6 +234,8 @@ public class ParticipantService {
     }
 
     public List<ParticipantStudy> getParticipantStudyList(Participant participant) {
+
+
         List<ParticipantStudy> participantStudyList = new ArrayList<>();
         Integer participantId = participant.getParticipantId();
         String timeline = participant.getTimeline();
@@ -241,25 +255,35 @@ public class ParticipantService {
             }
             Date firstAttemptTime = participantStudyTimelineList.get(0).getCompletedTime();
             if (firstAttemptTime != null) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(firstAttemptTime);
-                calendar.add(Calendar.MONTH, 10);
-                Calendar calendar2 = Calendar.getInstance();
-                calendar2.setTime(firstAttemptTime);
-                calendar2.add(Calendar.MONTH, 20);
-                Calendar calendar1 = Calendar.getInstance();
+                Map<String,Integer> timelineMap= getTimelineMap();
 
-                if (calendar1.after(calendar)) {
+                Calendar calendar_followup1_enabled = Calendar.getInstance();
+                calendar_followup1_enabled.setTime(firstAttemptTime);
+                calendar_followup1_enabled.add(Calendar.MONTH, timelineMap.get("followup1_enabled"));
+
+                Calendar calendar_followup1_disabled = Calendar.getInstance();
+                calendar_followup1_disabled.setTime(firstAttemptTime);
+                calendar_followup1_disabled.add(Calendar.MONTH, timelineMap.get("followup1_disabled"));
+
+                Calendar calendar_current_date = Calendar.getInstance();
+
+                if (calendar_current_date.after(calendar_followup1_enabled)) {
                     activeTimeline = Timeline.FIRST_YEAR.getTimelineName();
-                    if(calendar1.after(calendar2)){
+                    if(calendar_current_date.after(calendar_followup1_disabled)){
                         isTimelineEnded = true;
                     }
-                    calendar.add(Calendar.MONTH, 16);
-                    calendar2.add(Calendar.MONTH, 16);
-                    if (calendar1.after(calendar)) {
+                    Calendar calendar_followup2_enabled = Calendar.getInstance();
+                    calendar_followup2_enabled.setTime(firstAttemptTime);
+                    calendar_followup2_enabled.add(Calendar.MONTH, timelineMap.get("followup2_enabled"));
+
+                    Calendar calendar_followup2_disabled = Calendar.getInstance();
+                    calendar_followup2_disabled.setTime(firstAttemptTime);
+                    calendar_followup2_disabled.add(Calendar.MONTH, timelineMap.get("followup2_disabled"));
+
+                    if (calendar_current_date.after(calendar_followup2_enabled)) {
                         isTimelineEnded = false;
                         activeTimeline = Timeline.THIRD_YEAR.getTimelineName();
-                        if(calendar1.after(calendar2)){
+                        if(calendar_current_date.after(calendar_followup2_disabled)){
                             isTimelineEnded = true;
                         }
                     }
@@ -298,6 +322,14 @@ public class ParticipantService {
         return participantStudyList;
     }
 
+    private Map<String,Integer> getTimelineMap() {
+        List<TimelineIntervalEntity> timelineIntervalEntityList = timelineIntervalRepository.findAll();
+        Map<String,Integer> timelineMap= timelineIntervalEntityList.stream()
+                .collect(Collectors.toMap(TimelineIntervalEntity::getTimelineName, TimelineIntervalEntity::getIntervalInMonths, (a, b) -> b));
+
+        return timelineMap;
+    }
+
     public ParticipantStudy getParticipantStudy(String quid){
         ParticipantStudyEntity entity = participantStudyEntityRepository.findByQuid(quid);
         Integer participantId=entity.getParticipantId();
@@ -312,25 +344,35 @@ public class ParticipantService {
         }
         Date firstAttemptTime = participantStudyTimelineList.get(0).getCompletedTime();
         if (firstAttemptTime != null) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(firstAttemptTime);
-            calendar.add(Calendar.MONTH, 12);
-            Calendar calendar2 = Calendar.getInstance();
-            calendar2.setTime(firstAttemptTime);
-            calendar2.add(Calendar.MONTH, 24);
-            Calendar calendar1 = Calendar.getInstance();
+            Map<String,Integer> timelineMap= getTimelineMap();
 
-            if (calendar1.after(calendar)) {
+            Calendar calendar_followup1_enabled = Calendar.getInstance();
+            calendar_followup1_enabled.setTime(firstAttemptTime);
+            calendar_followup1_enabled.add(Calendar.MONTH, timelineMap.get("followup1_enabled"));
+
+            Calendar calendar_followup1_disabled = Calendar.getInstance();
+            calendar_followup1_disabled.setTime(firstAttemptTime);
+            calendar_followup1_disabled.add(Calendar.MONTH, timelineMap.get("followup1_disabled"));
+
+            Calendar calendar_current_date = Calendar.getInstance();
+
+            if (calendar_current_date.after(calendar_followup1_enabled)) {
                 activeTimeline = Timeline.FIRST_YEAR.getTimelineName();
-                if(calendar1.after(calendar2)){
+                if(calendar_current_date.after(calendar_followup1_disabled)){
                     isTimelineEnded = true;
                 }
-                calendar.add(Calendar.MONTH, 18);
-                calendar2.add(Calendar.MONTH, 18);
-                if (calendar1.after(calendar)) {
+                Calendar calendar_followup2_enabled = Calendar.getInstance();
+                calendar_followup2_enabled.setTime(firstAttemptTime);
+                calendar_followup2_enabled.add(Calendar.MONTH, timelineMap.get("followup2_enabled"));
+
+                Calendar calendar_followup2_disabled = Calendar.getInstance();
+                calendar_followup2_disabled.setTime(firstAttemptTime);
+                calendar_followup2_disabled.add(Calendar.MONTH, timelineMap.get("followup2_disabled"));
+
+                if (calendar_current_date.after(calendar_followup2_enabled)) {
                     isTimelineEnded = false;
                     activeTimeline = Timeline.THIRD_YEAR.getTimelineName();
-                    if(calendar1.after(calendar2)){
+                    if(calendar_current_date.after(calendar_followup2_disabled)){
                         isTimelineEnded = true;
                     }
                 }
