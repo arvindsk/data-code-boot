@@ -127,7 +127,7 @@ public class ParticipantService {
                 }
 
             }
-            List<ParticipantStudyEntity> participantStudyTimelineList = participantStudyEntityRepository
+/*            List<ParticipantStudyEntity> participantStudyTimelineList = participantStudyEntityRepository
                     .findByParticipantIdAndCompletedTimeIsNotNullOrderByCompletedTime(participantsEntity.getParticipantId());
             if(participantStudyTimelineList.isEmpty()){
                 participantStudyTimelineList = participantStudyEntityRepository
@@ -172,7 +172,7 @@ public class ParticipantService {
                         }
                     }
                 }
-            }
+            }*/
             ParticipantEmailEntity emailEntity = participantEmailEntityRepository.findByParticipantId(participantsEntity.getParticipantId());
             String email = Objects.nonNull(emailEntity)?emailEntity.getEmail() != null ? emailEntity.getEmail() : "":null;
             Participant participant = Participant.builder()
@@ -243,7 +243,7 @@ public class ParticipantService {
         boolean isTimelineEnded = false;
 
         List<ParticipantStudyEntity> participantStudyEntityList = participantStudyEntityRepository.findByParticipantIdAndTimeline(participantId, timeline);
-        if (Objects.isNull(participantStudyEntityList) || participantStudyEntityList.isEmpty()) {
+     /*     if (Objects.isNull(participantStudyEntityList) || participantStudyEntityList.isEmpty()) {
             participantStudyEntityList = createParticipantStudyEntitiesForParticipant(participantId, timeline);
             participantStudyEntityList = participantStudyEntityRepository.saveAllAndFlush(participantStudyEntityList);
         } else {
@@ -289,7 +289,7 @@ public class ParticipantService {
                     }
                 }
             }
-        }
+        }*/
         String email=null;
 
         ParticipantEmailEntity emailEntity = participantEmailEntityRepository.findByParticipantId(participant.getParticipantId());
@@ -336,7 +336,7 @@ public class ParticipantService {
         String activeTimeline = Timeline.BASELINE.getTimelineName();
         boolean isTimelineEnded = false;
 
-        List<ParticipantStudyEntity> participantStudyTimelineList = participantStudyEntityRepository
+/*        List<ParticipantStudyEntity> participantStudyTimelineList = participantStudyEntityRepository
                 .findByParticipantIdAndCompletedTimeIsNotNullOrderByCompletedTime(participantId);
         if(participantStudyTimelineList.isEmpty()){
             participantStudyTimelineList = participantStudyEntityRepository
@@ -377,7 +377,7 @@ public class ParticipantService {
                     }
                 }
             }
-        }
+        }*/
         return ParticipantStudy.builder().studyId(entity.getStudyId())
                 .participantStudyId(entity.getParticipantStudyId())
                 .studyInformation(entity.getStudyInformation())
